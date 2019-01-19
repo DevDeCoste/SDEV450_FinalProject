@@ -1,8 +1,8 @@
 package sdev450_finalproject;
 
 /** 
- * @Course: SDEV 350 ~ Java Programming I
- * @Author Name: Dev
+ * @Course: SDEV 450 ~ Java Programming III
+ * @Author Name: Dev DeCoste, Trinh Nguyen, Madeline Merced
  * @Assignment Name: sdev450_finalproject
  * @Date: Jan 18, 2019
  * @Description: 
