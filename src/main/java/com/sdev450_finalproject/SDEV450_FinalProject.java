@@ -16,6 +16,6 @@ public class SDEV450_FinalProject extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        
+
     }
 } //End Class SDEV450_FinalProject
