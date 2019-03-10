@@ -9,7 +9,9 @@ import javax.persistence.Table;
 public class AlbumEntity {
 
     @Id
-    private String id;
+    private String id;  //trinh -> possibly convert this to a long ? 
+    
+    
     private String AlbumName;
 
     public String getId() {

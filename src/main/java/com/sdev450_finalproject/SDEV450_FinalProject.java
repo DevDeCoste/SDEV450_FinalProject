@@ -1,4 +1,10 @@
-package sdev450_finalproject;
+package com.sdev450_finalproject;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import com.example.javathree.JavathreeApplication;
 
 /*
  * @Course: SDEV 450 ~ Java Programming III
@@ -12,10 +18,14 @@ package sdev450_finalproject;
 import javafx.application.Application;
 import javafx.stage.Stage;
 //Begin Class SDEV450_FinalProject
-public class SDEV450_FinalProject extends Application {
+ 
+@SpringBootApplication
+@EnableJpaRepositories
+public class SDEV450_FinalProject {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+	public static void main(String[] args) {
+		SpringApplication.run(SDEV450_FinalProject.class, args);
+	}
 
-    }
-} //End Class SDEV450_FinalProject
+}
+
