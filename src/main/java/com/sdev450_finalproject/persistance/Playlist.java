@@ -1,10 +1,11 @@
 package com.sdev450_finalproject.persistance;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Playlist {
-	
+	@Id
 	Long user_id;
 	String display_name;
 	String first_name;
@@ -15,7 +16,7 @@ public class Playlist {
 	String uri;
 	
 	String[] images;
-	Follower follower; //what is this object? return number of followers? return all followers? 
+	//Follower follower; //what is this object? return number of followers? return all followers?
 	//Should I create a class for this? 
 	
 	
@@ -73,12 +74,12 @@ public class Playlist {
 	public void setImages(String[] images) {
 		this.images = images;
 	}
-	public Follower getFollower() {
-		return follower;
-	}
-	public void setFollower(Follower follower) {
-		this.follower = follower;
-	}
+//	public Follower getFollower() {
+//		return follower;
+//	}
+	//public void setFollower(Follower follower) {
+	//	this.follower = follower;
+	//}
 	
 	
 	
