@@ -9,10 +9,12 @@ import javax.persistence.Table;
 public class AlbumEntity {
 
     @Id
-    private String id;  //trinh -> possibly convert this to a long ? 
-    
-    
+    private String id;  //trinh -> possibly convert this to a long ?
     private String AlbumName;
+    private String Artist;
+    private String Tracklist[];
+
+
 
     public String getId() {
         return id;
@@ -30,7 +32,14 @@ public class AlbumEntity {
         Artist = artist;
     }
 
-    private String Artist;
+
+    public String[] getTracklist() {
+        return Tracklist;
+    }
+
+    public void setTracklist(String[] tracklist) {
+        Tracklist = tracklist;
+    }
 
     public String getAlbumName() {
         return AlbumName;
