@@ -28,45 +28,46 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  
 @SpringBootApplication
 @EnableJpaRepositories
-public class SDEV450_FinalProject extends Application {
+public class SDEV450_FinalProject {
 
-//	public static void main(String[] args) {
-//		SpringApplication.run(SDEV450_FinalProject.class, args);
-//	}
-
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		BorderPane bPane = new BorderPane(); //create new border pane object
-		BorderPane bPane2 = new BorderPane(); //create new border pane object
-		bPane.setPadding(new Insets(10, 10, 10, 10));
-
-		Button btTest = new Button("Test Button");
-		btTest.setPadding(new Insets(5, 15, 5, 15));
-
-		btTest.setOnAction(e -> {
-
-				});
-
-		bPane.setTop(new CustPane("Top"));
-		bPane.setCenter(btTest);
-
-
-		Scene scene = new Scene(bPane, 450, 250);
-		primaryStage.setTitle("Diet Spotify");
-		primaryStage.setResizable(false);
-		primaryStage.setScene(scene);
-		primaryStage.show();
-
-
-	} //End Start Method
-	class CustPane extends StackPane {
-
-		public CustPane(String Text) {
-			getChildren().add(new Text("Diet Spotify"));
-			setStyle(" -fx-font: 18px Tahoma;");
-			setPadding(new Insets(15.5, 15.5, 15.5, 35.5));
-		}
-	} // EndCustPane
-
+	public static void main(String[] args) {
+		SpringApplication.run(SDEV450_FinalProject.class, args);
+	}
 }
+
+//	@Override
+//	public void start(Stage primaryStage) throws Exception {
+//		BorderPane bPane = new BorderPane(); //create new border pane object
+//		BorderPane bPane2 = new BorderPane(); //create new border pane object
+//		bPane.setPadding(new Insets(10, 10, 10, 10));
+//
+//		Button btTest = new Button("Test Button");
+//		btTest.setPadding(new Insets(5, 15, 5, 15));
+//
+//		btTest.setOnAction(e -> {
+//
+//				});
+//
+//		bPane.setTop(new CustPane("Top"));
+//		bPane.setCenter(btTest);
+//
+//
+//		Scene scene = new Scene(bPane, 450, 250);
+//		primaryStage.setTitle("Diet Spotify");
+//		primaryStage.setResizable(false);
+//		primaryStage.setScene(scene);
+//		primaryStage.show();
+//
+//
+//	} //End Start Method
+//	class CustPane extends StackPane {
+//
+//		public CustPane(String Text) {
+//			getChildren().add(new Text("Welcome. Press the Button."));
+//			setStyle(" -fx-font: 18px Tahoma;");
+//			setPadding(new Insets(15.5, 15.5, 15.5, 35.5));
+//		}
+//	} // EndCustPane
+//
+//}
 

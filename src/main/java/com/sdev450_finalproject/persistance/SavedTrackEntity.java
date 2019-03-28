@@ -15,25 +15,25 @@ public class SavedTrackEntity {
 	@Id
 	Long id;
 	
-	TrackEntity track;
-	Time added_at;
-	
-
-
-	public TrackEntity getTrack() {
-		return track;
-	}
-
-	public void setTrack(TrackEntity track) {
-		this.track = track;
-	}
-
-	public Time getAdded_at() {
-		return added_at;
-	}
-
-	public void setAdded_at(Time added_at) {
-		this.added_at = added_at;
-	}
+//	TrackEntity track;
+//	Time added_at;
+//
+//
+//
+//	public TrackEntity getTrack() {
+//		return track;
+//	}
+//
+//	public void setTrack(TrackEntity track) {
+//		this.track = track;
+//	}
+//
+//	public Time getAdded_at() {
+//		return added_at;
+//	}
+//
+//	public void setAdded_at(Time added_at) {
+//		this.added_at = added_at;
+//	}
 
 }

@@ -17,23 +17,23 @@ public class SavedAlbumEntity {
 	@Id
 	Long id;
 	
-	AlbumEntity album;
-	Time added_at;
-
-	public AlbumEntity getAlbum() {
-		return album;
-	}
-
-	public void setAlbum(AlbumEntity album) {
-		this.album = album;
-	}
-
-	public Time getAdded_at() {
-		return added_at;
-	}
-
-	public void setAdded_at(Time added_at) {
-		this.added_at = added_at;
-	}
+//	AlbumEntity album;
+//	Time added_at;
+//
+//	public AlbumEntity getAlbum() {
+//		return album;
+//	}
+//
+//	public void setAlbum(AlbumEntity album) {
+//		this.album = album;
+//	}
+//
+//	public Time getAdded_at() {
+//		return added_at;
+//	}
+//
+//	public void setAdded_at(Time added_at) {
+//		this.added_at = added_at;
+//	}
 
 }
