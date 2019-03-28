@@ -9,4 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AlbumRepository extends JpaRepository<AlbumEntity, Long> {
 
     Page<AlbumEntity> findAll(Pageable pageable);
+
+    // https://api.spotify.com/v1/artists/The Eagles
 }
