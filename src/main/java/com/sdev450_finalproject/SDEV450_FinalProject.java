@@ -18,6 +18,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
 import org.springframework.boot.SpringApplication;
 import javafx.scene.Scene;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,10 +40,18 @@ public class SDEV450_FinalProject extends Application {
 		BorderPane bPane2 = new BorderPane(); //create new border pane object
 		bPane.setPadding(new Insets(10, 10, 10, 10));
 
-		bPane.setTop(new CustPane("Top"));
-		bPane.setCenter(bPane2);
+		Button btTest = new Button("Test Button");
+		btTest.setPadding(new Insets(5, 15, 5, 15));
 
-		Scene scene = new Scene(bPane, 615, 480);
+		btTest.setOnAction(e -> {
+
+				});
+
+		bPane.setTop(new CustPane("Top"));
+		bPane.setCenter(btTest);
+
+
+		Scene scene = new Scene(bPane, 450, 250);
 		primaryStage.setTitle("Diet Spotify");
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
@@ -58,5 +67,6 @@ public class SDEV450_FinalProject extends Application {
 			setPadding(new Insets(15.5, 15.5, 15.5, 35.5));
 		}
 	} // EndCustPane
+
 }
 
