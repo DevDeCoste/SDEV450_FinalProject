@@ -3,16 +3,21 @@ package com.sdev450_finalproject.persistance;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Arrays;
+
+import au.com.bytecode.opencsv.CSVReader;
 
 @Entity
 @Table(name = "Album")
 public class AlbumEntity {
 
     @Id
-    private String id;  //trinh -> possibly convert this to a long ?
+    private String id;
     private String AlbumName;
     private String Artist;
-    private String Tracklist[];
+    private String[] Tracklist;
 
 
 
@@ -53,4 +58,7 @@ public class AlbumEntity {
 
 
 
-}
+
+
+
+} //End of Class
