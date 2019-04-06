@@ -1,4 +1,4 @@
-package com.sdev450_finalproject.persistance;
+package com.sdev450_finalproject.persistance.Album;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
