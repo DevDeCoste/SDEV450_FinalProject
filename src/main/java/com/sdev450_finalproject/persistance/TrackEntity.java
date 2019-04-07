@@ -1,6 +1,5 @@
 package com.sdev450_finalproject.persistance;
 
-import java.lang.Object;
 import java.time.Duration;
 
 import javax.persistence.Entity;
@@ -14,6 +13,7 @@ public class TrackEntity {
 
 	@Id
 	private long id;
+	
 	String track_title;
 	String artist_name;
 	String artist_url;
