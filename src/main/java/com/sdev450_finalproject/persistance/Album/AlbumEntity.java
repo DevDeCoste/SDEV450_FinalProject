@@ -5,13 +5,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.Serializable;
 import java.util.Arrays;
 
 
 
 @Entity
 @Table(name = "Album")
-public class AlbumEntity {
+public class AlbumEntity implements Serializable {
 
     @Id
     private String id;
