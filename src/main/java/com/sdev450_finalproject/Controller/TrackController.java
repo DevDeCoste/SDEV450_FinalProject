@@ -4,7 +4,13 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+ 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,27 +35,52 @@ public class TrackController {
 	static String FILE_PATH = "C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\raw_tracks.csv";
 
 	@GetMapping("/findTrack/{trackName}")
-	public void findTrack(@PathVariable("trackName") String searchTrack) throws IOException {
+	public ArrayList<TrackEntity> findTrack(@PathVariable("trackName") String searchTrack) throws IOException, ParseException {
 
 		try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
 				CSVReader csvReader = new CSVReader(reader);) {
 			// Reading Records One by One in a String array
 			String[] nextRecord;
+			ArrayList<TrackEntity> trackLists = new ArrayList<>();
+			TrackEntity tempTrack = new TrackEntity();
 		
+		      DateFormat sdf = new SimpleDateFormat("mm:ss");
 			while ((nextRecord = csvReader.readNext()) != null) {
+				
+				if(nextRecord[nextRecord.length-2].contains(searchTrack)) {
+					
+					tempTrack.setArtist_name(nextRecord[2]);
+					tempTrack.setArtist_url(nextRecord[3]);
+					tempTrack.setTrack_duration( sdf.parse((nextRecord[8]))  );
+					tempTrack.setTrack_image_location(nextRecord[10]);
+					tempTrack.setTrack_interest(Long.parseLong(nextRecord[12]));
+					tempTrack.setTrack_title(nextRecord[nextRecord.length-2]);
+					tempTrack.setTrack_url_location(nextRecord[nextRecord.length-1]);
+					
+					trackLists.add(tempTrack);
+					
 
-            	for (int i = 0; i < nextRecord.length; i++) {
-            		if (nextRecord[i].contains(searchTrack)) {
-            			System.out.println("found AWOL search track. printing line");
-            			System.out.println(csvReader.getLinesRead());
-            			System.out.println(Arrays.toString(nextRecord));
+				
+
+
+				
+				// SEARCHING FOR ALL FIELDS INSTEAD OF THE TRACK COLUM ONLY
+//            	for (int i = 0; i < nextRecord.length; i++) {
+//            		if (nextRecord[i].contains(searchTrack)) {
+//            			System.out.println("found AWOL search track. printing line");
+//            			System.out.println(csvReader.getLinesRead());
+//            			System.out.println(Arrays.toString(nextRecord));
+////            			
             			
-            		}
-
-			
+//            			
+//            		}
+//
+//			
 			}
 
 		}
+			
+			return trackLists;
 	}
 }
 }

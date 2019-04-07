@@ -1,6 +1,8 @@
 package com.sdev450_finalproject.persistance;
 
+import java.sql.Time;
 import java.time.Duration;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +19,7 @@ public class TrackEntity {
 	String track_title;
 	String artist_name;
 	String artist_url;
-	Duration track_duration;
+	Date track_duration;
 	String track_image_location;
 	long track_interest;
 	String track_url_location;
@@ -54,12 +56,12 @@ public class TrackEntity {
 		this.artist_url = artist_url;
 	}
 
-	public Duration getTrack_duration() {
+	public Date getTrack_duration() {
 		return track_duration;
 	}
 
-	public void setTrack_duration(Duration track_duration) {
-		this.track_duration = track_duration;
+	public void setTrack_duration(Date date) {
+		this.track_duration = date;
 	}
 
 	public String getTrack_image_location() {
