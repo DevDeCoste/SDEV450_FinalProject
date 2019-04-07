@@ -20,6 +20,16 @@ public class AlbumEntity implements Serializable {
     private String Artist;
     private String[] Tracklist;
 
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    private String genre;
+
 
 
     public String getId() {
