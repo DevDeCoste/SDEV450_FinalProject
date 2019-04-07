@@ -1,8 +1,6 @@
 package com.sdev450_finalproject.persistance.Album;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Serializable;
@@ -15,10 +13,13 @@ import java.util.Arrays;
 public class AlbumEntity implements Serializable {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+
     private String id;
     private String AlbumName;
     private String Artist;
     private String[] Tracklist;
+    private String genre;
 
     public String getGenre() {
         return genre;
@@ -28,7 +29,7 @@ public class AlbumEntity implements Serializable {
         this.genre = genre;
     }
 
-    private String genre;
+
 
 
 
@@ -66,7 +67,11 @@ public class AlbumEntity implements Serializable {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "AlbumEntity [id=" + id + ", AlbumName=" + AlbumName + ", Artist=" + Artist
+                + ", genre=" + genre + "]";
+    }
 
 
 
