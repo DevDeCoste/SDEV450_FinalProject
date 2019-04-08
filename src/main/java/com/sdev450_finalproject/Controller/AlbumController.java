@@ -20,7 +20,7 @@ import java.util.Random;
 @RequestMapping("")
 public class AlbumController {
 
-    static String FILE_PATH = "C:\\Users\\deven\\IdeaProjects\\SDEV450_FinalProject\\src\\main\\resources\\CSVFiles\\albumlist.csv";
+    static String FILE_PATH = "./src/main/resources/albumlist.csv";
 
     @GetMapping("/findAlbum/{albumName}")
     public ArrayList<AlbumEntity> findAlbum(@PathVariable("albumName") String searchAlbum)
