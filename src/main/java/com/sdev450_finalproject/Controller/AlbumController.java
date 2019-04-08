@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.opencsv.CSVReader;
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 
-
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -20,7 +19,7 @@ import java.util.Random;
 @RestController
 @RequestMapping("")
 public class AlbumController {
-//Another test comment for a test push
+
     static String FILE_PATH = "./src/main/resources/albumlist.csv";
 
     @GetMapping("/findAlbum/{albumName}")
