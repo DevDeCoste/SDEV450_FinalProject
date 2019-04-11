@@ -37,6 +37,7 @@ public class AlbumController {
 
     @PostMapping(path = "/albums")
     public boolean createAlbum(@RequestBody AlbumEntity albumEntity){
+        //findAlbum(@PathVariable(albumLists));
         repository.save(albumEntity);
         return true;
     }
@@ -105,14 +106,3 @@ public class AlbumController {
 
 
 }
-
-
-//    @GetMapping("/loadAlbum")
-//    public String LoadAlbum() {
-//        try {
-//
-//
-//        } catch(FileNotFoundException ex) {
-//
-//        }
-//    }
