@@ -73,8 +73,4 @@ public class AlbumEntity implements Serializable {
                 + ", genre=" + genre + "]";
     }
 
-
-
-
-
 } //End of Class

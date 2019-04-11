@@ -1,13 +1,12 @@
 package com.sdev450_finalproject.Controller;
 
-/** 
- * @Course: SDEV 250 ~ Java Programming I
+/**
+ * @Course: SDEV 450 - Enterprise Java
  * @Author Name: Madeline Merced
  * @Assignment Name: com.sdev450_finalproject.Controller
  * @Date: Apr 6, 2019
- * @Subclass ArtistController Description: 
+ * @Subclass ArtistController Description:
  */
-
 //Imports
 import com.opencsv.CSVReader;
 import com.sdev450_finalproject.persistance.Artist.ArtistEntity;
@@ -28,63 +27,69 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("")
 public class ArtistController {
- 
-    static String FILE_PATH = "C:\\Users\\Doug\\Desktop\\School\\CurrentClasses\\Enterprise Java\\SDEV450_FinalProject-master\\src\\main\\resources\\SpotifyAudioFeaturesNov2018.csv";
 
-    @GetMapping("/artist/{artistName}")
+    static String FILE_PATH = "./src/main/resources/albumlist.csv";
+
+    @GetMapping("/findArtist/{artistName}")
     public ArrayList<ArtistEntity> findArtist(@PathVariable("artistName") String searchArtist)
-			throws IOException, ParseException {
-		String[] nextRecord;
-		try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
-				CSVReader csvReader = new CSVReader(reader);) {
-			// Reading Records One by One in a String array
+            throws IOException, ParseException {
 
-			ArrayList<ArtistEntity> artists = new ArrayList<>();
+        //Opens reader to read CSV file and set table values
+        try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
+                CSVReader csvReader = new CSVReader(reader);) {
 
-			while ((nextRecord = csvReader.readNext()) != null) {
-				ArtistEntity tempArtist = new ArtistEntity();
+            String[] nextRecord;
+            ArrayList<ArtistEntity> artists = new ArrayList<>();
 
-				if (nextRecord[nextRecord.length - 2].contains(searchArtist)) {
+            while ((nextRecord = csvReader.readNext()) != null) {
+                ArtistEntity tempArtist = new ArtistEntity();
 
-					tempArtist.setArtist_name(nextRecord[0]);
-                                        tempArtist.setTrack_name(nextRecord[1]);
-                                        tempArtist.setPopularity(nextRecord[2]);
+                if (nextRecord[nextRecord.length - 2].contains(searchArtist)) {
 
-					artists.add(tempArtist);
+                    tempArtist.setId(nextRecord[0]);
+                    tempArtist.setArtistName(nextRecord[3]);
+                    tempArtist.setAlbumName(nextRecord[2]);
+//                    tempArtist.setTracks(nextRecord);
+                    tempArtist.setGenre(nextRecord[4]);
 
-				}
+                    artists.add(tempArtist);
 
-			}
-			csvReader.close();
+                }
 
-			if (artists.isEmpty()) {
-				Reader reader1 = Files.newBufferedReader(Paths.get(FILE_PATH));
-				CSVReader csvReader1 = new CSVReader(reader1);
+            }
 
-				ArtistEntity tempArtist = new ArtistEntity();
+            csvReader.close();
 
-				int i = 0;
+            if (artists.isEmpty()) {
+                Reader reader1 = Files.newBufferedReader(Paths.get(FILE_PATH));
+                CSVReader csvReader1 = new CSVReader(reader1);
 
-				int randInt = new Random().nextInt(100);
+                ArtistEntity tempArtist = new ArtistEntity();
 
-				while (i <= randInt) {
-					nextRecord = csvReader1.readNext();
-					i = i + 2;
-				}
+                int i = 0;
+
+                int randInt = new Random().nextInt(100);
+
+                while (i <= randInt) {
+                    nextRecord = csvReader1.readNext();
+                    i = i + 2;
+                }
 
 //				
-				System.out.println(Arrays.toString(nextRecord));
-				tempArtist.setArtist_name(nextRecord[0]);
-                                tempArtist.setTrack_name(nextRecord[1]);
-                                tempArtist.setPopularity(nextRecord[2]);
+                System.out.println(Arrays.toString(nextRecord));
+                tempArtist.setId(nextRecord[0]);
+                tempArtist.setArtistName(nextRecord[3]);
+                tempArtist.setAlbumName(nextRecord[2]);
+//                tempArtist.setTracks(nextRecord);
+                tempArtist.setGenre(nextRecord[4]);
 
-				artists.add(tempArtist);
-				csvReader1.close();
+                artists.add(tempArtist);
+                csvReader1.close();
 
-			}
-			return artists;
-		}
-	}
-    
+            }
+            return artists;
+        }
+    }
+
 } //End Subclass ArtistController
 

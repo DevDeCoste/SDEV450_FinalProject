@@ -1,8 +1,6 @@
 package com.sdev450_finalproject.persistance.Artist;
 
-import java.sql.Time;
-import java.time.Duration;
-import java.util.Date;
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,52 +10,76 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Artist")
-
-public class ArtistEntity {
+public class ArtistEntity implements Serializable{
 
     @Id
-    private long id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+   
+    //Table Variables
+    private String artist_id;
+    private String artist_name;
+    private String album_name;
+    private String[] tracks;
+    private String genre;
 
-    String artist_name;
-    String track_name;
-    String popularity;
-
-    public long getId() {
-        return id;
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user") 
+//    private MappingTest mTAlbums;
+//    
+    
+    /*********Entry Id**********/
+    public String getArtistId() {
+        return artist_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(String artist_id) {
+        this.artist_id = artist_id;
     }
 
-    public String getArtist_name() {
+    
+    /*******************Entry Artist************************/
+    public String getArtistName() {
         return artist_name;
     }
 
-    public void setArtist_name(String artist_name) {
+    public void setArtistName(String artist_name) {
         this.artist_name = artist_name;
     }
-
-    public String getTrack_name() {
-        return track_name;
+    
+    
+    /*****************Entry Artist's Album**********************/
+    public String getAlbumName() {
+        return album_name;
     }
 
-    public void setTrack_name(String track_name) {
-        this.track_name = track_name;
+    public void setAlbumName(String album_name) {
+        this.album_name = album_name;
+    }
+    
+    
+    /************Entry Artist's Albums Tracks***************/
+    public String[] getTracks() {
+        return tracks;
     }
 
-    public String getPopularity() {
-        return popularity;
+    public void setTracks(String[] tracks) {
+        this.tracks = tracks;
     }
 
-    public void setPopularity(String popularity) {
-        this.popularity = popularity;
+    
+    /********************Entry Genre*************************/
+    public String getGenre() {
+        return genre;
     }
 
-    @Override
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    
+    /********************Return Entry with Formatting******************/
+     @Override
     public String toString() {
-        return "ArtistEntity [id= " + id + "artist_name= " + artist_name
-                + ", track_name= " + track_name + "popularity= " + popularity+ "]";
+        return "ArtistEntity [id= " + artist_id + "artist_name= " + artist_name
+                + ", track_name= " + tracks;
     }
-
 }
