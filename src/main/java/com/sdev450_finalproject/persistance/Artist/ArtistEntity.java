@@ -80,6 +80,6 @@ public class ArtistEntity implements Serializable{
      @Override
     public String toString() {
         return "ArtistEntity [id= " + artist_id + "artist_name= " + artist_name
-                + ", track_name= " + tracks;
+                + ", track_name= " + tracks + "\n";
     }
 }
