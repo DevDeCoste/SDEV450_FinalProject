@@ -1,10 +1,11 @@
 package com.sdev450_finalproject.persistance.Album;
 
-import javax.persistence.*;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
-import java.util.Arrays;
 
 
 
@@ -18,15 +19,14 @@ public class AlbumEntity implements Serializable {
     private String id;
     private String AlbumName;
     private String Artist;
-    private String[] Tracklist;
-    private String genre;
+    private String Genre;
 
     public String getGenre() {
-        return genre;
+        return Genre;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGenre(String Genre) {
+        this.Genre = Genre;
     }
 
 
@@ -50,14 +50,6 @@ public class AlbumEntity implements Serializable {
     }
 
 
-    public String[] getTracklist() {
-        return Tracklist;
-    }
-
-    public void setTracklist(String[] tracklist) {
-        Tracklist = tracklist;
-    }
-
     public String getAlbumName() {
         return AlbumName;
     }
@@ -70,7 +62,7 @@ public class AlbumEntity implements Serializable {
     @Override
     public String toString() {
         return "AlbumEntity [id=" + id + ", AlbumName=" + AlbumName + ", Artist=" + Artist
-                + ", genre=" + genre + "]";
+                + ", Genre=" + Genre + "]";
     }
 
 } //End of Class
