@@ -22,7 +22,7 @@ public class AlbumEntity implements Serializable {
 
     private String id;
     private String albumName;
-    private String Artist;
+    private String artist;
     private String Genre;
 
     public String getGenre() {
@@ -46,11 +46,11 @@ public class AlbumEntity implements Serializable {
     }
 
     public String getArtist() {
-        return Artist;
+        return artist;
     }
 
     public void setArtist(String artist) {
-        Artist = artist;
+        this.artist = artist;
     }
 
 
@@ -65,7 +65,7 @@ public class AlbumEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "AlbumEntity [id=" + id + ", Album Name=" + albumName + ", Artist=" + Artist
+        return "AlbumEntity [id=" + id + ", Album Name=" + albumName + ", artist=" + artist
                 + ", Genre=" + Genre + "]";
     }
 

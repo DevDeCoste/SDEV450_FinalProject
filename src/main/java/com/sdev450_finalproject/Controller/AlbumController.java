@@ -47,6 +47,16 @@ public class AlbumController {
     }
 
 
+    @GetMapping("/findAlbumByArtist/{artistName}")
+    public ArrayList<AlbumEntity> findAlbumByArtist(@PathVariable("artistName") String artistName) {
+
+        ArrayList<AlbumEntity> Entities = repository.findAllByArtist(artistName);
+
+        return Entities;
+
+    }
+
+    
 
     @GetMapping("/findAlbum/{albumName}")
     public ArrayList<AlbumEntity> findAlbum(@PathVariable("albumName") String searchAlbum)
