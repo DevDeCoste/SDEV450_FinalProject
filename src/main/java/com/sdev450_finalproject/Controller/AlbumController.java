@@ -20,7 +20,8 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.List;
 import java.lang.String;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("")
@@ -33,43 +34,42 @@ public class AlbumController {
 
     // Just me doing a test push from work
     //And then another test comment for the test push 2
-
     @GetMapping(path = "/albums")
-    public List<AlbumEntity> getEntities(){
+    public List<AlbumEntity> getEntities() {
         return repository.findAll();
     }
 
     @PostMapping(path = "/albums")
-    public boolean createAlbum(@RequestBody AlbumEntity albumEntity){
+    public boolean createAlbum(@RequestBody AlbumEntity albumEntity) {
         //findAlbum(@PathVariable(albumLists));
         repository.save(albumEntity);
         return true;
     }
 
-
     @GetMapping("/findAlbumByArtist/{artistName}")
-    public ArrayList<AlbumEntity> findAlbumByArtist(@PathVariable("artistName") String artistName) {
+    public ResponseEntity findAlbumByArtist(@PathVariable("artistName") String artistName) {
 
         ArrayList<AlbumEntity> Entities = repository.findAllByArtist(artistName);
+        if (Entities.isEmpty()) {
+            //Returns 404 if not present
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
 
-        return Entities;
+        //Returns Album Entity if present
+        return new ResponseEntity(Entities, HttpStatus.OK);
 
     }
-
-    
 
     @GetMapping("/findAlbum/{albumName}")
     public ArrayList<AlbumEntity> findAlbum(@PathVariable("albumName") String searchAlbum)
             throws IOException {
 
         try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
-             CSVReader csvReader = new CSVReader(reader)) {
-
+                CSVReader csvReader = new CSVReader(reader)) {
 
             String[] nextRecord;
 
             ArrayList<AlbumEntity> albumLists = new ArrayList<>();
-
 
             while ((nextRecord = csvReader.readNext()) != null) {
                 AlbumEntity tempAlbum = new AlbumEntity();
@@ -80,18 +80,15 @@ public class AlbumController {
                     tempAlbum.setArtist(nextRecord[3]);
                     tempAlbum.setGenre(nextRecord[4]);
 
-
                     albumLists.add(tempAlbum);
 
-                    if(repository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
+                    if (repository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
                         repository.save(tempAlbum);
                     }
-
 
                 }
 
             }
-
 
             csvReader.close();
 
@@ -115,7 +112,6 @@ public class AlbumController {
                 tempAlbum.setArtist(nextRecord[3]);
                 tempAlbum.setGenre(nextRecord[4]);
 
-
                 albumLists.add(tempAlbum);
                 repository.save(tempAlbum);
                 csvReader1.close();
@@ -125,6 +121,5 @@ public class AlbumController {
         }
 
     }
-
 
 }
