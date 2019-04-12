@@ -10,6 +10,8 @@ public interface AlbumRepository extends JpaRepository<AlbumEntity, Long> {
 
     Page<AlbumEntity> findAll(Pageable pageable);
 
+    AlbumEntity findByAlbumNameEquals(String AlbumName);
+
     // https://api.spotify.com/v1/artists/The Eagles
 
 

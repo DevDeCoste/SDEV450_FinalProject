@@ -35,7 +35,7 @@ public class AlbumController {
     //And then another test comment for the test push 2
 
     @GetMapping(path = "/albums")
-    public List<AlbumEntity> getEntiies(){
+    public List<AlbumEntity> getEntities(){
         return repository.findAll();
     }
 
@@ -45,6 +45,8 @@ public class AlbumController {
         repository.save(albumEntity);
         return true;
     }
+
+
 
     @GetMapping("/findAlbum/{albumName}")
     public ArrayList<AlbumEntity> findAlbum(@PathVariable("albumName") String searchAlbum)
@@ -62,7 +64,7 @@ public class AlbumController {
             while ((nextRecord = csvReader.readNext()) != null) {
                 AlbumEntity tempAlbum = new AlbumEntity();
 
-                if (nextRecord[nextRecord.length - 2].contains(searchAlbum)) {
+                if (nextRecord[2].equalsIgnoreCase(searchAlbum)) {
 
                     tempAlbum.setAlbumName(nextRecord[2]);
                     tempAlbum.setArtist(nextRecord[3]);
@@ -70,7 +72,11 @@ public class AlbumController {
 
 
                     albumLists.add(tempAlbum);
-                    repository.save(tempAlbum);
+
+                    if(repository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
+                        repository.save(tempAlbum);
+                    }
+
 
                 }
 
