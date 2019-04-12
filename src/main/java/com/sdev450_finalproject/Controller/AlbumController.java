@@ -4,8 +4,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import com.opencsv.CSVReader;
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
+import com.sdev450_finalproject.persistance.Album.AlbumRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -14,6 +18,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.List;
 
 
 @RestController
@@ -21,6 +26,21 @@ import java.util.Random;
 public class AlbumController {
 
     static String FILE_PATH = "./src/main/resources/albumlist.csv";
+
+    @Autowired
+    AlbumRepository repository;
+
+    @GetMapping(path = "/albums")
+    public List<AlbumEntity> getEntiies(){
+        return repository.findAll();
+    }
+
+    @PostMapping(path = "/albums")
+    public boolean createAlbum(@RequestBody AlbumEntity albumEntity){
+        //findAlbum(@PathVariable(albumLists));
+        repository.save(albumEntity);
+        return true;
+    }
 
     @GetMapping("/findAlbum/{albumName}")
     public ArrayList<AlbumEntity> findAlbum(@PathVariable("albumName") String searchAlbum)
@@ -31,6 +51,7 @@ public class AlbumController {
 
 
             String[] nextRecord;
+
             ArrayList<AlbumEntity> albumLists = new ArrayList<>();
 
 
@@ -85,14 +106,3 @@ public class AlbumController {
 
 
 }
-
-
-//    @GetMapping("/loadAlbum")
-//    public String LoadAlbum() {
-//        try {
-//
-//
-//        } catch(FileNotFoundException ex) {
-//
-//        }
-//    }
