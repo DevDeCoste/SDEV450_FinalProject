@@ -30,6 +30,9 @@ public class AlbumController {
     @Autowired
     AlbumRepository repository;
 
+    // Just me doing a test push from work
+    //And then another test comment for the test push
+
     @GetMapping(path = "/albums")
     public List<AlbumEntity> getEntiies(){
         return repository.findAll();
