@@ -57,7 +57,6 @@ public class AlbumController {
 
         //Returns Album Entity if present
         return new ResponseEntity(Entities, HttpStatus.OK);
-
     }
 
     @GetMapping("/findAlbum/{albumName}")
