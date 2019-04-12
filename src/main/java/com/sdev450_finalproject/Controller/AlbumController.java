@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.List;
+import java.lang.String;
 
 
 @RestController
@@ -69,6 +70,7 @@ public class AlbumController {
 
 
                     albumLists.add(tempAlbum);
+                    repository.save(tempAlbum);
 
                 }
 
@@ -99,6 +101,7 @@ public class AlbumController {
 
 
                 albumLists.add(tempAlbum);
+                repository.save(tempAlbum);
                 csvReader1.close();
 
             }
