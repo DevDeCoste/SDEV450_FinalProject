@@ -25,7 +25,6 @@ public class AlbumEntity implements Serializable {
     private String artist;
     private String Genre;
 
-
     public String getGenre() {
         return Genre;
     }
@@ -33,6 +32,10 @@ public class AlbumEntity implements Serializable {
     public void setGenre(String Genre) {
         this.Genre = Genre;
     }
+
+
+
+
 
     public String getId() {
         return id;
@@ -50,6 +53,7 @@ public class AlbumEntity implements Serializable {
         this.artist = artist;
     }
 
+
     public String getAlbumName() {
         return albumName;
     }
@@ -58,9 +62,10 @@ public class AlbumEntity implements Serializable {
         this.albumName = albumName;
     }
 
+
     @Override
     public String toString() {
-        return "AlbumEntity [id=" + id + ", Album Name=" + albumName + ", Artist=" + artist
+        return "AlbumEntity [id=" + id + ", Album Name=" + albumName + ", artist=" + artist
                 + ", Genre=" + Genre + "]";
     }
 
