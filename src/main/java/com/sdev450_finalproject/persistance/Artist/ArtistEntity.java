@@ -1,6 +1,7 @@
 package com.sdev450_finalproject.persistance.Artist;
 
 
+//import com.opencsv.bean.CsvBindByName;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -12,18 +13,26 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "Artist")
-public class ArtistEntity implements Serializable{
+public class ArtistEntity implements Serializable {
 
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    
     //Table Variables
-    private String id;
-    private String artist;
-    private String album;
-    private String genre;
     
+//    @Column(name = "ID")
+//    @CsvBindByName
+    private String id;
+    
+//    @CsvBindByName(column = "artist")
+    private String artist;
+    
+//    @CsvBindByName(column = "album")
+    private String album;
+    
+//    @CsvBindByName(column = "genre")
+    private String genre;
+   
     /*********Entry Id**********/
     public String getArtistId() {
         return id;
