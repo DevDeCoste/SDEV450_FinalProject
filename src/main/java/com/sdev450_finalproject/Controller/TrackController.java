@@ -16,6 +16,7 @@ import java.util.Random;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,7 @@ import com.sdev450_finalproject.persistance.TrackEntity;
 @RestController
 @RequestMapping("")
 public class TrackController {
+	static ArrayList<TrackEntity> trackLists = new ArrayList<>();
 
 	// pseudocode:
 	// get searchtext from url
@@ -46,7 +48,7 @@ public class TrackController {
 				CSVReader csvReader = new CSVReader(reader);) {
 			// Reading Records One by One in a String array
 
-			ArrayList<TrackEntity> trackLists = new ArrayList<>();
+
 
 			DateFormat sdf = new SimpleDateFormat("mm:ss");
 			while ((nextRecord = csvReader.readNext()) != null) {
@@ -109,4 +111,13 @@ public class TrackController {
 			return trackLists;
 		}
 	}
+
+	@PostMapping("/save/{trackName}")
+	boolean saveTrack(ArrayList trackList, @PathVariable("trackName") String trackName) throws IOException, ParseException {
+		
+		//trackList = findTrack(trackName);
+		System.out.println(trackLists.toString());
+		return true;
+	}
+
 }
