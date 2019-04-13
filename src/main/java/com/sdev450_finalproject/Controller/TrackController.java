@@ -38,8 +38,22 @@ public class TrackController {
 	// return a track object
 
 	// TEMP FILE HOLDER - need to refactor for final submission
-	static String FILE_PATH = "C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\raw_tracks.csv";
+	//static String FILE_PATH = "C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\raw_tracks.csv";
 
+	
+	@GetMapping("/findTrack/{trackName}")
+	public ArrayList<TrackEntity> findTrack(@PathVariable("trackName") String searchTrack) throws IOException{
+		String[] nextRecord;
+		Reader reader = Files.newBufferedReader(Paths.get("./src/main/resources/MasterCSV.csv"));
+		
+		
+		
+		return trackLists;
+		
+	}
+	/*
+	 * TRINH: This is OLD CODE - LEAVING ALONE TO USE THE NEW MASTERCSV FILE
+	 * 
 	@GetMapping("/findTrack/{trackName}")
 	public ArrayList<TrackEntity> findTrack(@PathVariable("trackName") String searchTrack)
 			throws IOException, ParseException {
@@ -110,7 +124,9 @@ public class TrackController {
 			}
 			return trackLists;
 		}
+	
 	}
+		END OF CODE COMMENTED OUT HERE*/
 
 	@PostMapping("/save/{trackName}")
 	boolean saveTrack(ArrayList trackList, @PathVariable("trackName") String trackName) throws IOException, ParseException {
