@@ -23,6 +23,12 @@ public class AlbumController {
 
     static String FILE_PATH = "./src/main/resources/MasterCSV.csv";
 
+    public ArrayList<AlbumEntity> albumLists = new ArrayList<>();
+
+    public AlbumEntity tempAlbum = new AlbumEntity();
+
+
+
     @Autowired
     AlbumRepository repository;
 
@@ -35,7 +41,6 @@ public class AlbumController {
 
     @PostMapping(path = "/albums")
     public boolean createAlbum(@RequestBody AlbumEntity albumEntity) {
-        //findAlbum(@PathVariable(albumLists));
         repository.save(albumEntity);
         return true;
     }
@@ -58,16 +63,13 @@ public class AlbumController {
             throws IOException {
 
         try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
-                CSVReader csvReader = new CSVReader(reader)) {
-
+             CSVReader csvReader = new CSVReader(reader)) {
             String[] nextRecord;
 
-            ArrayList<AlbumEntity> albumLists = new ArrayList<>();
-
             while ((nextRecord = csvReader.readNext()) != null) {
-                AlbumEntity tempAlbum = new AlbumEntity();
 
-                if (nextRecord[2].equalsIgnoreCase(searchAlbum)) {
+
+                if (nextRecord[3].equalsIgnoreCase(searchAlbum)) {
 
                     tempAlbum.setAlbumName(nextRecord[2]);
                     tempAlbum.setArtist(nextRecord[3]);
@@ -85,34 +87,49 @@ public class AlbumController {
 
             csvReader.close();
 
-            if (albumLists.isEmpty()) {
-                Reader reader1 = Files.newBufferedReader(Paths.get(FILE_PATH));
-                CSVReader csvReader1 = new CSVReader(reader1);
-
-                AlbumEntity tempAlbum = new AlbumEntity();
-
-                int i = 0;
-
-                int randInt = new Random().nextInt(100);
-
-                while (i <= randInt) {
-                    nextRecord = csvReader1.readNext();
-                    i = i + 2;
-                }
-
-                System.out.println(Arrays.toString(nextRecord));
-                tempAlbum.setAlbumName(nextRecord[2]);
-                tempAlbum.setArtist(nextRecord[3]);
-                tempAlbum.setGenre(nextRecord[4]);
-
-                albumLists.add(tempAlbum);
-                repository.save(tempAlbum);
-                csvReader1.close();
-
-            }
             return albumLists;
         }
 
-    }
+    } //End FindAlbum Method
+
+    @GetMapping("/findRandomAlbum")
+    public ArrayList<AlbumEntity> findRandomAlbum()
+            throws IOException {
+
+        try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
+             CSVReader csvReader = new CSVReader(reader)) {
+            String[] nextRecord;
+            while ((nextRecord = csvReader.readNext()) != null) {
+
+
+                if (albumLists.isEmpty()) {
+                    Reader reader1 = Files.newBufferedReader(Paths.get(FILE_PATH));
+                    CSVReader csvReader1 = new CSVReader(reader1);
+
+                    int i = 0;
+
+                    int randInt = new Random().nextInt(100);
+
+                    while (i <= randInt) {
+                        nextRecord = csvReader1.readNext();
+                        i = i + 2;
+                    }
+
+                    System.out.println(Arrays.toString(nextRecord));
+                    tempAlbum.setAlbumName(nextRecord[2]);
+                    tempAlbum.setArtist(nextRecord[3]);
+                    tempAlbum.setGenre(nextRecord[4]);
+
+                    albumLists.add(tempAlbum);
+                    repository.save(tempAlbum);
+                    csvReader1.close();
+
+                }
+            }
+
+            return albumLists;
+        }
+    } //End FindRandomAlbum method
 
 }
+
