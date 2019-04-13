@@ -65,7 +65,7 @@ public class AlbumEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "AlbumEntity [id=" + id + ", Album Name=" + albumName + ", artist=" + artist
+        return "AlbumEntity [id=" + id + ", Album Name=" + albumName + ", Artist=" + artist
                 + ", Genre=" + Genre + "]";
     }
 
