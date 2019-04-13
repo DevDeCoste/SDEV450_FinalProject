@@ -24,15 +24,7 @@ public class AlbumEntity implements Serializable {
     private String albumName;
     private String artist;
     private String Genre;
-    private String[] tracks;
 
-    public String[] getTracks() {
-        return tracks;
-    }
-
-    public void setTracks(String[] tracks) {
-        this.tracks = tracks;
-    }
 
     public String getGenre() {
         return Genre;
