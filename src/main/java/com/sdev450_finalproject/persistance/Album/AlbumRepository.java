@@ -15,6 +15,7 @@ public interface AlbumRepository extends JpaRepository<AlbumEntity, Long> {
     AlbumEntity findByAlbumNameEquals(String AlbumName);
 
     ArrayList<AlbumEntity> findAllByArtist(String ArtistName);
+    
 
     // https://api.spotify.com/v1/artists/The Eagles
 
