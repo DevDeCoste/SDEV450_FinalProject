@@ -33,10 +33,6 @@ public class AlbumEntity implements Serializable {
         this.Genre = Genre;
     }
 
-
-
-
-
     public String getId() {
         return id;
     }

@@ -57,7 +57,6 @@ public class AlbumController {
 
         try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
              CSVReader csvReader = new CSVReader(reader)) {
-
             String[] nextRecord;
 
             ArrayList<AlbumEntity> albumLists = new ArrayList<>();
