@@ -34,8 +34,6 @@ public class AlbumEntity implements Serializable {
         this.tracks = tracks;
     }
 
-
-
     public String getGenre() {
         return Genre;
     }
@@ -43,10 +41,6 @@ public class AlbumEntity implements Serializable {
     public void setGenre(String Genre) {
         this.Genre = Genre;
     }
-
-
-
-
 
     public String getId() {
         return id;
@@ -64,7 +58,6 @@ public class AlbumEntity implements Serializable {
         this.artist = artist;
     }
 
-
     public String getAlbumName() {
         return albumName;
     }
@@ -72,7 +65,6 @@ public class AlbumEntity implements Serializable {
     public void setAlbumName(String albumName) {
         this.albumName = albumName;
     }
-
 
     @Override
     public String toString() {

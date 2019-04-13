@@ -10,6 +10,12 @@ package com.sdev450_finalproject.Controller;
 //Imports
 import com.opencsv.CSVReader;
 import com.sdev450_finalproject.persistance.Artist.ArtistEntity;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -20,11 +26,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 //Begin Subclass ArtistController
 @RestController
@@ -41,7 +42,7 @@ public class ArtistController {
 
         //Opens reader to read CSV file and set table values
         try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
-                CSVReader csvReader = new CSVReader(reader);) {
+                CSVReader csvReader = new CSVReader(reader)) {
 
             String[] nextRecord;
             ArrayList<ArtistEntity> artists = new ArrayList<>();

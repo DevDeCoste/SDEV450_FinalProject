@@ -21,13 +21,7 @@ import java.util.Random;
 @RequestMapping("")
 public class AlbumController {
 
-    static String FILE_PATH = "./src/main/resources/MasterCSV.csv";
-
-    public ArrayList<AlbumEntity> albumLists = new ArrayList<>();
-
-    public AlbumEntity tempAlbum = new AlbumEntity();
-
-
+    static String FILE_PATH = "./src/main/resources/masterdata.csv";
 
     @Autowired
     AlbumRepository repository;
@@ -62,14 +56,18 @@ public class AlbumController {
     public ArrayList<AlbumEntity> findAlbum(@PathVariable("albumName") String searchAlbum)
             throws IOException {
 
+
         try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
              CSVReader csvReader = new CSVReader(reader)) {
+
             String[] nextRecord;
 
+            ArrayList<AlbumEntity> albumLists = new ArrayList<>();
+
             while ((nextRecord = csvReader.readNext()) != null) {
+                AlbumEntity tempAlbum = new AlbumEntity();
 
-
-                if (nextRecord[3].equalsIgnoreCase(searchAlbum)) {
+                if (nextRecord[2].equalsIgnoreCase(searchAlbum)) {
 
                     tempAlbum.setAlbumName(nextRecord[2]);
                     tempAlbum.setArtist(nextRecord[3]);
@@ -80,15 +78,14 @@ public class AlbumController {
                     if (repository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
                         repository.save(tempAlbum);
                     }
-
+                    csvReader.close();
                 }
 
             }
 
-            csvReader.close();
-
             return albumLists;
         }
+
 
     } //End FindAlbum Method
 
@@ -99,8 +96,9 @@ public class AlbumController {
         try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
              CSVReader csvReader = new CSVReader(reader)) {
             String[] nextRecord;
+            ArrayList<AlbumEntity> albumLists = new ArrayList<>();
             while ((nextRecord = csvReader.readNext()) != null) {
-
+                AlbumEntity tempAlbum = new AlbumEntity();
 
                 if (albumLists.isEmpty()) {
                     Reader reader1 = Files.newBufferedReader(Paths.get(FILE_PATH));
