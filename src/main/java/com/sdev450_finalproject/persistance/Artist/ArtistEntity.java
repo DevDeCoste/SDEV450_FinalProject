@@ -1,72 +1,66 @@
 package com.sdev450_finalproject.persistance.Artist;
 
-import java.io.Serializable;
+
+//import com.opencsv.bean.CsvBindByName;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
+import java.io.Serializable;
+
 
 @Entity
 @Table(name = "Artist")
-public class ArtistEntity implements Serializable{
+public class ArtistEntity implements Serializable {
 
     @Id
-//    @GeneratedValue(strategy=GenerationType.AUTO)
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     //Table Variables
-    private String artist_id;
-    private String artist_name;
-    private String album_name;
-    private String[] tracks;
-    private String genre;
-
-//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user") 
-//    private MappingTest mTAlbums;
-//    
     
+//    @Column(name = "ID")
+//    @CsvBindByName
+    private String id;
+    
+//    @CsvBindByName(column = "artist")
+    private String artist;
+    
+//    @CsvBindByName(column = "album")
+    private String album;
+    
+//    @CsvBindByName(column = "genre")
+    private String genre;
+   
     /*********Entry Id**********/
     public String getArtistId() {
-        return artist_id;
+        return id;
     }
 
-    public void setId(String artist_id) {
-        this.artist_id = artist_id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     
     /*******************Entry Artist************************/
-    public String getArtistName() {
-        return artist_name;
+    public String getArtist() {
+        return artist;
     }
 
-    public void setArtistName(String artist_name) {
-        this.artist_name = artist_name;
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
     
     
     /*****************Entry Artist's Album**********************/
     public String getAlbumName() {
-        return album_name;
+        return album;
     }
 
-    public void setAlbumName(String album_name) {
-        this.album_name = album_name;
+    public void setAlbumName(String albumName) {
+        this.album = albumName;
     }
-    
-    
-    /************Entry Artist's Albums Tracks***************/
-    public String[] getTracks() {
-        return tracks;
-    }
-
-    public void setTracks(String[] tracks) {
-        this.tracks = tracks;
-    }
-
     
     /********************Entry Genre*************************/
     public String getGenre() {
@@ -76,12 +70,12 @@ public class ArtistEntity implements Serializable{
     public void setGenre(String genre) {
         this.genre = genre;
     }
-
     
     /********************Return Entry with Formatting******************/
      @Override
     public String toString() {
-        return "ArtistEntity [id= " + artist_id + "artist_name= " + artist_name
-                + ", track_name= " + tracks + "\n";
+        return "AlbumEntity [id=" + id + ", Artist Name=" + artist +
+                ", Album Name=" + artist
+                + ", Genre=" + genre + "]";
     }
 }
