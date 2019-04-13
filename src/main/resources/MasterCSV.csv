@@ -1,64 +1,64 @@
-id,artist,album,track,length,year
-1,The Beatles,Revolver,Taxman,2:36,1966
-2,The Beatles ,Revolver,Eleanor Rigby,2:11,1966
-3,The Beatles,Revolver,I'm Only Sleeping,2:58,1966
-4,The Beatles,Revolver,Love You To,3:00,1966
-5,The Beatles,Revolver,"Here, There and Everywhere",2:29,1966
-6,The Beatles,Revolver,Yellow Submarine,2:40,1966
-7,The Beatles,Revolver,She Said She Said,2:39,1966
-8,The Beatles,Abbey Road,Come Together,4:19,1969
-9,The Beatles,Abbey Road,Something,3:02,1969
-10,The Beatles,Abbey Road,Maxwell's Silver Hammer,3:27,1969
-11,The Beatles,Abbey Road,Oh! Darling,3:27,1969
-12,The Beatles,Abbey Road,Octopus's Garden,2:51,1969
-13,The Beatles,Abbey Road,I Want You (She's So Heavy),7:47,1969
-14,The Beatles,Abbey Road,Here Comes the Sun,3:05,1969
-15,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,Sgt. Pepper's Lonely Hearts Club Band,2:00,1967
-16,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,With a Little Help from My Friends,2:42,1967
-17,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,Lucy in the Sky with Diamonds,3:28,1967
-18,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,Getting Better,2:48,1967
-19,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,Fixing a Hole,2:36,1967
-20,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,She's Leaving Home,3:35,1967
-21,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,Being for the Benefit of Mr. Kite!,2:37,1967
-22,Jay Z,Vol. 2… Hard Knock Life,Intro - Hand It Down,2:56,1998
-23,Jay Z,Vol. 2… Hard Knock Life,Hard Knock Life (Ghetto Anthem),3:58,1998
-24,Jay Z,Vol. 2… Hard Knock Life,If I Should Die,4:55,1998
-25,Jay Z,Vol. 2… Hard Knock Life,Ride or Die,4:48,1998
-26,Jay Z,Vol. 2… Hard Knock Life,A Week Ago,5:00,1998
-27,Jay Z,Vol. 2… Hard Knock Life,Coming of Age (Da Sequel),4:21,1998
-28,Jay Z,Vol. 2… Hard Knock Life,Can I Get A…,5:09,1998
-29,Jay Z,The Black Album,December 4th,4:32,2003
-30,Jay Z,The Black Album,What More Can I Say,4:55,2003
-31,Jay Z,The Black Album,Encore,4:11,2003
-32,Jay Z,The Black Album,Change Clothes,4:18,2003
-33,Jay Z,The Black Album,Dirt off Your Shoulder,4:05,2003
-34,Jay Z,The Black Album,Threat,4:05,2003
-35,Jay Z,The Black Album,Moment of Clarity,4:24,2003
-36,Jay Z,Vol. 3… Life and Times of S. Carter,Hova Song,2:21,1999
-37,Jay Z,Vol. 3… Life and Times of S. Carter,So Ghetto,4:01,1999
-38,Jay Z,Vol. 3… Life and Times of S. Carter,Do It Again (Put Ya Hands Up),4:39,1999
-39,Jay Z,Vol. 3… Life and Times of S. Carter,Dope Man,4:03,1999
-40,Jay Z,Vol. 3… Life and Times of S. Carter,Things That U Do,4:52,1999
-41,Jay Z,Vol. 3… Life and Times of S. Carter,It's Hot (Some Like It Hot),4:16,1999
-42,Jay Z,Vol. 3… Life and Times of S. Carter,Snoopy Track,4:01,1999
-43,Bruce Springsteen ,Born in the U.S.A.,Born in the U.S.A.,4:38,1984
-44,Bruce Springsteen ,Born in the U.S.A.,Cover Me ,3:29,1984
-45,Bruce Springsteen ,Born in the U.S.A.,Darlington County,4:48,1984
-46,Bruce Springsteen ,Born in the U.S.A.,Working on the Highway,3:13,1984
-47,Bruce Springsteen ,Born in the U.S.A.,Downbound Train,3:35,1984
-48,Bruce Springsteen ,Born in the U.S.A.,I'm on Fire,2:40,1984
-49,Bruce Springsteen ,Born in the U.S.A.,No Surrender,4:01,1984
-50,Bruce Springsteen ,Born To Run,Thunder Road ,4:49,1975
-51,Bruce Springsteen ,Born To Run,Tenth Avenue Freeze-Out,3:11,1975
-52,Bruce Springsteen ,Born To Run,Night,3:00,1975
-53,Bruce Springsteen ,Born To Run,Backstreets,6:30,1975
-54,Bruce Springsteen ,Born To Run,Born to Run,4:31,1975
-55,Bruce Springsteen ,Born To Run,She's the One,4:30,1975
-56,Bruce Springsteen ,Born To Run,Meeting Across the River,3:18,1975
-57,Bruce Springsteen ,Darkness On The Edge Of Town,Badlands,4:03,1978
-58,Bruce Springsteen ,Darkness On The Edge Of Town,Adam Raised a Cain,4:32,1978
-59,Bruce Springsteen ,Darkness On The Edge Of Town,Something in the Night,5:11,1978
-60,Bruce Springsteen ,Darkness On The Edge Of Town,Candy's Room,2:51,1978
-61,Bruce Springsteen ,Darkness On The Edge Of Town,Racing in the Street,6:53,1978
-62,Bruce Springsteen ,Darkness On The Edge Of Town,The Promised Land,4:33,1978
-63,Bruce Springsteen ,Darkness On The Edge Of Town,Factory,2:17,1978
+id,artist,album,track,genre,length,year
+1,The Beatles,Revolver,Taxman,Classic Rock,2:36,1966
+2,The Beatles ,Revolver,Eleanor Rigby,Classic Rock,2:11,1966
+3,The Beatles,Revolver,I'm Only Sleeping,Classic Rock,2:58,1966
+4,The Beatles,Revolver,Love You To,Classic Rock,3:00,1966
+5,The Beatles,Revolver,"Here, There and Everywhere",Classic Rock,2:29,1966
+6,The Beatles,Revolver,Yellow Submarine,Classic Rock,2:40,1966
+7,The Beatles,Revolver,She Said She Said,Classic Rock,2:39,1966
+8,The Beatles,Abbey Road,Come Together,Classic Rock,4:19,1969
+9,The Beatles,Abbey Road,Something,Classic Rock,3:02,1969
+10,The Beatles,Abbey Road,Maxwell's Silver Hammer,Classic Rock,3:27,1969
+11,The Beatles,Abbey Road,Oh! Darling,Classic Rock,3:27,1969
+12,The Beatles,Abbey Road,Octopus's Garden,Classic Rock,2:51,1969
+13,The Beatles,Abbey Road,I Want You (She's So Heavy),Classic Rock,7:47,1969
+14,The Beatles,Abbey Road,Here Comes the Sun,Classic Rock,3:05,1969
+15,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,Sgt. Pepper's Lonely Hearts Club Band,Classic Rock,2:00,1967
+16,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,With a Little Help from My Friends,Classic Rock,2:42,1967
+17,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,Lucy in the Sky with Diamonds,Classic Rock,3:28,1967
+18,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,Getting Better,Classic Rock,2:48,1967
+19,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,Fixing a Hole,Classic Rock,2:36,1967
+20,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,She's Leaving Home,Classic Rock,3:35,1967
+21,The Beatles,Sgt. Pepper's Lonely Hearts Club Band,Being for the Benefit of Mr. Kite!,Classic Rock,2:37,1967
+22,Jay Z,Vol. 2… Hard Knock Life,Intro - Hand It Down,Rap,2:56,1998
+23,Jay Z,Vol. 2… Hard Knock Life,Hard Knock Life (Ghetto Anthem),Rap,3:58,1998
+24,Jay Z,Vol. 2… Hard Knock Life,If I Should Die,Rap,4:55,1998
+25,Jay Z,Vol. 2… Hard Knock Life,Ride or Die,Rap,4:48,1998
+26,Jay Z,Vol. 2… Hard Knock Life,A Week Ago,Rap,5:00,1998
+27,Jay Z,Vol. 2… Hard Knock Life,Coming of Age (Da Sequel),Rap,4:21,1998
+28,Jay Z,Vol. 2… Hard Knock Life,Can I Get A…,Rap,5:09,1998
+29,Jay Z,The Black Album,December 4th,Rap,4:32,2003
+30,Jay Z,The Black Album,What More Can I Say,Rap,4:55,2003
+31,Jay Z,The Black Album,Encore,Rap,4:11,2003
+32,Jay Z,The Black Album,Change Clothes,Rap,4:18,2003
+33,Jay Z,The Black Album,Dirt off Your Shoulder,Rap,4:05,2003
+34,Jay Z,The Black Album,Threat,Rap,4:05,2003
+35,Jay Z,The Black Album,Moment of Clarity,Rap,4:24,2003
+36,Jay Z,Vol. 3… Life and Times of S. Carter,Hova Song,Rap,2:21,1999
+37,Jay Z,Vol. 3… Life and Times of S. Carter,So Ghetto,Rap,4:01,1999
+38,Jay Z,Vol. 3… Life and Times of S. Carter,Do It Again (Put Ya Hands Up),Rap,4:39,1999
+39,Jay Z,Vol. 3… Life and Times of S. Carter,Dope Man,Rap,4:03,1999
+40,Jay Z,Vol. 3… Life and Times of S. Carter,Things That U Do,Rap,4:52,1999
+41,Jay Z,Vol. 3… Life and Times of S. Carter,It's Hot (Some Like It Hot),Rap,4:16,1999
+42,Jay Z,Vol. 3… Life and Times of S. Carter,Snoopy Track,Rap,4:01,1999
+43,Bruce Springsteen ,Born in the U.S.A.,Born in the U.S.A.,Rock,4:38,1984
+44,Bruce Springsteen ,Born in the U.S.A.,Cover Me ,Rock,3:29,1984
+45,Bruce Springsteen ,Born in the U.S.A.,Darlington County,Rock,4:48,1984
+46,Bruce Springsteen ,Born in the U.S.A.,Working on the Highway,Rock,3:13,1984
+47,Bruce Springsteen ,Born in the U.S.A.,Downbound Train,Rock,3:35,1984
+48,Bruce Springsteen ,Born in the U.S.A.,I'm on Fire,Rock,2:40,1984
+49,Bruce Springsteen ,Born in the U.S.A.,No Surrender,Rock,4:01,1984
+50,Bruce Springsteen ,Born To Run,Thunder Road ,Rock,4:49,1975
+51,Bruce Springsteen ,Born To Run,Tenth Avenue Freeze-Out,Rock,3:11,1975
+52,Bruce Springsteen ,Born To Run,Night,Rock,3:00,1975
+53,Bruce Springsteen ,Born To Run,Backstreets,Rock,6:30,1975
+54,Bruce Springsteen ,Born To Run,Born to Run,Rock,4:31,1975
+55,Bruce Springsteen ,Born To Run,She's the One,Rock,4:30,1975
+56,Bruce Springsteen ,Born To Run,Meeting Across the River,Rock,3:18,1975
+57,Bruce Springsteen ,Darkness On The Edge Of Town,Badlands,Rock,4:03,1978
+58,Bruce Springsteen ,Darkness On The Edge Of Town,Adam Raised a Cain,Rock,4:32,1978
+59,Bruce Springsteen ,Darkness On The Edge Of Town,Something in the Night,Rock,5:11,1978
+60,Bruce Springsteen ,Darkness On The Edge Of Town,Candy's Room,Rock,2:51,1978
+61,Bruce Springsteen ,Darkness On The Edge Of Town,Racing in the Street,Rock,6:53,1978
+62,Bruce Springsteen ,Darkness On The Edge Of Town,The Promised Land,Rock,4:33,1978
+63,Bruce Springsteen ,Darkness On The Edge Of Town,Factory,Rock,2:17,1978
