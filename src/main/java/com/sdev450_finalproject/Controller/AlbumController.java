@@ -1,15 +1,12 @@
 package com.sdev450_finalproject.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import com.opencsv.CSVReader;
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 import com.sdev450_finalproject.persistance.Album.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -17,17 +14,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.List;
-import java.lang.String;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import java.util.Random;
 
 @RestController
 @RequestMapping("")
 public class AlbumController {
 
-    static String FILE_PATH = "./src/main/resources/albumlist.csv";
+    static String FILE_PATH = "./src/main/resources/MasterCSV.csv";
 
     @Autowired
     AlbumRepository repository;
