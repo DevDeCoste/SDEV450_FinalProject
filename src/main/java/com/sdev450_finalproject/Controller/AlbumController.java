@@ -50,6 +50,8 @@ public class AlbumController {
         return new ResponseEntity(Entities, HttpStatus.OK);
     }
 
+
+
     @GetMapping("/findAlbum/{albumName}")
     public ArrayList<AlbumEntity> findAlbum(@PathVariable("albumName") String searchAlbum)
             throws IOException {
@@ -58,23 +60,38 @@ public class AlbumController {
         try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
              CSVReader csvReader = new CSVReader(reader)) {
             String[] nextRecord;
+            String[] track;
 
+            //ArrayList<AlbumEntity> tracks = new ArrayList<>();
             ArrayList<AlbumEntity> albumLists = new ArrayList<>();
+
+//            @CsvBindAndJoinByPosition(position = "2-3,5,7-", elementType = String.class)
+//            MultiValuedMap<Integer, String> tracks;
+
 
             while ((nextRecord = csvReader.readNext()) != null) {
                 AlbumEntity tempAlbum = new AlbumEntity();
 
                 if (nextRecord[2].equalsIgnoreCase(searchAlbum)) {
 
+
+
+//                    while((nextRecord[2].equalsIgnoreCase(searchAlbum)) && (csvReader.readNext()) != null) {
+//
+//                        tracks.add(nextRecord[5].toString());
+//                    }
+
+
                     tempAlbum.setAlbumName(nextRecord[2]);
                     tempAlbum.setArtist(nextRecord[3]);
                     tempAlbum.setGenre(nextRecord[4]);
+                    tempAlbum.setAlbumTracks(nextRecord[5]);
 
                     albumLists.add(tempAlbum);
 
-                    if (repository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
-                        repository.save(tempAlbum);
-                    }
+//                    if (repository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
+//                        repository.save(tempAlbum);
+//                    }
                     csvReader.close();
                 }
 
