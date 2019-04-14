@@ -12,6 +12,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,14 +39,44 @@ public class TrackController {
 	// return a track object
 
 	// TEMP FILE HOLDER - need to refactor for final submission
-	//static String FILE_PATH = "C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\raw_tracks.csv";
-
+	static String FILE_PATH ="./src/main/resources/MasterCSV.csv";// "C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\raw_tracks.csv";
+	//C:\Users\0810\eclipse-workspace\Java-core-workspace\enterprise_java_final_project\SDEV450_FinalProject\src\main\resources
+	//./src/main/resources/MasterCSV.csv
+	//C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\MasterCSV.csv
+	
+	
 	
 	@GetMapping("/findTrack/{trackName}")
 	public ArrayList<TrackEntity> findTrack(@PathVariable("trackName") String searchTrack) throws IOException{
 		String[] nextRecord;
-		Reader reader = Files.newBufferedReader(Paths.get("./src/main/resources/MasterCSV.csv"));
+		Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
 		
+		CSVReader csvReader = new CSVReader(reader);
+		
+		System.out.println("the name i wanted to search is:");
+		System.out.println(searchTrack);
+		int i = 0;
+		
+//		List<String[]> allData = csvReader.readAll();
+//		for (String[] X : allData) {
+//			System.out.println(X);
+//		}
+//		
+		
+		while ((nextRecord = csvReader.readNext()) != null) {
+			
+			System.out.println(Arrays.toString(nextRecord));
+			i++;
+			System.out.println("line " + i);
+//			TrackEntity tempTrack = new TrackEntity();
+//
+//			if (nextRecord[3].contains(searchTrack)) {
+//				System.out.println("ITS THERE !!!");
+//			}
+//			else {
+//				System.out.println("ITS NOT THERE OR NOT LOADED");
+//			}
+		}
 		
 		
 		return trackLists;
