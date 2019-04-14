@@ -1,35 +1,31 @@
 package com.sdev450_finalproject.Controller;
 
+import com.opencsv.CSVReader;
+import com.sdev450_finalproject.persistance.TrackEntity;
+import com.sdev450_finalproject.persistance.TrackRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.io.IOException;
 import java.io.Reader;
-import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.opencsv.CSVParser;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
-import com.sdev450_finalproject.persistance.TrackEntity;
 
 @RestController
 @RequestMapping("")
 public class TrackController {
 	static ArrayList<TrackEntity> trackLists = new ArrayList<>();
+	@Autowired
+	TrackRepository repository;
+
+
+
+
 
 	// pseudocode:
 	// get searchtext from url
@@ -39,12 +35,22 @@ public class TrackController {
 	// return a track object
 
 	// TEMP FILE HOLDER - need to refactor for final submission
-	static String FILE_PATH ="./src/main/resources/MasterCSV.csv";// "C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\raw_tracks.csv";
+	static String FILE_PATH ="./src/main/resources/albumlist.csv";// "C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\raw_tracks.csv";
 	//C:\Users\0810\eclipse-workspace\Java-core-workspace\enterprise_java_final_project\SDEV450_FinalProject\src\main\resources
 	//./src/main/resources/MasterCSV.csv
 	//C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\MasterCSV.csv
-	
-	
+
+	@GetMapping("/findTracksbyAlbum/{albumName}")
+	public ResponseEntity findTracksbyAlbum(@PathVariable("albumName") String albumName) {
+		ArrayList<TrackEntity> Entities = repository.findTrackEntitiesByAlbumTitleContains(albumName);
+		if (Entities.isEmpty()) {
+			//Returns 404 if not present
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
+		}
+
+		//Returns Track Entity if present
+		return new ResponseEntity(Entities, HttpStatus.OK);
+	}
 	
 	@GetMapping("/findTrack/{trackName}")
 	public ArrayList<TrackEntity> findTrack(@PathVariable("trackName") String searchTrack) throws IOException{
