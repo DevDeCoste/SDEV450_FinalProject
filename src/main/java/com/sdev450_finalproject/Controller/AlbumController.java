@@ -21,7 +21,7 @@ import java.util.Random;
 @RequestMapping("")
 public class AlbumController {
 
-    static String FILE_PATH = "./src/main/resources/masterdata.csv";
+    static String FILE_PATH = "./src/main/resources/albumlist.csv";
 
     @Autowired
     AlbumRepository repository;
