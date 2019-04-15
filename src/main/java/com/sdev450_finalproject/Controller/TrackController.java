@@ -50,6 +50,45 @@ public class TrackController {
 //		// Returns Track Entity if present
 //		return new ResponseEntity(Entities, HttpStatus.OK);
 //	}
+	
+	@GetMapping("/findTrackByAlbum/{findByAlbum}")
+	public ArrayList<TrackEntity> findTrackbyAlbumName(@PathVariable("findByAlbum") String searchTrack) throws IOException {
+	
+		String[] nextRecord;
+		ArrayList<TrackEntity> trackLists = new ArrayList<>();
+		Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
+
+		CSVReader csvReader = new CSVReader(reader);
+
+		while ((nextRecord = csvReader.readNext()) != null) {
+			System.out.println("1++");
+
+			TrackEntity tempTrack = new TrackEntity();
+
+			// nextRecord[5].toLowerCase().contains(searchTrack.toLowerCase())
+			// StringUtils.containsIgnoreCase(searchTrack, nextRecord[5])
+//			CharSequence charAt5 = nextRecord[5];
+//			CharSequence searchChar = searchTrack;
+
+			if (nextRecord[2].toLowerCase().contains(searchTrack.toLowerCase())) {
+				// System.out.println("2++");
+				tempTrack.setAlbumTitle(nextRecord[2]);
+				tempTrack.setArtistName(nextRecord[3]);
+				tempTrack.setGenreType(nextRecord[4]);
+				tempTrack.setTrackLength(nextRecord[6]);
+				tempTrack.setTrackTitle(nextRecord[5]);
+				tempTrack.setYearPublished(nextRecord[1]);
+
+				trackLists.add(tempTrack);
+			}
+
+		}
+
+		csvReader.close();
+		return trackLists; 
+		
+		
+	}
 
 	@GetMapping("/findTrack/random")
 	public TrackEntity randomTrack() throws IOException {
