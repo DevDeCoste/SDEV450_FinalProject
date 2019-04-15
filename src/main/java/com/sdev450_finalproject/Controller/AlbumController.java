@@ -2,6 +2,7 @@ package com.sdev450_finalproject.Controller;
 
 import com.opencsv.CSVReader;
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
+import com.sdev450_finalproject.persistance.TrackEntity;
 import com.sdev450_finalproject.persistance.Album.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -62,11 +63,9 @@ public class AlbumController {
             String[] nextRecord;
             String[] track;
 
-            //ArrayList<AlbumEntity> tracks = new ArrayList<>();
+            ArrayList<TrackEntity> TrackList = new ArrayList<>();
             ArrayList<AlbumEntity> albumLists = new ArrayList<>();
 
-//            @CsvBindAndJoinByPosition(position = "2-3,5,7-", elementType = String.class)
-//            MultiValuedMap<Integer, String> tracks;
 
 
             while ((nextRecord = csvReader.readNext()) != null) {
@@ -74,7 +73,30 @@ public class AlbumController {
 
                 if (nextRecord[2].equalsIgnoreCase(searchAlbum)) {
 
+                    TrackEntity tempTrack = new TrackEntity();
 
+                    // nextRecord[5].toLowerCase().contains(searchTrack.toLowerCase())
+                    // StringUtils.containsIgnoreCase(searchTrack, nextRecord[5])
+//			CharSequence charAt5 = nextRecord[5];
+//			CharSequence searchChar = searchTrack;
+
+                    if (nextRecord[2].toLowerCase().contains(searchAlbum.toLowerCase()) && (csvReader.readNext()) != null) {
+                        // System.out.println("2++");
+                        for(int i = 0; i < nextRecord.length; i++) {
+
+                            tempTrack.setAlbumTitle(nextRecord[2]);
+                            tempTrack.setArtistName(nextRecord[3]);
+                            tempTrack.setGenreType(nextRecord[4]);
+                            tempTrack.setTrackLength(nextRecord[6]);
+                            tempTrack.setTrackTitle(nextRecord[5]);
+                            tempTrack.setYearPublished(nextRecord[1]);
+
+                            TrackList.add(tempTrack);
+                        }
+
+
+                        //String[] tracks = TrackList.get(i);
+                    }
 
 //                    while((nextRecord[2].equalsIgnoreCase(searchAlbum)) && (csvReader.readNext()) != null) {
 //
