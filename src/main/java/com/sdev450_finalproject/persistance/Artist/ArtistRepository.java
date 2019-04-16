@@ -21,7 +21,10 @@ public interface ArtistRepository extends JpaRepository<ArtistEntity, Long> {
     Page<ArtistEntity> findAll(Pageable pageable);
        
    ArrayList<ArtistEntity> findByArtistEquals(String ArtistName);
-    
-//        ArrayList<ArtistEntity> findAllByArtist(String ArtistName);
+//     void saveAll(List<ArtistEntity> artists);
+
+    //ArrayList<ArtistEntity> findAllByArtist(String ArtistName);
+
+//    public ArrayList<ArtistEntity> findAllByArtist(String artistName);
        
 }
