@@ -9,18 +9,8 @@ package com.sdev450_finalproject;
  */
 
 //Imports
-import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.control.Button;
+
 import org.springframework.boot.SpringApplication;
-import javafx.scene.Scene;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
