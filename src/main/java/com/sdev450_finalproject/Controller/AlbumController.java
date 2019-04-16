@@ -83,7 +83,7 @@ public class AlbumController {
                     if (nextRecord[2].toLowerCase().contains(searchAlbum.toLowerCase()) && (csvReader.readNext()) != null) {
                         // System.out.println("2++");
                         for(int i = 0; i < nextRecord.length; i++) {
-
+                            csvReader.readNext();
                             tempTrack.setAlbumTitle(nextRecord[2]);
                             tempTrack.setArtistName(nextRecord[3]);
                             tempTrack.setGenreType(nextRecord[4]);
@@ -92,6 +92,7 @@ public class AlbumController {
                             tempTrack.setYearPublished(nextRecord[1]);
 
                             TrackList.add(tempTrack);
+                            csvReader.readNext();
                         }
 
 
@@ -107,7 +108,7 @@ public class AlbumController {
                     tempAlbum.setAlbumName(nextRecord[2]);
                     tempAlbum.setArtist(nextRecord[3]);
                     tempAlbum.setGenre(nextRecord[4]);
-                    tempAlbum.setAlbumTracks(nextRecord[5]);
+                    tempAlbum.setAlbumTracks(TrackList.toString());
 
                     albumLists.add(tempAlbum);
 

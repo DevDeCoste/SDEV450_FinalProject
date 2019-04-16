@@ -25,6 +25,18 @@ public class AlbumEntity implements Serializable {
     private String artist;
     private String Genre;
     private String albumTracks;
+    private String trackTitle;
+    private String trackLength;
+
+    public String getTrackTitle() {
+        return trackTitle;
+    }
+
+    public void setTrackTitle(String trackTitle) {
+        this.trackTitle = trackTitle;
+    }
+
+
 
     public String getAlbumTracks() {
         return albumTracks;
@@ -74,6 +86,10 @@ public class AlbumEntity implements Serializable {
     public String toString() {
         return "AlbumEntity [id=" + id + ", Album Name=" + albumName + ", artist=" + artist
                 + ", Genre=" + Genre + "Tracks: " + albumTracks + "]";
+    }
+
+    public String TracklisttoString() {
+        return "TrackEntity [Title=" + trackTitle +  ", trackLength=" + trackLength +  "]";
     }
 
 } //End of Class
