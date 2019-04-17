@@ -80,7 +80,7 @@ public class AlbumController {
 
 		}
 
-		csvReader.close();
+
  
 
 		tempAlbum.setAlbumName(trackLists.get(1).getAlbumTitle());
@@ -97,6 +97,10 @@ public class AlbumController {
 		tempAlbum.setAlbumTracks(track);
 		albumLists.add(tempAlbum);
 
+                            if (repository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
+                        repository.save(tempAlbum);
+                    }
+		csvReader.close();
 		return albumLists;
 
 	}
