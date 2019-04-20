@@ -33,8 +33,12 @@ public class StageListener implements ApplicationListener<SDEV450_FinalProject.S
     public void onApplicationEvent(SDEV450_FinalProject.StageReadyEvent stageReadyEvent) {
         try{
         Stage stage = stageReadyEvent.getStage();
-            URL url = this.fxml.getURL();
-            FXMLLoader fxmlLoader = new FXMLLoader(url);
+//original from DEV
+//            URL url = this.fxml.getURL();
+//            FXMLLoader fxmlLoader = new FXMLLoader(url);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("./main.fxml"));
+        
             fxmlLoader.setControllerFactory(ac::getBean);
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root, 500, 500);

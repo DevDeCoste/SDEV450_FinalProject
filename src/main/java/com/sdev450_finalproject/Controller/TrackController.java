@@ -86,6 +86,12 @@ public class TrackController {
 		
 		
 	}
+	
+	@GetMapping("/saveTrack/{trackName}/{userId}")
+	public boolean saveTrack(@PathVariable String trackName, @PathVariable long userId ) {
+		return true;
+	}
+	
 
 	@GetMapping("/findTrack/random")
 	public TrackEntity randomTrack() throws IOException {
