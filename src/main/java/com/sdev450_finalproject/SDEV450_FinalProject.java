@@ -10,22 +10,70 @@ package com.sdev450_finalproject;
 
 //Imports
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import javafx.application.Application;
+import javafx.application.HostServices;
+import javafx.application.Platform;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 //Begin Class SDEV450_FinalProject
  
-@SpringBootApplication
+
 @EnableJpaRepositories
-public class SDEV450_FinalProject {
+public class SDEV450_FinalProject extends Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SDEV450_FinalProject.class, args);
+	private ConfigurableApplicationContext context;
+	private Parent rootNode;
+
+
+		@Override
+		public void init() throws Exception {
+			ApplicationContextInitializer<GenericApplicationContext> initializer =
+					ac -> {
+			ac.registerBean(Application.class, () -> SDEV450_FinalProject.this);
+			ac.registerBean(Parameters.class, this::getParameters);
+			ac.registerBean(HostServices.class, this::getHostServices);
+		};
+			this.context = new SpringApplicationBuilder().sources(SpringEntry.class)
+					.initializers(initializer)
+					.run(getParameters().getRaw().toArray(new String[0]));
+		}
+
+
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		this.context.publishEvent(new StageReadyEvent( primaryStage));
 	}
-// Test comment added to push from work PC
 
+	class StageReadyEvent extends ApplicationEvent {
+
+		public Stage getStage(){
+			return Stage.class.cast( getSource());
+		}
+		public StageReadyEvent(Stage source) {
+			super(source);
+		}
+	}
+
+	@Override
+	public void stop() throws Exception {
+		this.context.close();
+		Platform.exit();
+	}
 }
+//	public static void main(String[] args) {
+//		SpringApplication.run(SDEV450_FinalProject.class, args);
+//	}
+
+
+
 
 //	@Override
 //	public void start(Stage primaryStage) throws Exception {

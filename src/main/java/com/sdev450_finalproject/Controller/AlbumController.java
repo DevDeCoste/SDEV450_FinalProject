@@ -51,7 +51,7 @@ public class AlbumController {
 		return new ResponseEntity(Entities, HttpStatus.OK);
 	}
 
-	@GetMapping("/findTracksInAlbum/{findByAlbumName}")
+	@PostMapping("/findTracksInAlbum/{findByAlbumName}")
 	public ArrayList<AlbumEntity> findTrackbyAlbumName(@PathVariable("findByAlbumName") String searchTrack)
 			throws IOException {
 
