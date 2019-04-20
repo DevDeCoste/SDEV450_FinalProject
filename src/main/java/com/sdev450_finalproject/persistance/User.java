@@ -1,5 +1,7 @@
 package com.sdev450_finalproject.persistance;
 
+import java.util.Arrays;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,16 +16,8 @@ public class User {
 	String display_name;
 	String fname;
 	String lname;
-	String href; // link to user profile
-	String type; // user profile type
-	String uri;
-
-	// Need to Map this to Spotify and determine whether these are required.
-	// Possible deletion.
-	// need further implementation discussion:
-	// URLObj external_urls;
-	// FollowersObj followers;
-	// ImgObj[] images;
+	
+	long[] trackSavedPlaylist; //user saves track into his profile by trackIDs. Can do this by Name too
 
 	public long getId() {
 		return id;
@@ -57,28 +51,22 @@ public class User {
 		this.lname = lname;
 	}
 
-	public String getHref() {
-		return href;
+	public long[] getTrackSavedPlaylist() {
+		return trackSavedPlaylist;
 	}
 
-	public void setHref(String href) {
-		this.href = href;
+	public void setTrackSavedPlaylist(long[] trackSavedPlaylist) {
+		this.trackSavedPlaylist = trackSavedPlaylist;
 	}
 
-	public String getType() {
-		return type;
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", display_name=" + display_name + ", fname=" + fname + ", lname=" + lname
+				+ ", trackSavedPlaylist=" + Arrays.toString(trackSavedPlaylist) + "]";
 	}
+	
+	
+	
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getUri() {
-		return uri;
-	}
-
-	public void setUri(String uri) {
-		this.uri = uri;
-	}
 
 }
