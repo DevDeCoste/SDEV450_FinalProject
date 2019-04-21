@@ -104,7 +104,7 @@ public class TrackController {
 		CSVReader csvReader = new CSVReader(reader);
 		String[] nextRecord;
 		int i = 0;
-		int randInt = new Random().nextInt(100);
+		int randInt = new Random().nextInt(8);
 		while ((nextRecord = csvReader.readNext()) != null) {
 
 
@@ -112,14 +112,15 @@ public class TrackController {
 			while (i <= randInt) {
 				nextRecord = csvReader.readNext();
 				i = i + 2;
+
+				randTrack.setAlbumTitle(nextRecord[2]);
+				randTrack.setArtistName(nextRecord[3]);
+				randTrack.setGenreType(nextRecord[4]);
+				randTrack.setTrackLength(nextRecord[6]);
+				randTrack.setTrackTitle(nextRecord[5]);
+				randTrack.setYearPublished(nextRecord[1]);
 			}
 
-			randTrack.setAlbumTitle(nextRecord[2]);
-			randTrack.setArtistName(nextRecord[3]);
-			randTrack.setGenreType(nextRecord[4]);
-			randTrack.setTrackLength(nextRecord[6]);
-			randTrack.setTrackTitle(nextRecord[5]);
-			randTrack.setYearPublished(nextRecord[1]);
 
 		}
 
