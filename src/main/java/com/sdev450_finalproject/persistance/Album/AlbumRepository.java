@@ -16,6 +16,7 @@ public interface AlbumRepository extends JpaRepository<AlbumEntity, Long> {
 
     ArrayList<AlbumEntity> findAllByArtist(String ArtistName);
     
+     
 
 
 }
