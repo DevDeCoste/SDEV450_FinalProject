@@ -88,7 +88,9 @@ public class TrackController {
 	}
 	
 	@GetMapping("/saveTrack/{trackName}/{userId}")
-	public boolean saveTrack(@PathVariable String trackName, @PathVariable long userId ) {
+	public boolean saveTrack(@PathVariable String trackName, @PathVariable long userId ) throws IOException {
+		 
+		repository.save(randomTrack());
 		return true;
 	}
 	
@@ -134,7 +136,7 @@ public class TrackController {
 		CSVReader csvReader = new CSVReader(reader);
 
 		while ((nextRecord = csvReader.readNext()) != null) {
-			System.out.println("1++");
+			
 
 			TrackEntity tempTrack = new TrackEntity();
 
