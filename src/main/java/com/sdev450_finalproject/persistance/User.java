@@ -3,6 +3,8 @@ package com.sdev450_finalproject.persistance;
 import java.util.Arrays;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,13 +13,14 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	String display_name;
 	String fname;
 	String lname;
 	
-	long[] trackSavedPlaylist; //user saves track into his profile by trackIDs. Can do this by Name too
+	long trackSavedPlaylist; //user saves track into his profile by trackIDs. Can do this by Name too
 
 	public long getId() {
 		return id;
@@ -51,18 +54,18 @@ public class User {
 		this.lname = lname;
 	}
 
-	public long[] getTrackSavedPlaylist() {
+	public long getTrackSavedPlaylist() {
 		return trackSavedPlaylist;
 	}
 
-	public void setTrackSavedPlaylist(long[] trackSavedPlaylist) {
+	public void setTrackSavedPlaylist(long trackSavedPlaylist) {
 		this.trackSavedPlaylist = trackSavedPlaylist;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", display_name=" + display_name + ", fname=" + fname + ", lname=" + lname
-				+ ", trackSavedPlaylist=" + Arrays.toString(trackSavedPlaylist) + "]";
+				+ ", trackSavedPlaylist=" + trackSavedPlaylist + "]";
 	}
 	
 	

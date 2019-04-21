@@ -104,7 +104,7 @@ public class TrackController {
 		CSVReader csvReader = new CSVReader(reader);
 		String[] nextRecord;
 		int i = 0;
-		int randInt = new Random().nextInt(8);
+		int randInt = new Random().nextInt(80);
 		while ((nextRecord = csvReader.readNext()) != null) {
 
 
