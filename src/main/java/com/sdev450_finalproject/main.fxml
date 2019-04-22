@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
-
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="2000" prefHeight="400.0"
-            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.172-ea"
-            fx:controller="com.sdev450_finalproject.UIController">
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-            <HBox fx:id="buttonBox" minWidth="1000" >
-                <Button fx:id="button" layoutX="39.0" layoutY="94.0" mnemonicParsing="false" text="Button" minWidth="200"/>
-                <TextField fx:id="textField" minWidth="200" />
-                <TextArea fx:id="text" text=" " minWidth="200" minHeight="400" wrapText="true"/>
-                <Button fx:id="searchAlbum" layoutX="119.0" layoutY="94.0" mnemonicParsing="false" text="Search" minWidth="75"/>
-                <Button layoutX="202.0" layoutY="94.0" mnemonicParsing="false" text="Button" minWidth="75"/>
-            </HBox>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="2000" prefHeight="400.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sdev450_finalproject.UIController">
+   <center>
+      <GridPane alignment="CENTER" hgap="5.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="searchAlbum" mnemonicParsing="false" text="Search" GridPane.columnIndex="2" />
+            <Label text="Search Album" />
+            <TextField fx:id="textField" GridPane.columnIndex="1" />
+            <TextArea fx:id="text" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
+            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="button" mnemonicParsing="false" text="View All Albums In Database" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </center>
 
 
     </BorderPane>
-
