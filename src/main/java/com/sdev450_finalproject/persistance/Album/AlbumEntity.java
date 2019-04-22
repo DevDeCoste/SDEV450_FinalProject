@@ -28,16 +28,11 @@ public class AlbumEntity implements Serializable {
     //Trinh: changed albumTracks to array 
     //Trinh: also changed getter and setters. Original albumTracks is a String. 
     private String[] albumTracks;
-    private String trackTitle;
+
     private String trackLength;
 
-    public String getTrackTitle() {
-        return trackTitle;
-    }
 
-    public void setTrackTitle(String trackTitle) {
-        this.trackTitle = trackTitle;
-    }
+
 
 
 
@@ -92,7 +87,7 @@ public class AlbumEntity implements Serializable {
     }
 
     public String TracklisttoString() {
-        return "TrackEntity [Title=" + trackTitle +  ", trackLength=" + trackLength +  "]";
+        return "TrackEntity [Title=" +  ", trackLength=" + trackLength +  "]";
     }
 
 } //End of Class
