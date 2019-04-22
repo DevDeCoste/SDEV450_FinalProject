@@ -3,6 +3,8 @@ package com.sdev450_finalproject.Controller;
 import com.opencsv.CSVReader;
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 import com.sdev450_finalproject.persistance.Album.AlbumRepository;
+import com.sdev450_finalproject.persistance.ArtistEntity;
+import com.sdev450_finalproject.persistance.ArtistRepository;
 import com.sdev450_finalproject.persistance.TrackEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,23 +27,25 @@ public class AlbumController {
     static String FILE_PATH = "./src/main/resources/albumlist.csv";
 
     @Autowired
-    AlbumRepository repository;
+    AlbumRepository albumRepository;
+    @Autowired
+    ArtistRepository artistRepository;
 
     @GetMapping(path = "/albums")
     public List<AlbumEntity> getEntities() {
-        return repository.findAll();
+        return albumRepository.findAll();
     }
 
     @PostMapping(path = "/albums")
     public boolean createAlbum(@RequestBody AlbumEntity albumEntity) {
-        repository.save(albumEntity);
+        albumRepository.save(albumEntity);
         return true;
     }
 
     @GetMapping("/findAlbumByArtist/{artistName}")
     public ResponseEntity findAlbumByArtist(@PathVariable("artistName") String artistName) {
 
-        ArrayList<AlbumEntity> Entities = repository.findAllByArtist(artistName);
+        ArrayList<AlbumEntity> Entities = albumRepository.findAllByArtist(artistName);
         if (Entities.isEmpty()) {
             // Returns 404 if not present
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -58,6 +62,7 @@ public class AlbumController {
         String[] nextRecord;
         ArrayList<TrackEntity> trackLists = new ArrayList<>();
         ArrayList<AlbumEntity> albumLists = new ArrayList<>();
+
         AlbumEntity tempAlbum = new AlbumEntity();
         Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
 
@@ -79,10 +84,14 @@ public class AlbumController {
             }
 
         }
-
+        ArtistEntity entity = new ArtistEntity();
+        List<ArtistEntity> entities = artistRepository.findAllByArtistName(trackLists.get(1).getArtistName());
+        if(entities.size() == 1) {
+            entity = entities.get(0);
+        }
 
         tempAlbum.setAlbumName(trackLists.get(1).getAlbumTitle());
-        tempAlbum.setArtist(trackLists.get(1).getArtistName());
+        entity.setArtistName(trackLists.get(1).getArtistName());
         tempAlbum.setGenre(trackLists.get(1).getGenreType());
 
         String track[] = new String[trackLists.size()];
@@ -94,10 +103,12 @@ public class AlbumController {
 
         tempAlbum.setAlbumTracks(track);
         albumLists.add(tempAlbum);
+        entity.addAlbum(tempAlbum);
+        artistRepository.save(entity);
 
-        if (repository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
-            repository.save(tempAlbum);
-        }
+//        if (albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
+//            albumRepository.save(tempAlbum);
+//        }
         csvReader.close();
         return albumLists;
 
@@ -173,8 +184,8 @@ public class AlbumController {
                     tempAlbum.setAlbumTracks(track);
                     albumLists.add(tempAlbum);
 
-//                    if (repository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
-//                        repository.save(tempAlbum);
+//                    if (albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
+//                        albumRepository.save(tempAlbum);
 //                    }
                     csvReader.close();
                 }
@@ -215,7 +226,7 @@ public class AlbumController {
                     tempAlbum.setGenre(nextRecord[4]);
 
                     albumLists.add(tempAlbum);
-                    repository.save(tempAlbum);
+                    albumRepository.save(tempAlbum);
                     csvReader1.close();
 
                 }

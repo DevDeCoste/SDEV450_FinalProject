@@ -2,6 +2,7 @@ package com.sdev450_finalproject.Controller;
 
 
 import com.opencsv.CSVReader;
+import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 import com.sdev450_finalproject.persistance.ArtistEntity;
 import com.sdev450_finalproject.persistance.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -67,6 +69,22 @@ public class ArtistController {
         csvReader.close();
         return artistLists;
     }
+
+    @GetMapping("/foo")
+    public void foo() {
+        ArtistEntity entity = new ArtistEntity();
+        entity.setArtistName("test");
+        AlbumEntity album = new AlbumEntity();
+        album.setAlbumName("Test Album");
+        AlbumEntity album2 = new AlbumEntity();
+        album2.setAlbumName("Test Album 2");
+        entity.setAlbums(Arrays.asList(album, album2));
+        artistRepository.save(entity);
+
+        ArtistEntity foo = artistRepository.findAllByArtistName("test").get(0);
+        boolean t = false;
+    }
+
 
     @GetMapping("/findRandomArtist")
     public ArrayList<ArtistEntity> findRandomArtist() throws IOException{

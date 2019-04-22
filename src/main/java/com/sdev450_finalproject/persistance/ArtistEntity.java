@@ -3,7 +3,11 @@ package com.sdev450_finalproject.persistance;
 
 //import com.opencsv.bean.CsvBindByName;
 
+import com.sdev450_finalproject.persistance.Album.AlbumEntity;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -13,6 +17,24 @@ public class ArtistEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    public List<AlbumEntity> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<AlbumEntity> albums) {
+        this.albums = albums;
+    }
+
+    @OneToMany(targetEntity = AlbumEntity.class, cascade = CascadeType.ALL)
+    private List<AlbumEntity> albums;
+
+    public void addAlbum(AlbumEntity album) {
+        if(albums == null) {
+            this.albums = new ArrayList<>();
+        }
+        this.albums.add(album);
+    }
 
     String artistName;
     String albumTitle;
