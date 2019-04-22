@@ -29,9 +29,19 @@ public class UserController {
 		user.setDisplay_name(displayName);
 		user.setFname(fName);
 		user.setLname(lName);
+		user.setTrackSavedPlaylist(25);
 		//user.setTrackSavedPlaylist(null);
 		
 		userRepository.save(user);
 		return true;
 	}
+	
+	@PostMapping("/findUserByDisplayName/{displayName}")
+	public boolean findUser(@PathVariable("displayName") String displayName) {
+		
+		System.out.println(userRepository.findByLname(displayName).getLname());
+		return true;
+	}
+	
+	
 }
