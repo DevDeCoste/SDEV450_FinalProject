@@ -7,15 +7,19 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-    <BorderPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-                xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.172-ea"
-                fx:controller="com.sdev450_finalproject.UIController">
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="2000" prefHeight="400.0"
+            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            fx:controller="com.sdev450_finalproject.UIController">
 
-            <HBox fx:id="buttonBox">
-                <Button fx:id="button" layoutX="39.0" layoutY="94.0" mnemonicParsing="false" text="Button" />
-                <Button layoutX="119.0" layoutY="94.0" mnemonicParsing="false" text="Button" />
-                <Button layoutX="202.0" layoutY="94.0" mnemonicParsing="false" text="Button" />
+            <HBox fx:id="buttonBox" minWidth="1000" >
+                <Button fx:id="button" layoutX="39.0" layoutY="94.0" mnemonicParsing="false" text="Button" minWidth="200"/>
+                <TextField fx:id="textField" minWidth="200" />
+                <TextArea fx:id="text" text=" " minWidth="200" minHeight="400" wrapText="true"/>
+                <Button fx:id="searchAlbum" layoutX="119.0" layoutY="94.0" mnemonicParsing="false" text="Search" minWidth="75"/>
+                <Button layoutX="202.0" layoutY="94.0" mnemonicParsing="false" text="Button" minWidth="75"/>
             </HBox>
 
 
