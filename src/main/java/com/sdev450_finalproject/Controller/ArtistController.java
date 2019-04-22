@@ -87,17 +87,17 @@ public class ArtistController {
 
 
     @GetMapping("/findRandomArtist")
-    public ArrayList<ArtistEntity> findRandomArtist() throws IOException{
+    public ArrayList<ArtistEntity> findRandomArtist() throws IOException {
 
-        try(Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
-        CSVReader csvReader = new CSVReader(reader)) {
+        try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
+             CSVReader csvReader = new CSVReader(reader)) {
 
             String[] nextRecord;
             ArrayList<ArtistEntity> artistLists = new ArrayList<>();
-            while((nextRecord = csvReader.readNext()) != null){
+            while ((nextRecord = csvReader.readNext()) != null) {
                 ArtistEntity tempArtist = new ArtistEntity();
 
-                if(artistLists.isEmpty()){
+                if (artistLists.isEmpty()) {
                     Reader reader1 = Files.newBufferedReader(Paths.get(FILE_PATH));
                     CSVReader csvReader1 = new CSVReader(reader1);
 
@@ -105,7 +105,7 @@ public class ArtistController {
 
                     int randInt = new Random().nextInt(100);
 
-                    while(i <= randInt){
+                    while (i <= randInt) {
                         nextRecord = csvReader1.readNext();
                         i = i + 2;
                     }
@@ -120,7 +120,7 @@ public class ArtistController {
 
             }
 
-    return artistLists;
+            return artistLists;
         }
     }
 

@@ -86,7 +86,7 @@ public class AlbumController {
         }
         ArtistEntity entity = new ArtistEntity();
         List<ArtistEntity> entities = artistRepository.findAllByArtistName(trackLists.get(1).getArtistName());
-        if(entities.size() == 1) {
+        if (entities.size() == 1) {
             entity = entities.get(0);
         }
 
