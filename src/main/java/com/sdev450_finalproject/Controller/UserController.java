@@ -26,10 +26,10 @@ public class UserController {
 		
 		User user = new User();
 		
-		user.setDisplay_name(displayName);
+		user.setDisplayName(displayName);
 		user.setFname(fName);
 		user.setLname(lName);
-		user.setTrackSavedPlaylist(25);
+	//	user.setTrackSavedPlaylist(25);
 		//user.setTrackSavedPlaylist(null);
 		
 		userRepository.save(user);
