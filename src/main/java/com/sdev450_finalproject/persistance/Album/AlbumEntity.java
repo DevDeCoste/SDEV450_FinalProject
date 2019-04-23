@@ -2,10 +2,7 @@ package com.sdev450_finalproject.persistance.Album;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -27,17 +24,13 @@ public class AlbumEntity implements Serializable {
     
     //Trinh: changed albumTracks to array 
     //Trinh: also changed getter and setters. Original albumTracks is a String. 
+    @Column(length = 4096)
     private String[] albumTracks;
-    private String trackTitle;
+
     private String trackLength;
 
-    public String getTrackTitle() {
-        return trackTitle;
-    }
 
-    public void setTrackTitle(String trackTitle) {
-        this.trackTitle = trackTitle;
-    }
+
 
 
 
@@ -92,7 +85,7 @@ public class AlbumEntity implements Serializable {
     }
 
     public String TracklisttoString() {
-        return "TrackEntity [Title=" + trackTitle +  ", trackLength=" + trackLength +  "]";
+        return "TrackEntity [Title=" +  ", trackLength=" + trackLength +  "]";
     }
 
 } //End of Class

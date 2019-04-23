@@ -36,7 +36,7 @@ public class TrackController {
 
 //	@GetMapping("/findTracksbyAlbum/{albumName}")
 //	public ResponseEntity findTracksbyAlbum(@PathVariable("albumName") String albumName) {
-//		ArrayList<TrackEntity> Entities = repository.findTrackEntitiesByAlbumTitleContains(albumName);
+//		ArrayList<TrackEntity> Entities = albumRepository.findTrackEntitiesByAlbumTitleContains(albumName);
 //		if (Entities.isEmpty()) {
 //			// Returns 404 if not present
 //			return new ResponseEntity(HttpStatus.NOT_FOUND);

@@ -10,8 +10,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 //import javax.annotation.Resource;
 //trinh tracking test
@@ -38,12 +38,14 @@ public class StageListener implements ApplicationListener<SDEV450_FinalProject.S
 //            URL url = this.fxml.getURL();
 //            FXMLLoader fxmlLoader = new FXMLLoader(url);
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("./main.fxml"));
+            File file = new File("src/main/java/com/sdev450_finalproject/main.fxml");
+        fxmlLoader.setLocation(file.toURI().toURL());
         
             fxmlLoader.setControllerFactory(ac::getBean);
             Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root, 500, 500);
+            Scene scene = new Scene(root, 1000, 800);
             stage.setScene(scene);
+            stage.sizeToScene();
             stage.setTitle(this.appTitle);
             stage.show();
     } catch(IOException ex) {
