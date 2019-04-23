@@ -43,8 +43,9 @@ public class StageListener implements ApplicationListener<SDEV450_FinalProject.S
         
             fxmlLoader.setControllerFactory(ac::getBean);
             Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root, 500, 500);
+            Scene scene = new Scene(root, 1000, 800);
             stage.setScene(scene);
+            stage.sizeToScene();
             stage.setTitle(this.appTitle);
             stage.show();
     } catch(IOException ex) {
