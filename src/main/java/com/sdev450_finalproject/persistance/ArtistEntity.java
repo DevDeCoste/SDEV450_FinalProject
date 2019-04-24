@@ -37,7 +37,7 @@ public class ArtistEntity{
     }
 
     String artistName;
-//    String albumTitle;
+    String albumTitle;
 //    String trackTitle;
 //    String genreType;
 //    String trackLength;
@@ -59,13 +59,13 @@ public class ArtistEntity{
         this.artistName = artistName;
     }
 
-//    public String getAlbumTitle() {
-//        return albumTitle;
-//    }
-//
-//    public void setAlbumTitle(String albumTitle) {
-//        this.albumTitle = albumTitle;
-//    }
+    public String getAlbumTitle() {
+        return albumTitle;
+    }
+
+    public void setAlbumTitle(String albumTitle) {
+        this.albumTitle = albumTitle;
+    }
 //
 //    public String getTrackTitle() {
 //        return trackTitle;

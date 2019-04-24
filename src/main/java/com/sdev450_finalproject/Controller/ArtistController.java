@@ -26,7 +26,6 @@ public class ArtistController {
 
     static String FILE_PATH = "./src/main/resources/albumlist.csv";
 
-
     @GetMapping(path = "/artists")
     public List<ArtistEntity> getEntities() {
         return artistRepository.findAll();
@@ -53,7 +52,7 @@ public class ArtistController {
 
             if (nextRecord[2].toLowerCase().contains(searchArtist.toLowerCase())) {
                 tempArtist.setId(Long.parseLong(nextRecord[0]));
-//                tempArtist.setAlbumTitle(nextRecord[2]);
+                tempArtist.setAlbumTitle(nextRecord[2]);
                 tempArtist.setArtistName(nextRecord[3]);
 //                tempArtist.setGenreType(nextRecord[4]);
 //                tempArtist.setTrackLength(nextRecord[6]);

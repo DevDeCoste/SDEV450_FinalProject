@@ -79,13 +79,10 @@ public class TrackEntity {
 
 	@Override
 	public String toString() {
-		return "TrackEntity [id=" + id + ", artistName=" + artistName + ", albumTitle=" + albumTitle + ", trackTitle="
+		return "TrackEntity [id= " + id + ", artistName=" + artistName + "&#xD; ,albumTitle=" + albumTitle + ", trackTitle="
 				+ trackTitle + ", genreType=" + genreType + ", trackLength=" + trackLength + ", yearPublished="
 				+ yearPublished + "]";
 	}
-
-
-
 
 }
 

@@ -80,11 +80,22 @@ public class AlbumEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "AlbumEntity [id=" + id + ", Album Name=" + albumName + ", artist=" + artist
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("AlbumEntity").append(System.getProperty("line.separator"));
+//        sb.append("id = " + id).append(System.getProperty("line.separator"));
+//        sb.append("Album Name =" + albumName);
+//        return sb.toString();
+
+        return "AlbumEntity [id=" + id + System.lineSeparator() +", Album Name=" + albumName + ", artist=" + artist
                 + ", Genre=" + Genre + "Tracks: " + albumTracks + "]";
     }
 
     public String TracklisttoString() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("TrackEntity").append(System.getProperty("line.separator"));
+//        sb.append("Title = " + id).append(System.getProperty("line.separator"));
+//        sb.append("TrackLength =" + trackLength);
+//        return sb.toString();
         return "TrackEntity [Title=" +  ", trackLength=" + trackLength +  "]";
     }
 

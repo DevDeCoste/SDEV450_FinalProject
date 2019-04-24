@@ -2,7 +2,6 @@ package com.sdev450_finalproject;
 
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,7 +9,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -32,7 +30,7 @@ public class UIController {
 	public Label label;
 
 	@FXML
-	public Button button;
+	public Button allAlbums;
 
 	@FXML
 	public Button findTrack;
@@ -48,6 +46,12 @@ public class UIController {
 
 	@FXML
 	public TextField textField;
+
+	@FXML
+	public Button allArtists;
+
+	@FXML
+	public Button searchArtist;
 
 	@FXML
 	protected void findHandler(ActionEvent event) {
@@ -76,17 +80,36 @@ public class UIController {
 
 	@FXML
 	public void initialize() {
-		this.button.setOnAction(actionEvent -> {
+
+		/*Albums - Lists all albums in database*/
+		this.allAlbums.setOnAction(actionEvent -> {
 			RestTemplate restTemplate = new RestTemplate();
 			String data = restTemplate.getForEntity("http://localhost:8085/albums", String.class).getBody();
 			this.text.setText(data);
 		});
+
+		/*Albums - Searches by Album Name*/
 		this.searchAlbum.setOnAction(actionEvent -> {
 			RestTemplate restTemplate = new RestTemplate();
 			String input = textField.getText();
-
 			String data = restTemplate
 					.postForEntity("http://localhost:8085/findTracksInAlbum/" + input, null, String.class).getBody();
+			this.text.setText(data);
+		});
+
+		/*Artists - Lists all Artists in database*/
+		this.allArtists.setOnAction(actionEvent -> {
+			RestTemplate restTemplate = new RestTemplate();
+			String data = restTemplate.getForEntity("http://localhost:8085/artists", String.class).getBody();
+			this.text.setText(data);
+		});
+
+		/*Artists - Searches by Artist Name*/
+		this.searchArtist.setOnAction(actionEvent -> {
+			RestTemplate restTemplate = new RestTemplate();
+			String input = textField.getText();
+			String data = restTemplate
+					.postForEntity("http://localhost:8085/findAlbumsInArtist/" + input, null, String.class).getBody();
 			this.text.setText(data);
 		});
 
