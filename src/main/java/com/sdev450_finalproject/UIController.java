@@ -85,7 +85,9 @@ public class UIController {
 		this.allAlbums.setOnAction(actionEvent -> {
 			RestTemplate restTemplate = new RestTemplate();
 			String data = restTemplate.getForEntity("http://localhost:8085/albums", String.class).getBody();
-			this.text.setText(data);
+			this.text.setText(String.format("%-8s\t\n", data + "\n"));
+
+			//this.text.appendText("\n");
 		});
 
 		/*Albums - Searches by Album Name*/
