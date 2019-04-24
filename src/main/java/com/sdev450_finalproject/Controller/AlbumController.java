@@ -92,6 +92,7 @@ public class AlbumController {
 
         tempAlbum.setAlbumName(trackLists.get(1).getAlbumTitle());
         entity.setArtistName(trackLists.get(1).getArtistName());
+        tempAlbum.setArtist(trackLists.get(1).getArtistName());
         tempAlbum.setGenre(trackLists.get(1).getGenreType());
 
         String track[] = new String[trackLists.size()];

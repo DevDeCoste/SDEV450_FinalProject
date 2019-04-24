@@ -83,6 +83,7 @@ public class UIController {
 
 		/*Albums - Lists all albums in database*/
 		this.allAlbums.setOnAction(actionEvent -> {
+			text.clear();
 			RestTemplate restTemplate = new RestTemplate();
 			String data = restTemplate.getForEntity("http://localhost:8085/albums", String.class).getBody();
 			this.text.setText(String.format("%-8s\t\n", data + "\n"));
@@ -92,6 +93,7 @@ public class UIController {
 
 		/*Albums - Searches by Album Name*/
 		this.searchAlbum.setOnAction(actionEvent -> {
+			text.clear();
 			RestTemplate restTemplate = new RestTemplate();
 			String input = textField.getText();
 			String data = restTemplate
