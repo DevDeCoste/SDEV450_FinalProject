@@ -27,11 +27,11 @@ public class UserController {
 		user.setDisplayName(displayName);
 		user.setFname(fName);
 		user.setLname(lName);
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	//	user.setTrackSavedPlaylist(25);
-=======
+//=======
 		//user.setTrackSavedPlaylist(25);
->>>>>>> cd8f1fc287151a8920fb157a70751eae56f9aeca
+//>>>>>>> cd8f1fc287151a8920fb157a70751eae56f9aeca
 		//user.setTrackSavedPlaylist(null);
 		
 		userRepository.save(user);
