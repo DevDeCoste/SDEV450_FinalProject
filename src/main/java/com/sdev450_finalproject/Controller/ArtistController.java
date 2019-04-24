@@ -53,12 +53,12 @@ public class ArtistController {
 
             if (nextRecord[2].toLowerCase().contains(searchArtist.toLowerCase())) {
                 tempArtist.setId(Long.parseLong(nextRecord[0]));
-                tempArtist.setAlbumTitle(nextRecord[2]);
+//                tempArtist.setAlbumTitle(nextRecord[2]);
                 tempArtist.setArtistName(nextRecord[3]);
-                tempArtist.setGenreType(nextRecord[4]);
-                tempArtist.setTrackLength(nextRecord[6]);
-                tempArtist.setTrackTitle(nextRecord[5]);
-                tempArtist.setYearPublished(nextRecord[1]);
+//                tempArtist.setGenreType(nextRecord[4]);
+//                tempArtist.setTrackLength(nextRecord[6]);
+//                tempArtist.setTrackTitle(nextRecord[5]);
+//                tempArtist.setYearPublished(nextRecord[1]);
 
                 artistLists.add(tempArtist);
             }
@@ -110,9 +110,9 @@ public class ArtistController {
                         i = i + 2;
                     }
                     tempArtist.setId(Long.parseLong(nextRecord[0]));
-                    tempArtist.setAlbumTitle(nextRecord[2]);
+//                    tempArtist.setAlbumTitle(nextRecord[2]);
                     tempArtist.setArtistName(nextRecord[3]);
-                    tempArtist.setTrackTitle(nextRecord[5]);
+//                    tempArtist.setTrackTitle(nextRecord[5]);
                     artistLists.add(tempArtist);
                     artistRepository.save(tempArtist);
                     csvReader1.close();

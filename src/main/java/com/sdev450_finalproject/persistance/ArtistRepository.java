@@ -13,11 +13,11 @@ public interface ArtistRepository extends JpaRepository<ArtistEntity, Long> {
 
     Page<ArtistEntity> findAll(Pageable pageable);
 
-    ArrayList<ArtistEntity> findArtistEntitiesByAlbumTitleContains(String AlbumName);
+    //ArrayList<ArtistEntity> findArtistEntitiesByAlbumTitleContains(String AlbumName);
 
-//ArrayList<ArtistEntity>findArtistEntitiesByArtistName(String ArtistName);
+    //ArrayList<ArtistEntity>findArtistEntitiesByArtistName(String ArtistName);
 
-ArrayList<ArtistEntity>findAllByArtistName(String ArtistName);
+    ArrayList<ArtistEntity>findAllByArtistName(String ArtistName);
 }
 
 
