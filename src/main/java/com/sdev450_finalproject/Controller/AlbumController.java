@@ -7,8 +7,6 @@ import com.sdev450_finalproject.persistance.ArtistEntity;
 import com.sdev450_finalproject.persistance.ArtistRepository;
 import com.sdev450_finalproject.persistance.TrackEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -47,18 +45,18 @@ public class AlbumController {
         return true;
     }
 
-    @GetMapping("/findAlbumByArtist/{artistName}")
-    public ResponseEntity findAlbumByArtist(@PathVariable("artistName") String artistName) {
-
-        ArrayList<ArtistEntity> Entities = albumRepository.findAllByArtist(artistName);
-        if (Entities.isEmpty()) {
-            // Returns 404 if not present
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-
-//         Returns Album Entity if present
-        return new ResponseEntity(Entities, HttpStatus.OK);
-    }
+//    @GetMapping("/findAlbumByArtist/{artistName}")
+//    public ResponseEntity findAlbumByArtist(@PathVariable("artistName") String artistName) {
+//
+//        ArrayList<ArtistEntity> Entities = albumRepository.findAllByArtist(artistName);
+//        if (Entities.isEmpty()) {
+//            // Returns 404 if not present
+//            return new ResponseEntity(HttpStatus.NOT_FOUND);
+//        }
+//
+////         Returns Album Entity if present
+//        return new ResponseEntity(Entities, HttpStatus.OK);
+//    }
 
     @PostMapping("/findTracksInAlbum/{findByAlbumName}")
     public ArtistEntity findTrackbyAlbumName(@PathVariable("findByAlbumName") String searchTrack)
