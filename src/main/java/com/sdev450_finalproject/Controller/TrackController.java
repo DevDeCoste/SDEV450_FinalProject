@@ -1,8 +1,8 @@
 package com.sdev450_finalproject.Controller;
 
 import com.opencsv.CSVReader;
-import com.sdev450_finalproject.persistance.TrackEntity;
-import com.sdev450_finalproject.persistance.TrackRepository;
+import com.sdev450_finalproject.persistance.Track.TrackEntity;
+import com.sdev450_finalproject.persistance.Track.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
