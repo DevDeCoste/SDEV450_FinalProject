@@ -20,17 +20,7 @@ public class ArtistEntity{
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
     String artistName;
-    String albumName;
-    String[] artistAlbums;
-    String[] artistSongs;
 
-    public String[] getArtistSongs() {
-        return artistSongs;
-    }
-
-    public void setArtistSongs(String[] artistSongs) {
-        this.artistSongs = artistSongs;
-    }
 
 
 
@@ -71,58 +61,5 @@ public class ArtistEntity{
         this.artistName = artistName;
     }
 
-    public String getAlbumName() {
-        return albumName;
-    }
 
-    public void setAlbumName(String albumName) {
-        this.albumName = albumName;
-    }
-
-    public String[] getArtistAlbums() {
-        return artistAlbums;
-    }
-
-    public void setArtistAlbums(String[] artistAlbums) {
-        this.artistAlbums = artistAlbums;
-    }
-
-
-
-//    public String getTrackTitle() {
-//        return trackTitle;
-//    }
-//
-//    public void setTrackTitle(String trackTitle) {
-//        this.trackTitle = trackTitle;
-//    }
-//
-//    public String getGenreType() {
-//        return genreType;
-//    }
-//
-//    public void setGenreType(String genreType) {
-//        this.genreType = genreType;
-//    }
-//
-//    public String getTrackLength() {
-//        return trackLength;
-//    }
-//
-//    public void setTrackLength(String trackLength) {
-//        this.trackLength = trackLength;
-//    }
-//
-//    public String getYearPublished() {
-//        return yearPublished;
-//    }
-//
-//    public void setYearPublished(String yearPublished) {
-//        this.yearPublished = yearPublished;
-//    }
-
-//    @Override
-//    public String toString() {
-//        return "ArtistEntity [id=" + id + ", artistName=" + artistName + "]";
-//    }
 }

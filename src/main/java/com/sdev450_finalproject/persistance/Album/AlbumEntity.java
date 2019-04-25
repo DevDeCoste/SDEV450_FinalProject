@@ -36,8 +36,6 @@ public class AlbumEntity implements Serializable {
     }
 
 
-    private long album_id;
-
     public String getGenre() {
         return Genre;
     }
@@ -84,13 +82,6 @@ public class AlbumEntity implements Serializable {
         return "AlbumEntity [id=" + id + System.lineSeparator() +", Album Name=" + albumName + ", Genre=" + Genre +  "]";
     }
 
-    public long getAlbum_id() {
-		return album_id;
-	}
-
-	public void setAlbum_id(long album_id) {
-		this.album_id = album_id;
-	}
 
 
 

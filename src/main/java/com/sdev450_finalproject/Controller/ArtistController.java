@@ -75,7 +75,7 @@ public class ArtistController {
 
             if (nextRecord[2].toLowerCase().contains(searchArtist.toLowerCase())) {
                 tempArtist.setId((nextRecord[0]));
-                tempArtist.setAlbumName(nextRecord[2]);
+//                tempArtist.setAlbumName(nextRecord[2]);
                 tempArtist.setArtistName(nextRecord[3]);
                 artistLists.add(tempArtist);
             }
@@ -144,7 +144,7 @@ public class ArtistController {
             entity = entities.get(0);
         }
 
-        tempArtist.setAlbumName(albumTitle);
+//        tempArtist.setAlbumName(albumTitle);
 
         entity.setArtistName(artistName);
 
