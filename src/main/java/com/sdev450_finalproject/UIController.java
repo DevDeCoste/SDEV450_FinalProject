@@ -1,7 +1,7 @@
 package com.sdev450_finalproject;
 
 import com.sdev450_finalproject.persistance.Album.AlbumRepository;
-import com.sdev450_finalproject.persistance.TrackEntity;
+import com.sdev450_finalproject.persistance.Track.TrackEntity;
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

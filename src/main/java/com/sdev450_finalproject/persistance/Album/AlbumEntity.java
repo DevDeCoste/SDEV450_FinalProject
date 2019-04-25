@@ -1,6 +1,6 @@
 package com.sdev450_finalproject.persistance.Album;
 
-import com.sdev450_finalproject.persistance.TrackEntity;
+import com.sdev450_finalproject.persistance.Track.TrackEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

@@ -5,7 +5,7 @@ import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 import com.sdev450_finalproject.persistance.Album.AlbumRepository;
 import com.sdev450_finalproject.persistance.Artist.ArtistEntity;
 import com.sdev450_finalproject.persistance.Artist.ArtistRepository;
-import com.sdev450_finalproject.persistance.TrackEntity;
+import com.sdev450_finalproject.persistance.Track.TrackEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
