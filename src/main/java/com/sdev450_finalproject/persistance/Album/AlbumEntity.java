@@ -1,13 +1,11 @@
 package com.sdev450_finalproject.persistance.Album;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import com.sdev450_finalproject.persistance.TrackEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 
 
@@ -39,11 +37,6 @@ public class AlbumEntity implements Serializable {
     private List<TrackEntity> tracks;
     
     private long album_id;
-
-
-
-
-
 
     public String[] getAlbumTracks() {
         return albumTracks;

@@ -17,6 +17,9 @@ public class ArtistEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    String artistName;
+    String albumName;
+    String[] artistAlbums;
 
     public List<AlbumEntity> getAlbums() {
         return albums;
@@ -36,12 +39,6 @@ public class ArtistEntity{
         this.albums.add(album);
     }
 
-    String artistName;
-    String albumTitle;
-//    String trackTitle;
-//    String genreType;
-//    String trackLength;
-//    String yearPublished;
 
     public long getId() {
         return id;
@@ -59,14 +56,24 @@ public class ArtistEntity{
         this.artistName = artistName;
     }
 
-    public String getAlbumTitle() {
-        return albumTitle;
+    public String getAlbumName() {
+        return albumName;
     }
 
-    public void setAlbumTitle(String albumTitle) {
-        this.albumTitle = albumTitle;
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
     }
-//
+
+    public String[] getArtistAlbums() {
+        return artistAlbums;
+    }
+
+    public void setArtistAlbums(String[] artistAlbums) {
+        this.artistAlbums = artistAlbums;
+    }
+
+
+
 //    public String getTrackTitle() {
 //        return trackTitle;
 //    }
@@ -99,8 +106,8 @@ public class ArtistEntity{
 //        this.yearPublished = yearPublished;
 //    }
 
-    @Override
-    public String toString() {
-        return "ArtistEntity [id=" + id + ", artistName=" + artistName + "]";
-    }
+//    @Override
+//    public String toString() {
+//        return "ArtistEntity [id=" + id + ", artistName=" + artistName + "]";
+//    }
 }

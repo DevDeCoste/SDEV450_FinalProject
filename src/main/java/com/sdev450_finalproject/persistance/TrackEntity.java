@@ -1,14 +1,8 @@
 package com.sdev450_finalproject.persistance;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Track")
@@ -96,7 +90,7 @@ public class TrackEntity {
 
 	@Override
 	public String toString() {
-		return "TrackEntity [id= " + id + ", artistName=" + artistName + "&#xD; ,albumTitle=" + albumTitle + ", trackTitle="
+		return "TrackEntity [id= " + id + ", artistName=" + artistName + "&#xD; ,albumName=" + albumTitle + ", trackTitle="
 				+ trackTitle + ", genreType=" + genreType + ", trackLength=" + trackLength + ", yearPublished="
 				+ yearPublished + "]";
 	}

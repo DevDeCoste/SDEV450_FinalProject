@@ -12,5 +12,5 @@ public interface TrackRepository extends CrudRepository<TrackEntity, Long> {
     Page<TrackEntity> findAll(Pageable pageable);
 
     ArrayList<TrackEntity> findTrackEntitiesByAlbumTitleContains(String AlbumName);
-    
+
 }

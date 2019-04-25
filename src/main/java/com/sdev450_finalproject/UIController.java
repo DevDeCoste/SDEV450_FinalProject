@@ -63,6 +63,9 @@ public class UIController {
 	public Button searchArtist;
 
 	@FXML
+	public Button delete;
+
+	@FXML
 	protected void findHandler(ActionEvent event) {
 
 		System.out.println("this got hit");
@@ -168,8 +171,15 @@ public class UIController {
 					.postForEntity("http://localhost:8085/findArtistByAlbum/" + input, null, String.class).getBody();
 			this.text.setText(data);
 		});
-		
-		
+
+		/*Artists - Searches by Artist Name*/
+		this.delete.setOnAction(actionEvent -> {
+			RestTemplate restTemplate = new RestTemplate();
+			String data = restTemplate.getForEntity("http://localhost:8085/delete", String.class).getBody();
+			this.text.setText(data);
+		});
+
+
 
 	}
 
