@@ -32,8 +32,13 @@ public class AlbumController {
     ArtistRepository artistRepository;
 
     @GetMapping(path = "/albums")
-    public List<AlbumEntity> getEntities() {
-        return albumRepository.findAll();
+    public List<String> getEntities() {
+        ArrayList<String> albumNames = new ArrayList<>();
+        List<AlbumEntity> albums = albumRepository.findAll();
+        for (AlbumEntity album : albums) {
+            albumNames.add(album.getAlbumName());
+        }
+        return albumNames;
     }
 
     @PostMapping(path = "/albums")
@@ -106,7 +111,10 @@ public class AlbumController {
         albumLists.add(tempAlbum);
         entity.addAlbum(tempAlbum);
 
-        artistRepository.save(entity);
+        if(albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
+            artistRepository.save(entity);
+        }
+
 
 //        if (albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
 //            albumRepository.save(tempAlbum);

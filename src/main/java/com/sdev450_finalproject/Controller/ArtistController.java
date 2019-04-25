@@ -55,7 +55,11 @@ public class ArtistController {
 
     @DeleteMapping("/deleteByArtist/{deleteByArtist}")
     public void deleteByArtistName(@PathVariable("deleteByArtist") String searchInput) throws IOException {
-        artistRepository.deleteByArtistName(searchInput);
+        ArrayList<ArtistEntity> artist = artistRepository.findAllByArtistName(searchInput);
+        if(artist.size() > 0) {
+            artistRepository.delete(artist.get(0));
+        }
+
     }
 
 //    @DeleteMapping("/deleteBy/{deleteByAlbum}")
