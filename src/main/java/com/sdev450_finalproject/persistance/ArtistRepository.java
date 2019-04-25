@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 
 @Transactional
-public interface ArtistRepository extends JpaRepository<ArtistEntity, Long> {
+public interface ArtistRepository extends JpaRepository<ArtistEntity, String> {
 
     Page<ArtistEntity> findAll(Pageable pageable);
 

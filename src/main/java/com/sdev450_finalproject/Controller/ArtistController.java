@@ -54,7 +54,7 @@ public class ArtistController {
     }
 
     @DeleteMapping("/deleteByArtist/{deleteByArtist}")
-    public void deleteByArtistName(@PathVariable("deleteByArtist") String searchInput) throws IOException{
+    public void deleteByArtistName(@PathVariable("deleteByArtist") String searchInput) throws IOException {
         artistRepository.deleteByArtistName(searchInput);
     }
 
@@ -78,7 +78,7 @@ public class ArtistController {
             ArtistEntity tempArtist = new ArtistEntity();
 
             if (nextRecord[2].toLowerCase().contains(searchArtist.toLowerCase())) {
-                tempArtist.setId(Long.parseLong(nextRecord[0]));
+                tempArtist.setId((nextRecord[0]));
                 tempArtist.setAlbumName(nextRecord[2]);
                 tempArtist.setArtistName(nextRecord[3]);
                 artistLists.add(tempArtist);
@@ -105,14 +105,15 @@ public class ArtistController {
     }
 
 
-
     @PostMapping("/findAllByArtist/{artistName}")
-    public  ArrayList<ArtistEntity> findAllbyArtist(@PathVariable("artistName") String searchArtist)
-            throws IOException{
+    public ArrayList<ArtistEntity> findAllbyArtist(@PathVariable("artistName") String searchArtist)
+            throws IOException {
 
         String[] nextRecord;
         ArrayList<TrackEntity> trackLists = new ArrayList<>();
         ArrayList<ArtistEntity> artistLists = new ArrayList<>();
+        String artistName = "";
+        String albumTitle = "";
 
         ArtistEntity tempArtist = new ArtistEntity();
         Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
@@ -124,8 +125,9 @@ public class ArtistController {
 
             if (nextRecord[2].toLowerCase().contains(searchArtist.toLowerCase())) {
 
-                tempTrack.setAlbumTitle(nextRecord[2]);
-                tempTrack.setArtistName(nextRecord[3]);
+                albumTitle = nextRecord[2];
+                artistName = nextRecord[3];
+
                 tempTrack.setGenreType(nextRecord[4]);
                 tempTrack.setTrackLength(nextRecord[6]);
                 tempTrack.setTrackTitle(nextRecord[5]);
@@ -136,13 +138,13 @@ public class ArtistController {
 
         }
         ArtistEntity entity = new ArtistEntity();
-        List<ArtistEntity> entities = artistRepository.findAllByArtistName(trackLists.get(1).getArtistName());
+        List<ArtistEntity> entities = artistRepository.findAllByArtistName(artistName);
         if (entities.size() == 1) {
             entity = entities.get(0);
         }
 
-        tempArtist.setAlbumName(trackLists.get(1).getAlbumTitle());
-        entity.setArtistName(trackLists.get(1).getArtistName());
+        tempArtist.setAlbumName(albumTitle);
+        entity.setArtistName(artistName);
 
         String track[] = new String[trackLists.size()];
         int j = 0;
@@ -193,7 +195,7 @@ public class ArtistController {
                 ArtistEntity tempArtist = new ArtistEntity();
 
                 AlbumEntity tempAlbum = new AlbumEntity();
-                albums.toArray(tempAlbum.getAlbumTracks());
+                //albums.toArray(tempAlbum.getAlbumTracks());
                 if (artistLists.isEmpty()) {
                     Reader reader1 = Files.newBufferedReader(Paths.get(FILE_PATH));
                     CSVReader csvReader1 = new CSVReader(reader1);
@@ -206,7 +208,7 @@ public class ArtistController {
                         nextRecord = csvReader1.readNext();
                         i = i + 2;
                     }
-                    tempArtist.setId(Long.parseLong(nextRecord[0]));
+                    tempArtist.setId((nextRecord[0]));
                     tempArtist.setArtistName(nextRecord[3]);
 //                    tempArtist.setAlbumName(albums.addAll());
                     artistLists.add(tempArtist);

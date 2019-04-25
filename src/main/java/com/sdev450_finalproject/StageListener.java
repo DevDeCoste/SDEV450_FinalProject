@@ -20,7 +20,7 @@ import java.io.IOException;
 public class StageListener implements ApplicationListener<SDEV450_FinalProject.StageReadyEvent> {
 
     StageListener(@Value("${spring.application.ui.title}") String appTitle,
-                  @Value("classpath:./main.fxml") Resource resource, ApplicationContext ac) {
+                  @Value("classpath:src/main/java/com/sdev450_finalproject/main.fxml") Resource resource, ApplicationContext ac) {
         this.appTitle = appTitle;
         this.fxml = resource;
         this.ac = ac;

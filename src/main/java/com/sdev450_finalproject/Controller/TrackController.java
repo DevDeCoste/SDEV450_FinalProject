@@ -68,8 +68,7 @@ public class TrackController {
 
 			if (nextRecord[2].toLowerCase().contains(searchTrack.toLowerCase())) {
 				// System.out.println("2++");
-				tempTrack.setAlbumTitle(nextRecord[2]);
-				tempTrack.setArtistName(nextRecord[3]);
+
 				tempTrack.setGenreType(nextRecord[4]);
 				tempTrack.setTrackLength(nextRecord[6]);
 				tempTrack.setTrackTitle(nextRecord[5]);
@@ -113,8 +112,7 @@ public class TrackController {
 				nextRecord = csvReader.readNext();
 				i = i + 2;
 
-				randTrack.setAlbumTitle(nextRecord[2]);
-				randTrack.setArtistName(nextRecord[3]);
+
 				randTrack.setGenreType(nextRecord[4]);
 				randTrack.setTrackLength(nextRecord[6]);
 				randTrack.setTrackTitle(nextRecord[5]);
@@ -148,8 +146,6 @@ public class TrackController {
 
 			if (nextRecord[5].toLowerCase().contains(searchTrack.toLowerCase())) {
 				// System.out.println("2++");
-				tempTrack.setAlbumTitle(nextRecord[2]);
-				tempTrack.setArtistName(nextRecord[3]);
 				tempTrack.setGenreType(nextRecord[4]);
 				tempTrack.setTrackLength(nextRecord[6]);
 				tempTrack.setTrackTitle(nextRecord[5]);

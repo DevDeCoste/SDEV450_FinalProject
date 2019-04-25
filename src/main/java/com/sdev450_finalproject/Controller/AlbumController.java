@@ -56,10 +56,12 @@ public class AlbumController {
     }
 
     @PostMapping("/findTracksInAlbum/{findByAlbumName}")
-    public ArrayList<AlbumEntity> findTrackbyAlbumName(@PathVariable("findByAlbumName") String searchTrack)
+    public ArtistEntity findTrackbyAlbumName(@PathVariable("findByAlbumName") String searchTrack)
             throws IOException {
 
         String[] nextRecord;
+        String albumTitle = "";
+        String artistName = "";
         ArrayList<TrackEntity> trackLists = new ArrayList<>();
         ArrayList<AlbumEntity> albumLists = new ArrayList<>();
 
@@ -73,8 +75,8 @@ public class AlbumController {
 
             if (nextRecord[2].toLowerCase().contains(searchTrack.toLowerCase())) {
 
-                tempTrack.setAlbumTitle(nextRecord[2]);
-                tempTrack.setArtistName(nextRecord[3]);
+                albumTitle = nextRecord[2];
+                artistName = nextRecord[3];
                 tempTrack.setGenreType(nextRecord[4]);
                 tempTrack.setTrackLength(nextRecord[6]);
                 tempTrack.setTrackTitle(nextRecord[5]);
@@ -85,33 +87,32 @@ public class AlbumController {
 
         }
         ArtistEntity entity = new ArtistEntity();
-        List<ArtistEntity> entities = artistRepository.findAllByArtistName(trackLists.get(1).getArtistName());
+        List<ArtistEntity> entities = artistRepository.findAllByArtistName(artistName);
         if (entities.size() == 1) {
             entity = entities.get(0);
         }
 
-        tempAlbum.setAlbumName(trackLists.get(1).getAlbumTitle());
-        entity.setArtistName(trackLists.get(1).getArtistName());
-        tempAlbum.setArtist(trackLists.get(1).getArtistName());
+        tempAlbum.setAlbumName(albumTitle);
+        entity.setArtistName(artistName);
         tempAlbum.setGenre(trackLists.get(1).getGenreType());
 
-        String track[] = new String[trackLists.size()];
-        int j = 0;
+
         for (TrackEntity X : trackLists) {
-            track[j] = X.getTrackTitle();
-            j++;
+            tempAlbum.addTrack(X);
         }
 
-        tempAlbum.setAlbumTracks(track);
+
+        //entity.addTrack(track);
         albumLists.add(tempAlbum);
         entity.addAlbum(tempAlbum);
+
         artistRepository.save(entity);
 
 //        if (albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
 //            albumRepository.save(tempAlbum);
 //        }
         csvReader.close();
-        return albumLists;
+        return entity;
 
     }
 
@@ -143,8 +144,7 @@ public class AlbumController {
                         // System.out.println("2++");
                         for (int i = 0; i < nextRecord.length; i++) {
                             csvReader.readNext();
-                            tempTrack.setAlbumTitle(nextRecord[2]);
-                            tempTrack.setArtistName(nextRecord[3]);
+
                             tempTrack.setGenreType(nextRecord[4]);
                             tempTrack.setTrackLength(nextRecord[6]);
                             tempTrack.setTrackTitle(nextRecord[5]);
@@ -175,14 +175,12 @@ public class AlbumController {
                     for (TrackEntity A : TrackList) {
                         System.out.println(A.toString());
                     }
-                    String track[] = new String[TrackList.size()];
-                    int j = 0;
+
                     for (TrackEntity X : TrackList) {
-                        track[j] = X.getTrackTitle();
-                        j++;
+                        tempAlbum.addTrack(X);
+
                     }
 
-                    tempAlbum.setAlbumTracks(track);
                     albumLists.add(tempAlbum);
 
 //                    if (albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {

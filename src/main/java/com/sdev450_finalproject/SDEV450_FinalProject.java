@@ -40,8 +40,10 @@ public class SDEV450_FinalProject extends Application {
 			ac.registerBean(Parameters.class, this::getParameters);
 			ac.registerBean(HostServices.class, this::getHostServices);
 		};
-			this.context = new SpringApplicationBuilder().sources(SpringEntry.class)
-					.initializers(initializer)
+			SpringApplicationBuilder springApplicationBuilder = new SpringApplicationBuilder();
+			springApplicationBuilder.sources(SpringEntry.class);
+			springApplicationBuilder.initializers(initializer);
+			this.context = springApplicationBuilder
 					.run(getParameters().getRaw().toArray(new String[0]));
 		}
 

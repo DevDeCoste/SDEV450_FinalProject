@@ -1,52 +1,39 @@
 package com.sdev450_finalproject.persistance;
 
-import com.sdev450_finalproject.persistance.Album.AlbumEntity;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "Track")
 public class TrackEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	private String id;
 
-	String artistName;
-	String albumTitle;
+
 	String trackTitle;
 	String genreType;
 	String trackLength;
 	String yearPublished;
 	
-	//TRINH TRIES FOR MAPPING
-	@ManyToOne 
-	@JoinColumn(name="album_id")
-	private AlbumEntity albumName;
 
-	public long getId() {
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getArtistName() {
-		return artistName;
-	}
 
-	public void setArtistName(String artistName) {
-		this.artistName = artistName;
-	}
 
-	public String getAlbumTitle() {
-		return albumTitle;
-	}
-
-	public void setAlbumTitle(String albumTitle) {
-		this.albumTitle = albumTitle;
-	}
 
 	public String getTrackTitle() {
 		return trackTitle;
@@ -80,17 +67,11 @@ public class TrackEntity {
 		this.yearPublished = yearPublished;
 	}
 
-	public AlbumEntity getAlbumName() {
-		return albumName;
-	}
 
-	public void setAlbumName(AlbumEntity albumName) {
-		this.albumName = albumName;
-	}
 
 	@Override
 	public String toString() {
-		return "TrackEntity [id= " + id + ", artistName=" + artistName + "&#xD; ,albumName=" + albumTitle + ", trackTitle="
+		return "TrackEntity [id= " + id  +  ", trackTitle="
 				+ trackTitle + ", genreType=" + genreType + ", trackLength=" + trackLength + ", yearPublished="
 				+ yearPublished + "]";
 	}

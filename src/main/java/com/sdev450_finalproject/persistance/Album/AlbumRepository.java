@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 
 @Transactional
-public interface AlbumRepository extends JpaRepository<AlbumEntity, Long> {
+public interface AlbumRepository extends JpaRepository<AlbumEntity, String> {
 
     Page<AlbumEntity> findAll(Pageable pageable);
 

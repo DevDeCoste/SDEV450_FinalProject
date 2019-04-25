@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,27 +27,24 @@ public class AlbumEntity implements Serializable {
     
     //Trinh: changed albumTracks to array 
     //Trinh: also changed getter and setters. Original albumTracks is a String. 
-    @Column(length = 4096)
-    private String[] albumTracks;
 
-    private String trackLength;
-    
-    //TRINH TRIES FOR MAPPING
-    
-    @OneToMany(mappedBy="albumName",  cascade= CascadeType.ALL) //mappedBy="albumentity",
+    @OneToMany(targetEntity = TrackEntity.class, cascade = CascadeType.ALL)
     private List<TrackEntity> tracks;
+
+    public void addTrack(TrackEntity track) {
+        if(tracks == null) {
+            this.tracks = new ArrayList<>();
+        }
+        this.tracks.add(track);
+    }
+
+
+
+
+    
+
     
     private long album_id;
-
-    public String[] getAlbumTracks() {
-        return albumTracks;
-    }
-
-    public void setAlbumTracks(String[] albumTracks) {
-        this.albumTracks = albumTracks;
-    }
-
-
 
     public String getGenre() {
         return Genre;
@@ -99,7 +97,7 @@ public class AlbumEntity implements Serializable {
 //        return sb.toString();
 
         return "AlbumEntity [id=" + id + System.lineSeparator() +", Album Name=" + albumName + ", artist=" + artist
-                + ", Genre=" + Genre + "Tracks: " + albumTracks + "]";
+                + ", Genre=" + Genre +  "]";
     }
 
     public long getAlbum_id() {
@@ -110,13 +108,6 @@ public class AlbumEntity implements Serializable {
 		this.album_id = album_id;
 	}
 
-	public String TracklisttoString() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("TrackEntity").append(System.getProperty("line.separator"));
-//        sb.append("Title = " + id).append(System.getProperty("line.separator"));
-//        sb.append("TrackLength =" + trackLength);
-//        return sb.toString();
-        return "TrackEntity [Title=" +  ", trackLength=" + trackLength +  "]";
-    }
+
 
 } //End of Class

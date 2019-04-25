@@ -1,5 +1,7 @@
 package com.sdev450_finalproject;
 
+import com.sdev450_finalproject.persistance.Album.AlbumRepository;
+import com.sdev450_finalproject.persistance.TrackEntity;
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,18 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-import com.sdev450_finalproject.persistance.TrackEntity;
-import com.sdev450_finalproject.persistance.Album.AlbumEntity;
-import com.sdev450_finalproject.persistance.Album.AlbumRepository;
 
 
 
@@ -96,40 +90,41 @@ public class UIController {
 	@FXML
 	public void initialize() {
 		
-		/* TRINH:
-		 * initialize album and tracks to test mapping
-		 */
+//		/* TRINH:
+//		 * initialize album and tracks to test mapping
+//		 */
+//
+//
+//
+//		ArrayList<TrackEntity> tracksInAlbum =  new ArrayList<>();
+//
+//		TrackEntity trackToSave = new TrackEntity();
+//		TrackEntity trackToSave1 = new TrackEntity();
+//		AlbumEntity albumToSave = new AlbumEntity ();
+//
+//		albumToSave.setAlbumName("BSB ALBUM");
+//
+//		trackToSave.setTrackTitle("I want it that way");
+//		trackToSave.setGenreType("90s Music");
+//		trackToSave.setAlbumTitle("BackStreet Boys Album 1");
+//		trackToSave.setArtistName("Back Street Boys");
+//		trackToSave.setAlbumName(albumToSave);
+//
+//		trackToSave1.setTrackTitle("I want it that way");
+//		trackToSave1.setGenreType("90s Music");
+//		trackToSave1.setAlbumTitle("BackStreet Boys Album 1");
+//		trackToSave1.setArtistName("Back Street Boys");
+//		trackToSave1.setAlbumName(albumToSave);
+//
+//		tracksInAlbum.add(trackToSave);
+//		tracksInAlbum.add(trackToSave1);
+//
+//		albumToSave.setTracks(tracksInAlbum);
+//		ArtistEntity newArtist = new ArtistEntity();
+
 		
-	
 		
-		ArrayList<TrackEntity> tracksInAlbum =  new ArrayList<>();
-		
-		TrackEntity trackToSave = new TrackEntity();
-		TrackEntity trackToSave1 = new TrackEntity();
-		AlbumEntity albumToSave = new AlbumEntity ();
-		
-		albumToSave.setAlbumName("BSB ALBUM");
-		
-		trackToSave.setTrackTitle("I want it that way");
-		trackToSave.setGenreType("90s Music");   
-		trackToSave.setAlbumTitle("BackStreet Boys Album 1");
-		trackToSave.setArtistName("Back Street Boys");
-		trackToSave.setAlbumName(albumToSave);
-		
-		trackToSave1.setTrackTitle("I want it that way");
-		trackToSave1.setGenreType("90s Music");   
-		trackToSave1.setAlbumTitle("BackStreet Boys Album 1");
-		trackToSave1.setArtistName("Back Street Boys");
-		trackToSave1.setAlbumName(albumToSave);
-		
-		tracksInAlbum.add(trackToSave);
-		tracksInAlbum.add(trackToSave1);
-		
-		albumToSave.setTracks(tracksInAlbum);
-	 
-		
-		
-		albumRepos.save(albumToSave);
+//		albumRepos.save(albumToSave);
 		
 		
 		/*

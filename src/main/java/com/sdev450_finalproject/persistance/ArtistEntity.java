@@ -4,6 +4,7 @@ package com.sdev450_finalproject.persistance;
 //import com.opencsv.bean.CsvBindByName;
 
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,11 +16,23 @@ import java.util.List;
 public class ArtistEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    private String id;
     String artistName;
     String albumName;
     String[] artistAlbums;
+    String[] artistSongs;
+
+    public String[] getArtistSongs() {
+        return artistSongs;
+    }
+
+    public void setArtistSongs(String[] artistSongs) {
+        this.artistSongs = artistSongs;
+    }
+
+
 
     public List<AlbumEntity> getAlbums() {
         return albums;
@@ -28,6 +41,8 @@ public class ArtistEntity{
     public void setAlbums(List<AlbumEntity> albums) {
         this.albums = albums;
     }
+
+
 
     @OneToMany(targetEntity = AlbumEntity.class, cascade = CascadeType.ALL)
     private List<AlbumEntity> albums;
@@ -40,11 +55,11 @@ public class ArtistEntity{
     }
 
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
