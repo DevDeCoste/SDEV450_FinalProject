@@ -9,16 +9,25 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.sdev450_finalproject.persistance.TrackEntity;
+import com.sdev450_finalproject.persistance.Album.AlbumEntity;
+import com.sdev450_finalproject.persistance.Album.AlbumRepository;
 
 
 
 @Component
 public class UIController {
+	
+	@Autowired
+	AlbumRepository albumRepos;
 
 	private final HostServices hostServices;
 
@@ -80,8 +89,51 @@ public class UIController {
 
 	@FXML
 	public void initialize() {
+		
+		/* TRINH:
+		 * initialize album and tracks to test mapping
+		 */
+		
+	
+		
+		ArrayList<TrackEntity> tracksInAlbum =  new ArrayList<>();
+		
+		TrackEntity trackToSave = new TrackEntity();
+		TrackEntity trackToSave1 = new TrackEntity();
+		AlbumEntity albumToSave = new AlbumEntity ();
+		
+		albumToSave.setAlbumName("BSB ALBUM");
+		
+		trackToSave.setTrackTitle("I want it that way");
+		trackToSave.setGenreType("90s Music");   
+		trackToSave.setAlbumTitle("BackStreet Boys Album 1");
+		trackToSave.setArtistName("Back Street Boys");
+		trackToSave.setAlbumName(albumToSave);
+		
+		trackToSave1.setTrackTitle("I want it that way");
+		trackToSave1.setGenreType("90s Music");   
+		trackToSave1.setAlbumTitle("BackStreet Boys Album 1");
+		trackToSave1.setArtistName("Back Street Boys");
+		trackToSave1.setAlbumName(albumToSave);
+		
+		tracksInAlbum.add(trackToSave);
+		tracksInAlbum.add(trackToSave1);
+		
+		albumToSave.setTracks(tracksInAlbum);
+	 
+		
+		
+		albumRepos.save(albumToSave);
+		
+		
+		/*
+		 * end initalize album can be deleted 
+		 */
 
 		/*Albums - Lists all albums in database*/
+		
+		
+		
 		this.allAlbums.setOnAction(actionEvent -> {
 			text.clear();
 			RestTemplate restTemplate = new RestTemplate();
@@ -116,6 +168,8 @@ public class UIController {
 					.postForEntity("http://localhost:8085/findArtistByAlbum/" + input, null, String.class).getBody();
 			this.text.setText(data);
 		});
+		
+		
 
 	}
 

@@ -2,8 +2,12 @@ package com.sdev450_finalproject.persistance.Album;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.sdev450_finalproject.persistance.TrackEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 
 
@@ -28,6 +32,13 @@ public class AlbumEntity implements Serializable {
     private String[] albumTracks;
 
     private String trackLength;
+    
+    //TRINH TRIES FOR MAPPING
+    
+    @OneToMany(mappedBy="albumName",  cascade= CascadeType.ALL) //mappedBy="albumentity",
+    private List<TrackEntity> tracks;
+    
+    private long album_id;
 
 
 
@@ -78,7 +89,15 @@ public class AlbumEntity implements Serializable {
     }
 
 
-    @Override
+    public List<TrackEntity> getTracks() {
+		return tracks;
+	}
+
+	public void setTracks(List<TrackEntity> tracks) {
+		this.tracks = tracks;
+	}
+
+	@Override
     public String toString() {
 //        StringBuilder sb = new StringBuilder();
 //        sb.append("AlbumEntity").append(System.getProperty("line.separator"));
@@ -90,7 +109,15 @@ public class AlbumEntity implements Serializable {
                 + ", Genre=" + Genre + "Tracks: " + albumTracks + "]";
     }
 
-    public String TracklisttoString() {
+    public long getAlbum_id() {
+		return album_id;
+	}
+
+	public void setAlbum_id(long album_id) {
+		this.album_id = album_id;
+	}
+
+	public String TracklisttoString() {
 //        StringBuilder sb = new StringBuilder();
 //        sb.append("TrackEntity").append(System.getProperty("line.separator"));
 //        sb.append("Title = " + id).append(System.getProperty("line.separator"));

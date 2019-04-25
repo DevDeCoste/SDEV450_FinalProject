@@ -4,7 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 
 @Entity
 @Table(name = "Track")
@@ -20,6 +24,11 @@ public class TrackEntity {
 	String genreType;
 	String trackLength;
 	String yearPublished;
+	
+	//TRINH TRIES FOR MAPPING
+	@ManyToOne 
+	@JoinColumn(name="album_id")
+	private AlbumEntity albumName;
 
 	public long getId() {
 		return id;
@@ -75,6 +84,14 @@ public class TrackEntity {
 
 	public void setYearPublished(String yearPublished) {
 		this.yearPublished = yearPublished;
+	}
+
+	public AlbumEntity getAlbumName() {
+		return albumName;
+	}
+
+	public void setAlbumName(AlbumEntity albumName) {
+		this.albumName = albumName;
 	}
 
 	@Override

@@ -50,6 +50,8 @@ public class SDEV450_FinalProject extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.context.publishEvent(new StageReadyEvent( primaryStage));
+		
+		
 	}
 
 	class StageReadyEvent extends ApplicationEvent {
