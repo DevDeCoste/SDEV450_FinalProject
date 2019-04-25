@@ -175,8 +175,9 @@ public class UIController {
 		/*Artists - Searches by Artist Name*/
 		this.delete.setOnAction(actionEvent -> {
 			RestTemplate restTemplate = new RestTemplate();
-			String data = restTemplate.getForEntity("http://localhost:8085/delete", String.class).getBody();
-			this.text.setText(data);
+			String entityUrl = "http://localhost:8085/delete";
+			restTemplate.delete(entityUrl);
+			this.text.setText("Database has been deleted");
 		});
 
 

@@ -46,7 +46,7 @@ public class ArtistController {
         return true;
     }
 
-    @DeleteMapping(path = "/delete")
+    @DeleteMapping("/delete")
     public void deleteAll() {
         artistRepository.deleteAll();
         albumRepository.deleteAll();
