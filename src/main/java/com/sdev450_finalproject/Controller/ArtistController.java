@@ -102,7 +102,7 @@ public class ArtistController {
 
 
     @PostMapping("/insertFromCSV/{artistName}")
-    public ArrayList<ArtistEntity> findAllbyArtist(@PathVariable("artistName") String searchArtist)
+    public ArtistEntity findAllbyArtist(@PathVariable("artistName") String searchArtist)
             throws IOException {
 
         String[] nextRecord;
@@ -158,7 +158,7 @@ public class ArtistController {
         }
 
         csvReader.close();
-        return artistLists;
+        return entity;
     }
 //
 //

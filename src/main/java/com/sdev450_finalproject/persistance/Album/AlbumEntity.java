@@ -73,12 +73,6 @@ public class AlbumEntity implements Serializable {
 
 	@Override
     public String toString() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("AlbumEntity").append(System.getProperty("line.separator"));
-//        sb.append("id = " + id).append(System.getProperty("line.separator"));
-//        sb.append("Album Name =" + albumName);
-//        return sb.toString();
-
         return "AlbumEntity [id=" + id + System.lineSeparator() +", Album Name=" + albumName + ", Genre=" + Genre +  "]";
     }
 
