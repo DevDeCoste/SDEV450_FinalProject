@@ -166,7 +166,7 @@ public class UIController {
 			RestTemplate restTemplate = new RestTemplate();
 			String input = textField.getText();
 			String data = restTemplate
-					.postForEntity("http://localhost:8085/findArtistByAlbum/" + input, null, String.class).getBody();
+					.postForEntity("http://localhost:8085/insertFromCSV/" + input, null, String.class).getBody();
 			this.text.setText(data);
 		});
 

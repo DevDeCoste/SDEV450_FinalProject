@@ -17,9 +17,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @RestController
 @RequestMapping("")
@@ -62,12 +60,6 @@ public class ArtistController {
 
     }
 
-//    @DeleteMapping("/deleteBy/{deleteByAlbum}")
-//    public void deleteByAlbumName(@PathVariable("deleteByAlbum") String searchInput) throws IOException{
-//        artistRepository.deleteByAlbumName(searchInput);
-//
-//    }
-
     @GetMapping("/findArtistByAlbum/{findByAlbum}")
     public ArrayList<ArtistEntity> findArtistByAlbumName(@PathVariable("findByAlbum") String searchArtist) throws IOException {
 
@@ -109,7 +101,7 @@ public class ArtistController {
     }
 
 
-    @PostMapping("/findAllByArtist/{artistName}")
+    @PostMapping("/insertFromCSV/{artistName}")
     public ArrayList<ArtistEntity> findAllbyArtist(@PathVariable("artistName") String searchArtist)
             throws IOException {
 
@@ -123,21 +115,26 @@ public class ArtistController {
         Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
 
         CSVReader csvReader = new CSVReader(reader);
+        Map<String, AlbumEntity> albumEntityMap = new HashMap<>();
 
         while ((nextRecord = csvReader.readNext()) != null) {
             TrackEntity tempTrack = new TrackEntity();
 
-            if (nextRecord[2].toLowerCase().contains(searchArtist.toLowerCase())) {
+            if (nextRecord[3].toLowerCase().contains(searchArtist.toLowerCase())) {
 
                 albumTitle = nextRecord[2];
                 artistName = nextRecord[3];
-
+                AlbumEntity albumEntity = new AlbumEntity();
+                if (albumEntityMap.containsKey(albumTitle)) {
+                    albumEntity = albumEntityMap.get(albumTitle);
+                }
+                albumEntity.setAlbumName(albumTitle);
                 tempTrack.setGenreType(nextRecord[4]);
                 tempTrack.setTrackLength(nextRecord[6]);
                 tempTrack.setTrackTitle(nextRecord[5]);
                 tempTrack.setYearPublished(nextRecord[1]);
-
-                trackLists.add(tempTrack);
+                albumEntity.addTrack(tempTrack);
+                albumEntityMap.put(albumTitle,albumEntity);
             }
 
         }
@@ -148,17 +145,13 @@ public class ArtistController {
         }
 
         tempArtist.setAlbumName(albumTitle);
+
         entity.setArtistName(artistName);
 
-        String track[] = new String[trackLists.size()];
-        int j = 0;
-        for (TrackEntity X : trackLists) {
-            track[j] = X.getTrackTitle();
-            j++;
+        for (AlbumEntity X : albumEntityMap.values()) {
+           entity.addAlbum(X);
         }
 
-        tempArtist.setArtistAlbums(track);
-        artistLists.add(tempArtist);
         artistRepository.save(entity);
 
 //        if (albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
