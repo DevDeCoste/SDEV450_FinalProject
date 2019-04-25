@@ -12,9 +12,4 @@ public interface AlbumRepository extends JpaRepository<AlbumEntity, String> {
 
     AlbumEntity findByAlbumNameEquals(String AlbumName);
 
-//    ArrayList<ArtistEntity> findAllByArtist(String ArtistName);
-    
-     
-
-
 }

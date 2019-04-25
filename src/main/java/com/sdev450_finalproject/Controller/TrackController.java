@@ -1,6 +1,7 @@
 package com.sdev450_finalproject.Controller;
 
 import com.opencsv.CSVReader;
+import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 import com.sdev450_finalproject.persistance.Track.TrackEntity;
 import com.sdev450_finalproject.persistance.Track.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @RestController
@@ -127,18 +129,21 @@ public class TrackController {
 	}
 
 	@PostMapping("/findTrack/{trackName}")
-	public ArrayList<TrackEntity> findTrack(@PathVariable("trackName") String searchTrack) throws IOException {
+	public TrackEntity findAllbyTrackTitle(@PathVariable("trackName") String searchTrack) throws IOException {
 		String[] nextRecord;
 		ArrayList<TrackEntity> trackLists = new ArrayList<>();
 		Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
+		ArrayList<AlbumEntity> albumLists = new ArrayList<>();
+		TrackEntity tempTrack = new TrackEntity();
 
 		CSVReader csvReader = new CSVReader(reader);
+		String trackTitle = " ";
 
 		while ((nextRecord = csvReader.readNext()) != null) {
 			
 
-			TrackEntity tempTrack = new TrackEntity();
-
+//			TrackEntity tempTrack = new TrackEntity();
+			AlbumEntity albumEntity = new AlbumEntity();
 			// nextRecord[5].toLowerCase().contains(searchTrack.toLowerCase())
 			// StringUtils.containsIgnoreCase(searchTrack, nextRecord[5])
 //			CharSequence charAt5 = nextRecord[5];
@@ -146,20 +151,42 @@ public class TrackController {
 
 			if (nextRecord[5].toLowerCase().contains(searchTrack.toLowerCase())) {
 				// System.out.println("2++");
+				trackTitle = nextRecord[5];
 				tempTrack.setGenreType(nextRecord[4]);
 				tempTrack.setTrackLength(nextRecord[6]);
-				tempTrack.setTrackTitle(nextRecord[5]);
+//				tempTrack.setTrackTitle(nextRecord[5]);
 				tempTrack.setYearPublished(nextRecord[1]);
 
 				trackLists.add(tempTrack);
+				albumEntity.addTrack(tempTrack);
+				if(albumLists.contains(tempTrack)){
+					albumEntity.setAlbumName(albumEntity.getAlbumName());
+				};
+
 			}
 
 		}
 
-		csvReader.close();
-		return trackLists;
+		TrackEntity entity = new TrackEntity();
+		List<TrackEntity> entities = repository.findAllByTrackTitle(trackTitle);
+		if(entities.size() == 1){
+			entity = entities.get(0);
+		}
 
+		entity.setTrackTitle(trackTitle);
+		entity.setGenreType(tempTrack.getGenreType());
+		entity.setTrackLength(tempTrack.getTrackLength());
+		entity.setYearPublished(tempTrack.getYearPublished());
+
+		if (repository.findByTrackTitleEquals(tempTrack.getTrackTitle()) == null) {
+			repository.save(tempTrack);
+		}
+		repository.save(entity);
+
+		csvReader.close();
+		return entity;
 	}
+
 	/*
 	 * TRINH: This is OLD CODE - LEAVING ALONE TO USE THE NEW MASTERCSV FILE
 	 * 
