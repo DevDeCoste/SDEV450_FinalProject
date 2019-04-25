@@ -62,30 +62,30 @@ public class UIController {
 	@FXML
 	public Button deleteSpecific;
 
-	@FXML
-	protected void findHandler(ActionEvent event) {
-
-		System.out.println("this got hit");
-		RestTemplate restTemplate = new RestTemplate();
-
-		// System.out.println(UIController.textField.getText());
-		// System.out.println(UIController.textField.getText()+ "11");
-
-		String fooResourceUrl = "http://localhost:8085/findTrack/"+textField.getText();
-		ResponseEntity<String> response = restTemplate.getForEntity(fooResourceUrl, String.class);
-		
-		System.out.println(response.toString());
-		System.out.println(response.getBody());
-
-		// String data = restTemplate.getForEntity("http://localhost:8085/findTrack/"+
-		// UIController.textField.getText(), String.class ).getBody();
-		this.text.setText(response.getBody());
-		TrackEntity trackget = restTemplate.getForObject(fooResourceUrl, TrackEntity.class);
-		System.out.println(trackget.toString());
-		//this.text.setText(restTemplate.getForObject(fooResourceUrl, TrackEntity.class));
-		System.out.println(textField.getText());
-
-	}
+//	@FXML
+//	protected void findHandler(ActionEvent event) {
+//
+//		System.out.println("this got hit");
+//		RestTemplate restTemplate = new RestTemplate();
+//
+//		// System.out.println(UIController.textField.getText());
+//		// System.out.println(UIController.textField.getText()+ "11");
+//text.clear();
+//		String fooResourceUrl = "http://localhost:8085/findTrack/"+textField.getText();
+//		ResponseEntity<String> response = restTemplate.postForEntity(fooResourceUrl,null, String.class);
+//
+//		System.out.println(response.toString());
+//		System.out.println(response.getBody());
+//
+//		// String data = restTemplate.getForEntity("http://localhost:8085/findTrack/"+
+//		// UIController.textField.getText(), String.class ).getBody();
+//		this.text.setText(response.getBody());
+//		TrackEntity trackget = restTemplate.getForObject(fooResourceUrl, TrackEntity.class);
+//		System.out.println(trackget.toString());
+//		//this.text.setText(restTemplate.getForObject(fooResourceUrl, TrackEntity.class));
+//		System.out.println(textField.getText());
+//
+//	}
 
 	@FXML
 	public void initialize() {
@@ -144,6 +144,8 @@ public class UIController {
 			//this.text.appendText("\n");
 		});
 
+
+
 		/*Albums - Searches by Album Name*/
 		this.searchAlbum.setOnAction(actionEvent -> {
 			text.clear();
@@ -151,6 +153,16 @@ public class UIController {
 			String input = textField.getText();
 			String data = restTemplate
 					.postForEntity("http://localhost:8085/findTracksInAlbum/" + input, null, String.class).getBody();
+			this.text.setText(data);
+		});
+
+		/*Tracks - Searches by Album Name*/
+		this.findTrack.setOnAction(actionEvent -> {
+			text.clear();
+			RestTemplate restTemplate = new RestTemplate();
+			String input = textField.getText();
+			String data = restTemplate
+					.postForEntity("http://localhost:8085/findTrack/" + input, null, String.class).getBody();
 			this.text.setText(data);
 		});
 

@@ -126,7 +126,7 @@ public class TrackController {
 		return randTrack;
 	}
 
-	@GetMapping("/findTrack/{trackName}")
+	@PostMapping("/findTrack/{trackName}")
 	public ArrayList<TrackEntity> findTrack(@PathVariable("trackName") String searchTrack) throws IOException {
 		String[] nextRecord;
 		ArrayList<TrackEntity> trackLists = new ArrayList<>();
