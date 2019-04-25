@@ -7,8 +7,6 @@ import com.sdev450_finalproject.persistance.ArtistEntity;
 import com.sdev450_finalproject.persistance.ArtistRepository;
 import com.sdev450_finalproject.persistance.TrackEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -47,18 +45,18 @@ public class AlbumController {
         return true;
     }
 
-    @GetMapping("/findAlbumByArtist/{artistName}")
-    public ResponseEntity findAlbumByArtist(@PathVariable("artistName") String artistName) {
-
-        ArrayList<AlbumEntity> Entities = albumRepository.findAllByArtist(artistName);
-        if (Entities.isEmpty()) {
-            // Returns 404 if not present
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-
-        // Returns Album Entity if present
-        return new ResponseEntity(Entities, HttpStatus.OK);
-    }
+//    @GetMapping("/findAlbumByArtist/{artistName}")
+//    public ResponseEntity findAlbumByArtist(@PathVariable("artistName") String artistName) {
+//
+////        ArrayList<AlbumEntity> Entities = albumRepository.findAllByArtist(artistName);
+////        if (Entities.isEmpty()) {
+////            // Returns 404 if not present
+////            return new ResponseEntity(HttpStatus.NOT_FOUND);
+////        }
+//
+//        // Returns Album Entity if present
+//        return new ResponseEntity(Entities, HttpStatus.OK);
+//    }
 
     @PostMapping("/findTracksInAlbum/{findByAlbumName}")
     public ArtistEntity findTrackbyAlbumName(@PathVariable("findByAlbumName") String searchTrack)
@@ -107,7 +105,6 @@ public class AlbumController {
         }
 
 
-        //entity.addTrack(track);
         albumLists.add(tempAlbum);
         entity.addAlbum(tempAlbum);
 
@@ -115,94 +112,12 @@ public class AlbumController {
             artistRepository.save(entity);
         }
 
-
-//        if (albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
-//            albumRepository.save(tempAlbum);
-//        }
         csvReader.close();
         return entity;
 
     }
 
-    @GetMapping("/findAlbum/{albumName}")
-    public ArrayList<AlbumEntity> findAlbum(@PathVariable("albumName") String searchAlbum) throws IOException {
 
-        try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
-             CSVReader csvReader = new CSVReader(reader)) {
-            String[] nextRecord;
-            // String[] track;
-
-            ArrayList<TrackEntity> TrackList = new ArrayList<>();
-            ArrayList<AlbumEntity> albumLists = new ArrayList<>();
-
-            while ((nextRecord = csvReader.readNext()) != null) {
-                AlbumEntity tempAlbum = new AlbumEntity();
-
-                if (nextRecord[2].equalsIgnoreCase(searchAlbum)) {
-
-                    TrackEntity tempTrack = new TrackEntity();
-
-                    // nextRecord[5].toLowerCase().contains(searchTrack.toLowerCase())
-                    // StringUtils.containsIgnoreCase(searchTrack, nextRecord[5])
-//			CharSequence charAt5 = nextRecord[5];
-//			CharSequence searchChar = searchTrack;
-
-                    if (nextRecord[2].toLowerCase().contains(searchAlbum.toLowerCase())
-                            && (csvReader.readNext()) != null) {
-                        // System.out.println("2++");
-                        for (int i = 0; i < nextRecord.length; i++) {
-                            csvReader.readNext();
-
-                            tempTrack.setGenreType(nextRecord[4]);
-                            tempTrack.setTrackLength(nextRecord[6]);
-                            tempTrack.setTrackTitle(nextRecord[5]);
-                            tempTrack.setYearPublished(nextRecord[1]);
-
-                            TrackList.add(tempTrack);
-                            csvReader.readNext();
-                        }
-
-                        // String[] tracks = TrackList.get(i);
-                    }
-
-//                    while((nextRecord[2].equalsIgnoreCase(searchAlbum)) && (csvReader.readNext()) != null) {
-//
-//                        tracks.add(nextRecord[5].toString());
-//                    }
-
-                    tempAlbum.setAlbumName(nextRecord[2]);
-                    tempAlbum.setArtist(nextRecord[3]);
-                    tempAlbum.setGenre(nextRecord[4]);
-                    System.out.println(TrackList.toString());
-
-                    System.out.println("print object 2");
-                    System.out.println(TrackList.get(1).getTrackTitle()); // TaxMan
-                    System.out.println(TrackList.get(2).getTrackTitle()); // TaxMan
-                    System.out.println(TrackList.get(3).getTrackTitle()); // TaxMan
-
-                    for (TrackEntity A : TrackList) {
-                        System.out.println(A.toString());
-                    }
-
-                    for (TrackEntity X : TrackList) {
-                        tempAlbum.addTrack(X);
-
-                    }
-
-                    albumLists.add(tempAlbum);
-
-//                    if (albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
-//                        albumRepository.save(tempAlbum);
-//                    }
-                    csvReader.close();
-                }
-
-            }
-
-            return albumLists;
-        }
-
-    } // End FindAlbum Method
 
     @GetMapping("/findRandomAlbum")
     public ArrayList<AlbumEntity> findRandomAlbum() throws IOException {
@@ -229,7 +144,6 @@ public class AlbumController {
 
                     System.out.println(Arrays.toString(nextRecord));
                     tempAlbum.setAlbumName(nextRecord[2]);
-                    tempAlbum.setArtist(nextRecord[3]);
                     tempAlbum.setGenre(nextRecord[4]);
 
                     albumLists.add(tempAlbum);

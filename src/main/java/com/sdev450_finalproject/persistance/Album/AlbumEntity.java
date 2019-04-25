@@ -22,11 +22,8 @@ public class AlbumEntity implements Serializable {
 
     private String id;
     private String albumName;
-    private String artist;
     private String Genre;
-    
-    //Trinh: changed albumTracks to array 
-    //Trinh: also changed getter and setters. Original albumTracks is a String. 
+
 
     @OneToMany(targetEntity = TrackEntity.class, cascade = CascadeType.ALL)
     private List<TrackEntity> tracks;
@@ -39,11 +36,6 @@ public class AlbumEntity implements Serializable {
     }
 
 
-
-
-    
-
-    
     private long album_id;
 
     public String getGenre() {
@@ -62,13 +54,6 @@ public class AlbumEntity implements Serializable {
         this.id = id;
     }
 
-    public String getArtist() {
-        return artist;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
 
 
     public String getAlbumName() {
@@ -96,8 +81,7 @@ public class AlbumEntity implements Serializable {
 //        sb.append("Album Name =" + albumName);
 //        return sb.toString();
 
-        return "AlbumEntity [id=" + id + System.lineSeparator() +", Album Name=" + albumName + ", artist=" + artist
-                + ", Genre=" + Genre +  "]";
+        return "AlbumEntity [id=" + id + System.lineSeparator() +", Album Name=" + albumName + ", Genre=" + Genre +  "]";
     }
 
     public long getAlbum_id() {
