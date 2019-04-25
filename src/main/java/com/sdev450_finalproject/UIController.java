@@ -66,6 +66,9 @@ public class UIController {
 	public Button delete;
 
 	@FXML
+	public Button deleteSpecific;
+
+	@FXML
 	protected void findHandler(ActionEvent event) {
 
 		System.out.println("this got hit");
@@ -172,15 +175,22 @@ public class UIController {
 			this.text.setText(data);
 		});
 
-		/*Artists - Searches by Artist Name*/
+		/*Entire Database Delete*/
 		this.delete.setOnAction(actionEvent -> {
 			RestTemplate restTemplate = new RestTemplate();
-			String entityUrl = "http://localhost:8085/delete";
-			restTemplate.delete(entityUrl);
+			String deleteAllUrl = "http://localhost:8085/delete";
+			restTemplate.delete(deleteAllUrl);
 			this.text.setText("Database has been deleted");
 		});
 
-
+		/*Artists - Searches by Artist Name*/
+		this.deleteSpecific.setOnAction(actionEvent -> {
+			RestTemplate restTemplate = new RestTemplate();
+			String input = textField.getText();
+			String deleteSpecificURL = "http://localhost:8085/deleteByArtist/" + input;
+			restTemplate.delete(deleteSpecificURL);
+			this.text.setText(input + " has been deleted from the database.");
+		});
 
 	}
 

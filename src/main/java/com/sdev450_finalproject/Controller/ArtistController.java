@@ -53,6 +53,17 @@ public class ArtistController {
         trackRepository.deleteAll();
     }
 
+    @DeleteMapping("/deleteByArtist/{deleteByArtist}")
+    public void deleteByArtistName(@PathVariable("deleteByArtist") String searchInput) throws IOException{
+        artistRepository.deleteByArtistName(searchInput);
+    }
+
+//    @DeleteMapping("/deleteBy/{deleteByAlbum}")
+//    public void deleteByAlbumName(@PathVariable("deleteByAlbum") String searchInput) throws IOException{
+//        artistRepository.deleteByAlbumName(searchInput);
+//
+//    }
+
     @GetMapping("/findArtistByAlbum/{findByAlbum}")
     public ArrayList<ArtistEntity> findArtistByAlbumName(@PathVariable("findByAlbum") String searchArtist) throws IOException {
 
