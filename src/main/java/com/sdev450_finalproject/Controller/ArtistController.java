@@ -153,10 +153,10 @@ public class ArtistController {
         }
 
         artistRepository.save(entity);
+        if (artistRepository.findByArtistNameEquals(tempArtist.getArtistName()) == null) {
+            artistRepository.save(tempArtist);
+        }
 
-//        if (albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
-//            albumRepository.save(tempAlbum);
-//        }
         csvReader.close();
         return artistLists;
     }

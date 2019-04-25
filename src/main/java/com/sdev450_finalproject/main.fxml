@@ -53,7 +53,7 @@
                   </TextField>
                </children>
             </HBox>
-         <Button fx:id="searchArtist" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="Search for Artist" GridPane.rowIndex="2" />
+         <Button fx:id="searchArtist" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="Insert Artist Into Database" GridPane.rowIndex="2" />
          <Button fx:id="allArtists" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="View Database Contents" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          <Button fx:id="deleteSpecific" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="Delete Artist" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          <Button fx:id="delete" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="Clear Database Contents" GridPane.columnIndex="3" GridPane.rowIndex="4" />
