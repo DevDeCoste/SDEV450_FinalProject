@@ -152,6 +152,10 @@ public class TrackController {
 				tempTrack.setYearPublished(nextRecord[1]);
 
 				trackLists.add(tempTrack);
+
+				if(repository.findByTrackTitleContains(tempTrack.getTrackTitle()) == null) {
+					repository.save(tempTrack);
+				}
 			}
 
 		}

@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 public interface TrackRepository extends CrudRepository<TrackEntity, String> {
     Page<TrackEntity> findAll(Pageable pageable);
 
+    TrackEntity findByTrackTitleContains(String TrackName);
+
 //    ArrayList<TrackEntity> findTrackEntitiesByAlbumTitleContains(String AlbumName);
 
 }
