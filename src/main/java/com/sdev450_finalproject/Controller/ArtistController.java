@@ -175,7 +175,6 @@ public class ArtistController {
                 ArtistEntity tempArtist = new ArtistEntity();
 
                 AlbumEntity tempAlbum = new AlbumEntity();
-                //albums.toArray(tempAlbum.getAlbumTracks());
                 if (artistLists.isEmpty()) {
                     Reader reader1 = Files.newBufferedReader(Paths.get(FILE_PATH));
                     CSVReader csvReader1 = new CSVReader(reader1);
@@ -190,7 +189,6 @@ public class ArtistController {
                     }
                     tempArtist.setId((nextRecord[0]));
                     tempArtist.setArtistName(nextRecord[3]);
-//                    tempArtist.setAlbumName(albums.addAll());
                     artistLists.add(tempArtist);
                     artistRepository.save(tempArtist);
                     csvReader1.close();

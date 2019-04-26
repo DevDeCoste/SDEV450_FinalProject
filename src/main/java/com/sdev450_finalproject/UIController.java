@@ -123,7 +123,6 @@ public class UIController {
 		}});
 
 		/* VIEW ALL CONTENTS IN DATABASE */
-		//TRINH
 		this.allArtists.setOnAction(actionEvent -> {
 			text.clear();
 
