@@ -75,7 +75,6 @@ public class ArtistController {
 
             if (nextRecord[2].toLowerCase().contains(searchArtist.toLowerCase())) {
                 tempArtist.setId((nextRecord[0]));
-//                tempArtist.setAlbumName(nextRecord[2]);
                 tempArtist.setArtistName(nextRecord[3]);
                 artistLists.add(tempArtist);
             }
@@ -144,7 +143,6 @@ public class ArtistController {
             entity = entities.get(0);
         }
 
-//        tempArtist.setAlbumName(albumTitle);
 
         entity.setArtistName(artistName);
 
@@ -160,22 +158,7 @@ public class ArtistController {
         csvReader.close();
         return entity;
     }
-//
-//
-//    @GetMapping("/foo")
-//    public void foo() {
-//        ArtistEntity entity = new ArtistEntity();
-//        entity.setArtistName("test");
-//        AlbumEntity album = new AlbumEntity();
-//        album.setAlbumName("Test Album");
-//        AlbumEntity album2 = new AlbumEntity();
-//        album2.setAlbumName("Test Album 2");
-//        entity.setAlbums(Arrays.asList(album, album2));
-//        artistRepository.save(entity);
-//
-//        ArtistEntity foo = artistRepository.findAllByArtistName("test").get(0);
-//        boolean t = false;
-//    }
+
 
 
     @GetMapping("/findRandomArtist")

@@ -13,9 +13,6 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.IOException;
 
-//import javax.annotation.Resource;
-//trinh tracking test
-
 @Component
 public class StageListener implements ApplicationListener<SDEV450_FinalProject.StageReadyEvent> {
 
@@ -34,9 +31,6 @@ public class StageListener implements ApplicationListener<SDEV450_FinalProject.S
     public void onApplicationEvent(SDEV450_FinalProject.StageReadyEvent stageReadyEvent) {
         try{
         Stage stage = stageReadyEvent.getStage();
-//original from DEV
-//            URL url = this.fxml.getURL();
-//            FXMLLoader fxmlLoader = new FXMLLoader(url);
         FXMLLoader fxmlLoader = new FXMLLoader();
             File file = new File("src/main/java/com/sdev450_finalproject/main.fxml");
         fxmlLoader.setLocation(file.toURI().toURL());

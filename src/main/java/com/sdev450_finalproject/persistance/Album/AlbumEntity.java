@@ -15,7 +15,6 @@ import java.util.List;
 public class AlbumEntity implements Serializable {
 
     @Id
-    //@GeneratedValue(strategy= GenerationType.AUTO)
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
 

@@ -45,18 +45,6 @@ public class AlbumController {
         return true;
     }
 
-//    @GetMapping("/findAlbumByArtist/{artistName}")
-//    public ResponseEntity findAlbumByArtist(@PathVariable("artistName") String artistName) {
-//
-//        ArrayList<ArtistEntity> Entities = albumRepository.findAllByArtist(artistName);
-//        if (Entities.isEmpty()) {
-//            // Returns 404 if not present
-//            return new ResponseEntity(HttpStatus.NOT_FOUND);
-//        }
-//
-////         Returns Album Entity if present
-//        return new ResponseEntity(Entities, HttpStatus.OK);
-//    }
 
     @PostMapping("/findTracksInAlbum/{findByAlbumName}")
     public ArtistEntity findTrackbyAlbumName(@PathVariable("findByAlbumName") String searchTrack)
