@@ -1,7 +1,12 @@
 package com.sdev450_finalproject;
 
+import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 import com.sdev450_finalproject.persistance.Album.AlbumRepository;
+import com.sdev450_finalproject.persistance.Artist.ArtistEntity;
+import com.sdev450_finalproject.persistance.Artist.ArtistRepository;
 import com.sdev450_finalproject.persistance.Track.TrackEntity;
+import com.sdev450_finalproject.persistance.Track.TrackRepository;
+
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +15,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -22,6 +30,12 @@ public class UIController {
 	
 	@Autowired
 	AlbumRepository albumRepos;
+	
+	@Autowired
+	TrackRepository trackRepos;
+	
+	@Autowired
+	ArtistRepository artistRepos;
 
 	private final HostServices hostServices;
 
@@ -166,12 +180,75 @@ public class UIController {
 			this.text.setText(data);
 		});
 
-		/*Artists - Lists all Artists in database*/
+		/* VIEW ALL CONTENTS IN DATABASE */
+		//TRINH
 		this.allArtists.setOnAction(actionEvent -> {
-			RestTemplate restTemplate = new RestTemplate();
-			String data = restTemplate.getForEntity("http://localhost:8085/artists", String.class).getBody();
-			this.text.setText(data);
-		});
+			text.clear();
+			this.text.appendText("---HERE ARE THE ALBUMS IN THE DATABASE - LOCATED ON SERVER--- \n");
+			
+			List<AlbumEntity> allAlbums = albumRepos.findAll();
+			//this.text.appendText(albumRepos.findAll().toString());
+			int counter = 1;
+			for (AlbumEntity X: allAlbums) {
+				text.appendText("Album No. " + counter +"\n");
+				String xName = String.format("Album Name: %s\n", X.getAlbumName());
+				String xGenre = String.format("Genre Type: %s\n\n", X.getGenre());
+				text.appendText(xName);
+				text.appendText(xGenre);
+				counter++;
+				
+			
+			}
+			this.text.appendText("---END OF ALBUMS IN THE DATABASE - LOCATED ON SERVER--- \n\n\n\n");
+			
+			counter =1;
+			
+			this.text.appendText("---HERE ARE THE TRACKS IN THE DATABASE - LOCATED ON SERVER--- \n");
+			
+			List<TrackEntity> allTracks = trackRepos.findAll();
+			
+			for (TrackEntity X : allTracks) {
+				text.appendText("Track No. " + counter +"\n");
+				String tName = String.format("Track Name: %s\n", X.getTrackTitle());
+				String yearPub = String.format("Year Published: %s\n\n", X.getYearPublished());
+				String tLength = String.format("Track Length: %s\n", X.getTrackLength());
+				String tGenre = String.format("Track Genre: %s\n", X.getGenreType());
+				
+				text.appendText(tName  + tLength + tGenre+ yearPub);
+				counter++;
+				
+			}
+			
+			counter =1;
+			
+			this.text.appendText("---END OF TRACKS IN THE DATABASE - LOCATED ON SERVER--- \n\n\n\n");
+			
+			this.text.appendText("---HERE ARE THE ARTISTS WE HAVE IN THE DATABASE - LOCATED ON SERVER--- \n");
+			List<ArtistEntity> allArtist = artistRepos.findAll();
+			for (ArtistEntity X : allArtist) {
+				text.appendText("Artist No. " + counter +"\n");
+				String tName = String.format("Arist Name: %s\n", X.getArtistName());
+	 
+				
+				text.appendText(tName);
+				counter++;
+				
+			}
+			
+			this.text.appendText("---END OF ARTISTS IN THE DATABASE - LOCATED ON SERVER--- \n\n\n\n");
+			
+			
+ 
+	});
+		
+		/* VIEW DATABASE CONTENTS EDITED - this is original 11:40 PM* TRINH comment/
+		/*Artists - Lists all Artists in database*/
+//		this.allArtists.setOnAction(actionEvent -> {
+//			RestTemplate restTemplate = new RestTemplate();
+//			String data = restTemplate.getForEntity("http://localhost:8085/artists", String.class).getBody();
+//			this.text.setText(data);
+//		});
+		
 
 		/*Artists - Searches by Artist Name*/
 		this.searchArtist.setOnAction(actionEvent -> {
