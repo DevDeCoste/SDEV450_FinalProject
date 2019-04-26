@@ -1,5 +1,12 @@
 package com.sdev450_finalproject.Controller;
 
+/**
+ * @Course: SDEV-450-81 ~ Enterprise Java
+ * @Author Name: Deven DeCoste, Madeline Merced & Trinh Nguyen
+ * @Assignment Name: Final Project: Diet Spotify
+ * @Subclass TrackController Description: Controller for Album Entity
+ */
+
 import com.opencsv.CSVReader;
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 import com.sdev450_finalproject.persistance.Album.AlbumRepository;
