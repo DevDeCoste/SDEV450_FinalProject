@@ -1,12 +1,20 @@
 package com.sdev450_finalproject.Controller;
 
+/**
+ * @Course: SDEV-450-81 ~ Enterprise Java
+ * @Author Name: Deven DeCoste, Madeline Merced & Trinh Nguyen
+ * @Assignment Name: Final Project: Diet Spotify
+ * @Subclass TrackController Description: Controller for Track Entity
+ */
+
 import com.opencsv.CSVReader;
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 import com.sdev450_finalproject.persistance.Track.TrackEntity;
 import com.sdev450_finalproject.persistance.Track.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -22,14 +30,12 @@ public class TrackController {
 
 	@Autowired
 	TrackRepository repository;
-	Boolean Trackexists;
 
 	static String FILE_PATH = "./src/main/resources/albumlist.csv";
 
 	@GetMapping("/findTrackByAlbum/{findByAlbum}")
-	public ArrayList<TrackEntity> findTrackbyAlbumName(@PathVariable("findByAlbum") String searchTrack) throws IOException {
-	
-		
+	public ArrayList<TrackEntity> findTrackByAlbumName(@PathVariable("findByAlbum") String searchTrack) throws IOException {
+
 		String[] nextRecord;
 		ArrayList<TrackEntity> trackLists = new ArrayList<>();
 		Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
@@ -54,14 +60,10 @@ public class TrackController {
 		}
 
 		csvReader.close();
-		return trackLists; 
-		
-		
-		
+		return trackLists;
 	}
 
 
-	
 	@GetMapping("/saveTrack/{trackName}/{userId}")
 	public boolean saveTrack(@PathVariable String trackName, @PathVariable long userId ) throws IOException {
 		 
@@ -130,10 +132,11 @@ boolean doesNotExist;
 					albumEntity.setAlbumName(albumEntity.getAlbumName());
 				};
 
-			} else{
-				System.out.print(searchTrack + "Does not exist");
-				doesNotExist = true;
 			}
+// else{
+//				System.out.print(searchTrack + "Does not exist");
+//				doesNotExist = true;
+//			}
 
 		}
 
@@ -228,7 +231,9 @@ boolean doesNotExist;
 	 * } END OF CODE COMMENTED OUT HERE
 	 */
 
-	@PostMapping("/save/{trackName}")
+
+
+@PostMapping("/save/{trackName}")
 	boolean saveTrack(ArrayList trackList, @PathVariable("trackName") String trackName)
 			throws IOException, ParseException {
 
