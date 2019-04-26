@@ -146,5 +146,32 @@ public class AlbumController {
             return albumLists;
         }
     } // End FindRandomAlbum method
+    
+    public static boolean albumAvailable(String trackSearch) throws IOException {
+    	
+    	String[] nextRecord;
+     
+    	Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
+     
+     
+    	CSVReader csvReader = new CSVReader(reader);
+     
+
+    	while ((nextRecord = csvReader.readNext()) != null) {
+
+    		AlbumEntity albumEntity = new AlbumEntity();
+
+    		if (nextRecord[2].toLowerCase().contains(trackSearch.toLowerCase())) {
+    	return true;
+    			};
+
+    		}
+
+
+    	
+    	
+    	
+    	return false;
+    }
 
 }

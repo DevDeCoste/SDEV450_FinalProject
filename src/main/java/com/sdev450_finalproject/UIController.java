@@ -9,6 +9,9 @@ package com.sdev450_finalproject;
 
 //Imports
 import com.sdev450_finalproject.persistance.Track.TrackEntity;
+import com.sdev450_finalproject.Controller.AlbumController;
+import com.sdev450_finalproject.Controller.ArtistController;
+import com.sdev450_finalproject.Controller.TrackController;
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 import com.sdev450_finalproject.persistance.Artist.ArtistEntity;
 import com.sdev450_finalproject.persistance.Album.AlbumRepository;
@@ -22,7 +25,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+
+import java.io.IOException;
 import java.util.List;
 
 
@@ -97,14 +103,29 @@ public class UIController {
 		/*Albums - Searches by Album Name and adds to database*/
 		this.searchAlbum.setOnAction(actionEvent -> {
 			text.clear();
+			
+			
 			if(textField.getText().isEmpty()){
 				this.text.setText("Please enter an album to insert into the database.\n");
 			}else {
-			RestTemplate restTemplate = new RestTemplate();
-			String input = textField.getText();
-			String data = restTemplate
-					.postForEntity("http://localhost:8085/findTracksInAlbum/" + input, null, String.class).getBody();
-			this.text.setText(data);
+				
+				try {
+					if (AlbumController.albumAvailable(textField.getText())){
+						RestTemplate restTemplate = new RestTemplate();
+						String input = textField.getText();
+						String data = restTemplate
+								.postForEntity("http://localhost:8085/findTracksInAlbum/" + input, null, String.class).getBody();
+						this.text.setText(data);
+					}
+					
+					else {
+						text.appendText("THERE ARE NO ALBUMS WITH THAT NAME IN OUR CSV FILE");
+					}
+				} catch (RestClientException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 		}});
 
 
@@ -117,9 +138,22 @@ public class UIController {
 			if (input.isEmpty()) {
 				this.text.setText("Please enter a track to insert into the database.\n");
 			}else{
-			String data = restTemplate
-					.postForEntity("http://localhost:8085/findTrack/" + input, null, String.class).getBody();
-			this.text.setText(data);
+				
+				try {
+					if (TrackController.trackAvailable(input)){
+						String data = restTemplate
+								.postForEntity("http://localhost:8085/findTrack/" + input, null, String.class).getBody();
+						this.text.setText(data);
+					}
+					
+					else {
+						text.appendText("THERE IS NO TRACK FOR YOUR INPUT IN OUR DATABASE");
+					}
+				} catch (RestClientException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 		}});
 
 		/* VIEW ALL CONTENTS IN DATABASE */
@@ -203,12 +237,26 @@ public class UIController {
 		    if(textField.getText().isEmpty()){
 				this.text.setText("Please enter an artist to insert into the database.");
             }else {
-				RestTemplate restTemplate = new RestTemplate();
-				String input = textField.getText();
+            	
+            	try {
+					if (ArtistController.artistAvailable(textField.getText())){
+						RestTemplate restTemplate = new RestTemplate();
+						String input = textField.getText();
 
-				String data = restTemplate
-						.postForEntity("http://localhost:8085/insertFromCSV/" + input, null, String.class).getBody();
-				this.text.setText(data);
+						String data = restTemplate
+								.postForEntity("http://localhost:8085/insertFromCSV/" + input, null, String.class).getBody();
+						this.text.setText(data);
+					}
+					
+					else {
+						text.setText("THERE ARE NO ARTIST WITH THAT NAME IN OUR CSV FILE");
+					}
+				} catch (RestClientException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	
+
 			}
 		});
 

@@ -199,5 +199,32 @@ public class ArtistController {
             return artistLists;
         }
     }
+    
+    public static boolean artistAvailable(String trackSearch) throws IOException {
+    	
+    	String[] nextRecord;
+     
+    	Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
+     
+     
+    	CSVReader csvReader = new CSVReader(reader);
+     
+
+    	while ((nextRecord = csvReader.readNext()) != null) {
+
+    		AlbumEntity albumEntity = new AlbumEntity();
+
+    		if (nextRecord[3].toLowerCase().contains(trackSearch.toLowerCase())) {
+    	return true;
+    			};
+
+    		}
+
+
+    	
+    	
+    	
+    	return false;
+    }
 
 }

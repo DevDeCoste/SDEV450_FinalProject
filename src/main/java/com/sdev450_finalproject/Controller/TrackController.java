@@ -175,4 +175,31 @@ boolean doesNotExist;
 		return true;
 	}
 
+public static boolean trackAvailable(String trackSearch) throws IOException {
+	
+	String[] nextRecord;
+ 
+	Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
+ 
+ 
+	CSVReader csvReader = new CSVReader(reader);
+ 
+
+	while ((nextRecord = csvReader.readNext()) != null) {
+
+		AlbumEntity albumEntity = new AlbumEntity();
+
+		if (nextRecord[5].toLowerCase().contains(trackSearch.toLowerCase())) {
+	return true;
+			};
+
+		}
+
+
+	
+	
+	
+	return false;
+}
+
 }
