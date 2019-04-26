@@ -74,6 +74,8 @@ public class AlbumController {
                 tempTrack.setYearPublished(nextRecord[1]);
 
                 trackLists.add(tempTrack);
+            }else{
+                tempTrack.setTrackTitle("null");
             }
 
         }

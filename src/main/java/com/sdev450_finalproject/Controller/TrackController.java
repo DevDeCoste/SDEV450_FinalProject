@@ -22,32 +22,10 @@ public class TrackController {
 
 	@Autowired
 	TrackRepository repository;
+	Boolean Trackexists;
 
-	// pseudocode:
-	// get searchtext from url
-	// iterate through csv to see if there's match
-	// match = return track object
-	// if no match, generate a random line and fetch that track object
-	// return a track object
+	static String FILE_PATH = "./src/main/resources/albumlist.csv";
 
-	// TEMP FILE HOLDER - need to refactor for final submission
-	static String FILE_PATH = "./src/main/resources/albumlist.csv";// "C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\raw_tracks.csv";
-	// C:\Users\0810\eclipse-workspace\Java-core-workspace\enterprise_java_final_project\SDEV450_FinalProject\src\main\resources
-	// ./src/main/resources/MasterCSV.csv
-	// C:\\Users\\0810\\eclipse-workspace\\Java-core-workspace\\enterprise_java_final_project\\SDEV450_FinalProject\\src\\main\\resources\\MasterCSV.csv
-
-//	@GetMapping("/findTracksbyAlbum/{albumName}")
-//	public ResponseEntity findTracksbyAlbum(@PathVariable("albumName") String albumName) {
-//		ArrayList<TrackEntity> Entities = albumRepository.findTrackEntitiesByAlbumTitleContains(albumName);
-//		if (Entities.isEmpty()) {
-//			// Returns 404 if not present
-//			return new ResponseEntity(HttpStatus.NOT_FOUND);
-//		}
-//
-//		// Returns Track Entity if present
-//		return new ResponseEntity(Entities, HttpStatus.OK);
-//	}
-	
 	@GetMapping("/findTrackByAlbum/{findByAlbum}")
 	public ArrayList<TrackEntity> findTrackbyAlbumName(@PathVariable("findByAlbum") String searchTrack) throws IOException {
 	
@@ -81,6 +59,8 @@ public class TrackController {
 		
 		
 	}
+
+
 	
 	@GetMapping("/saveTrack/{trackName}/{userId}")
 	public boolean saveTrack(@PathVariable String trackName, @PathVariable long userId ) throws IOException {
@@ -129,26 +109,19 @@ public class TrackController {
 		Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
 		ArrayList<AlbumEntity> albumLists = new ArrayList<>();
 		TrackEntity tempTrack = new TrackEntity();
-
+boolean doesNotExist;
 		CSVReader csvReader = new CSVReader(reader);
 		String trackTitle = " ";
 
 		while ((nextRecord = csvReader.readNext()) != null) {
-			
 
-//			TrackEntity tempTrack = new TrackEntity();
 			AlbumEntity albumEntity = new AlbumEntity();
-			// nextRecord[5].toLowerCase().contains(searchTrack.toLowerCase())
-			// StringUtils.containsIgnoreCase(searchTrack, nextRecord[5])
-//			CharSequence charAt5 = nextRecord[5];
-//			CharSequence searchChar = searchTrack;
 
 			if (nextRecord[5].toLowerCase().contains(searchTrack.toLowerCase())) {
 				// System.out.println("2++");
 				trackTitle = nextRecord[5];
 				tempTrack.setGenreType(nextRecord[4]);
 				tempTrack.setTrackLength(nextRecord[6]);
-//				tempTrack.setTrackTitle(nextRecord[5]);
 				tempTrack.setYearPublished(nextRecord[1]);
 
 				trackLists.add(tempTrack);
@@ -157,6 +130,9 @@ public class TrackController {
 					albumEntity.setAlbumName(albumEntity.getAlbumName());
 				};
 
+			} else{
+				System.out.print(searchTrack + "Does not exist");
+				doesNotExist = true;
 			}
 
 		}
@@ -165,6 +141,14 @@ public class TrackController {
 		List<TrackEntity> entities = repository.findAllByTrackTitle(trackTitle);
 		if(entities.size() == 1){
 			entity = entities.get(0);
+
+		}
+	 doesNotExist = true;
+
+		if(doesNotExist){
+			System.out.print(searchTrack + "reached does not exist section");
+		}else{
+
 		}
 
 		entity.setTrackTitle(trackTitle);

@@ -1,6 +1,7 @@
 package com.sdev450_finalproject;
 
 import com.sdev450_finalproject.Controller.DialogController;
+import com.sdev450_finalproject.Controller.TrackController;
 import com.sdev450_finalproject.persistance.Album.AlbumEntity;
 import com.sdev450_finalproject.persistance.Album.AlbumRepository;
 import com.sdev450_finalproject.persistance.Artist.ArtistEntity;
@@ -24,13 +25,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
 
 @Component
 public class UIController {
-	
+
 	@Autowired
 	AlbumRepository albumRepos;
 	
@@ -110,21 +112,26 @@ public class UIController {
 			this.text.setText(data);
 		}});
 
+
+
+
 		/*Tracks - Searches by Album Name*/
 		this.findTrack.setOnAction(actionEvent -> {
 			text.clear();
 			String input = textField.getText();
-			List<TrackEntity> allTracks = trackRepos.findAll();
-
-			if(input.isEmpty()){
-				this.text.setText("Please enter a track to insert into the database.\n");
-			}else if (!allTracks.contains(input)){
-				this.text.setText(input + " is not in the CSV file.\n");
-
-			}else {
 			RestTemplate restTemplate = new RestTemplate();
+			ArrayList exist = trackRepos.findAllByTrackTitle(input);
+			if (input.isEmpty()) {
+				this.text.setText("Please enter a track to insert into the database.\n");
+//			} else if (			exist.isEmpty()
+//			) {
+//				this.text.setText("Track is not in the CSV file");
+			}else{
 			String data = restTemplate
 					.postForEntity("http://localhost:8085/findTrack/" + input, null, String.class).getBody();
+			if(data == null){
+
+			}
 			this.text.setText(data);
 		}});
 
