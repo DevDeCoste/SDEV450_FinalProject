@@ -35,6 +35,7 @@
             <Button fx:id="searchAlbum" mnemonicParsing="false" prefWidth="200.0" text="Insert Album Into Database" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Button fx:id="allAlbums" alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="View All Albums In Database" textAlignment="CENTER" GridPane.rowIndex="4" />
             <Button fx:id="findTrack" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Insert Track Into Database" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <!--<Button mnemonicParsing="false" prefWidth="200.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />-->
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
                   <Label minWidth="100.0" prefWidth="200.0" text="Search">
@@ -54,7 +55,7 @@
             </HBox>
          <Button fx:id="searchArtist" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="Insert Artist Into Database" GridPane.rowIndex="2" />
          <Button fx:id="allArtists" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="View Database Contents" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         <Button fx:id="deleteSpecific" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="Delete Artist from Database" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+         <Button fx:id="deleteSpecific" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="Delete Artist" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          <Button fx:id="delete" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="Clear Database Contents" GridPane.columnIndex="3" GridPane.rowIndex="4" />
          <Label alignment="CENTER" contentDisplay="CENTER" text="CSV Controls (Lookup &amp; Save)" GridPane.columnSpan="3" GridPane.rowIndex="1">
             <font>
