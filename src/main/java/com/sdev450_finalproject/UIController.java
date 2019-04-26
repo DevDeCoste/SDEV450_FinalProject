@@ -1,38 +1,35 @@
 package com.sdev450_finalproject;
 
-import com.sdev450_finalproject.Controller.DialogController;
-import com.sdev450_finalproject.Controller.TrackController;
-import com.sdev450_finalproject.persistance.Album.AlbumEntity;
-import com.sdev450_finalproject.persistance.Album.AlbumRepository;
-import com.sdev450_finalproject.persistance.Artist.ArtistEntity;
-import com.sdev450_finalproject.persistance.Artist.ArtistRepository;
+/**
+ * @Course: SDEV-450-81 ~ Enterprise Java
+ * @Author Name: Deven DeCoste, Madeline Merced & Trinh Nguyen
+ * @Assignment Name: Final Project: Diet Spotify
+ * @Subclass UIController Description: Takes buttons from main.FXML and wires it to action event handlers
+ */
+
+//Imports
 import com.sdev450_finalproject.persistance.Track.TrackEntity;
+import com.sdev450_finalproject.persistance.Album.AlbumEntity;
+import com.sdev450_finalproject.persistance.Artist.ArtistEntity;
+import com.sdev450_finalproject.persistance.Album.AlbumRepository;
+import com.sdev450_finalproject.persistance.Artist.ArtistRepository;
 import com.sdev450_finalproject.persistance.Track.TrackRepository;
 import javafx.application.HostServices;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
 
 
 @Component
 public class UIController {
 
+	/*Autowires*/
 	@Autowired
 	AlbumRepository albumRepos;
 	
@@ -45,12 +42,11 @@ public class UIController {
 	private final HostServices hostServices;
 
 	UIController(HostServices hostServices) {
+
 		this.hostServices = hostServices;
 	}
 
-	@FXML
-	public Label label;
-
+	//FXML Variable Wiring
 	@FXML
 	public Button allAlbums;
 
@@ -86,7 +82,6 @@ public class UIController {
 
 		/*Albums - Lists all albums in database*/
 		this.allAlbums.setOnAction(actionEvent -> {
-
 			text.clear();
 			List<AlbumEntity> allAlbums = albumRepos.findAll();
 			if(allAlbums.isEmpty()){
@@ -99,7 +94,7 @@ public class UIController {
 		}});
 
 
-		/*Albums - Searches by Album Name*/
+		/*Albums - Searches by Album Name and adds to database*/
 		this.searchAlbum.setOnAction(actionEvent -> {
 			text.clear();
 			if(textField.getText().isEmpty()){
@@ -114,24 +109,16 @@ public class UIController {
 
 
 
-
-		/*Tracks - Searches by Album Name*/
+		/*Tracks - Searches by Track and adds to database*/
 		this.findTrack.setOnAction(actionEvent -> {
 			text.clear();
 			String input = textField.getText();
 			RestTemplate restTemplate = new RestTemplate();
-			ArrayList exist = trackRepos.findAllByTrackTitle(input);
 			if (input.isEmpty()) {
 				this.text.setText("Please enter a track to insert into the database.\n");
-//			} else if (			exist.isEmpty()
-//			) {
-//				this.text.setText("Track is not in the CSV file");
 			}else{
 			String data = restTemplate
 					.postForEntity("http://localhost:8085/findTrack/" + input, null, String.class).getBody();
-			if(data == null){
-
-			}
 			this.text.setText(data);
 		}});
 
@@ -139,9 +126,10 @@ public class UIController {
 		//TRINH
 		this.allArtists.setOnAction(actionEvent -> {
 			text.clear();
+
+			/*Lists all albums in the database*/
 			List<AlbumEntity> allAlbums = albumRepos.findAll();
 			int counter = 1;
-
 			if(allAlbums.isEmpty()){
 				this.text.appendText("THERE ARE NO ALBUMS IN THE DATABASE.\n");
 
@@ -160,6 +148,9 @@ public class UIController {
 
 				counter = 1;
 			}
+
+			/*Lists all tracks in the database*/
+
 			List<TrackEntity> allTracks = trackRepos.findAll();
 
 			if(allTracks.isEmpty()){
@@ -167,7 +158,6 @@ public class UIController {
 
 			}else {
 				this.text.appendText("---HERE ARE THE TRACKS IN THE DATABASE - LOCATED ON SERVER--- \n");
-
 
 				for (TrackEntity X : allTracks) {
 					text.appendText("Track No. " + counter + "\n");
@@ -186,6 +176,7 @@ public class UIController {
 				this.text.appendText("---END OF TRACKS IN THE DATABASE - LOCATED ON SERVER--- \n\n\n\n");
 			}
 
+			/*Lists all artists in the database*/
 			List<ArtistEntity> allArtist = artistRepos.findAll();
 
 			if(allArtist.isEmpty()){
@@ -230,13 +221,17 @@ public class UIController {
 			this.text.setText("Database has been deleted");
 		});
 
-		/*Artists - Searches by Artist Name*/
+		/*Artists - Deletes by Artist Name*/
 		this.deleteSpecific.setOnAction(actionEvent -> {
-			if(textField.getText().isEmpty()){
-				this.text.setText("Please enter an artist to delete from the database.");
-			}else {
-			RestTemplate restTemplate = new RestTemplate();
+			List<ArtistEntity> allArtist = artistRepos.findAll();
 			String input = textField.getText();
+
+			if(input.isEmpty()){
+				this.text.setText("Please enter an artist to delete from the database.");
+			}else if(!input.equals(allArtist)) {
+				this.text.setText(input + " is not an artist.");
+			}else{
+			RestTemplate restTemplate = new RestTemplate();
 			String deleteSpecificURL = "http://localhost:8085/deleteByArtist/" + input;
 			restTemplate.delete(deleteSpecificURL);
 			this.text.setText(input + " has been deleted from the database.");
