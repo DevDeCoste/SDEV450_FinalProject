@@ -211,8 +211,7 @@ public class ArtistController {
      
 
     	while ((nextRecord = csvReader.readNext()) != null) {
-
-    		AlbumEntity albumEntity = new AlbumEntity();
+ 
 
     		if (nextRecord[3].toLowerCase().contains(trackSearch.toLowerCase())) {
     	return true;

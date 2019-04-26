@@ -186,8 +186,7 @@ public static boolean trackAvailable(String trackSearch) throws IOException {
  
 
 	while ((nextRecord = csvReader.readNext()) != null) {
-
-		AlbumEntity albumEntity = new AlbumEntity();
+ 
 
 		if (nextRecord[5].toLowerCase().contains(trackSearch.toLowerCase())) {
 	return true;

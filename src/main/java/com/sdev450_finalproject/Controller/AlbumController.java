@@ -158,8 +158,7 @@ public class AlbumController {
      
 
     	while ((nextRecord = csvReader.readNext()) != null) {
-
-    		AlbumEntity albumEntity = new AlbumEntity();
+ 
 
     		if (nextRecord[2].toLowerCase().contains(trackSearch.toLowerCase())) {
     	return true;
