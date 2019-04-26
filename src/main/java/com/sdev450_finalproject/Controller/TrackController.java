@@ -63,13 +63,7 @@ public class TrackController {
 
 			TrackEntity tempTrack = new TrackEntity();
 
-			// nextRecord[5].toLowerCase().contains(searchTrack.toLowerCase())
-			// StringUtils.containsIgnoreCase(searchTrack, nextRecord[5])
-//			CharSequence charAt5 = nextRecord[5];
-//			CharSequence searchChar = searchTrack;
-
 			if (nextRecord[2].toLowerCase().contains(searchTrack.toLowerCase())) {
-				// System.out.println("2++");
 
 				tempTrack.setGenreType(nextRecord[4]);
 				tempTrack.setTrackLength(nextRecord[6]);

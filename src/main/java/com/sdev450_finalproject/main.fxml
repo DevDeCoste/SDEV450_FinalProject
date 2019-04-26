@@ -34,8 +34,8 @@
          <children>
             <Button fx:id="searchAlbum" mnemonicParsing="false" prefWidth="200.0" text="Insert Album Into Database" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Button fx:id="allAlbums" alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="View All Albums In Database" textAlignment="CENTER" GridPane.rowIndex="4" />
-            <Button fx:id="findTrack" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Find Track" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefWidth="200.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="findTrack" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Insert Track Into Database" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <!--<Button mnemonicParsing="false" prefWidth="200.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />-->
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
                   <Label minWidth="100.0" prefWidth="200.0" text="Search">
