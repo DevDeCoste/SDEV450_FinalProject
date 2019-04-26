@@ -5,7 +5,9 @@ package com.sdev450_finalproject;
  * @Author Name: Dev DeCoste, Trinh Nguyen, Madeline Merced
  * @Assignment Name: sdev450_finalproject
  * @Date: Jan 18, 2019
- * @Description:
+ * @Description: This application pulls in data from a CSV file and then sends that data
+ * to a MS SQL Server database hosted on AWS. This is the main class, which points to the SpringEntry class, which
+ * launches Spring Boot and connects to the Apache server.
  */
 
 //Imports

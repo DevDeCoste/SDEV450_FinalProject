@@ -61,11 +61,12 @@ public class AlbumController {
 
         CSVReader csvReader = new CSVReader(reader);
 
+        // Scans through the CSV file
         while ((nextRecord = csvReader.readNext()) != null) {
             TrackEntity tempTrack = new TrackEntity();
-
+        // Looks to column with the artist name and checks for a match
             if (nextRecord[2].toLowerCase().contains(searchTrack.toLowerCase())) {
-
+        //If a match is found - builds out the album object
                 albumTitle = nextRecord[2];
                 artistName = nextRecord[3];
                 tempTrack.setGenreType(nextRecord[4]);
@@ -98,6 +99,7 @@ public class AlbumController {
         albumLists.add(tempAlbum);
         entity.addAlbum(tempAlbum);
 
+        //Checks if album is already in the database - if not - saves to database
         if(albumRepository.findByAlbumNameEquals(tempAlbum.getAlbumName()) == null) {
             artistRepository.save(entity);
         }
